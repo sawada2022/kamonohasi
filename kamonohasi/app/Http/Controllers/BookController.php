@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\BookControllers;
+use App\Http\Controllers\UserControllers;
+use App\Http\Controllers\RentalControllers;
+
 
 class BookController extends Controller
 {
@@ -23,7 +27,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book;
+        return view('books/create',['book'=>$book]);
     }
 
     /**
@@ -66,7 +71,7 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
