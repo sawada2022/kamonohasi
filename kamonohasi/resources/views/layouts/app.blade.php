@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>かものはしLibrary<title>
+        <title>かものはしLibrary</title>
          <!--   <link rel="stylesheet" href="/css/main.css">CSSファイルつくる-->
     </head>
     <body>
