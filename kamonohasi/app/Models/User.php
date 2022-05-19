@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function rental_books(){
+        return $this->belongsToMany(Bok::class, 'rentals');
+    }
+
 }
