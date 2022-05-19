@@ -15,8 +15,8 @@ class CreateRentalsTable extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->references('id')->on('users');
-            $table->integer('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->integer('user_id')->references('id')->on('users')->unsigned();
+            $table->integer('book_id')->references('id')->on('books')->onDelete('cascade')->unsigned();
             $table->timestamps();
         });
     }
