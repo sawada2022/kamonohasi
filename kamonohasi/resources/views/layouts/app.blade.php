@@ -9,12 +9,7 @@
         <header>
             <div class="container">
                 <a class="brand" href="/">かものはしLibrary</a>
-                <?php
-                    $filePath = '/kamonohasi.png';
-                    $data = file_get_contents($filePath);// パスから画像データを取得
-                    header('Content-type: image/jpg');// header関数でコンテンツの形式が画像であると宣言
-                    echo $data;//データを出力
-                ?>
+                <img src="../image/kamonohasi.png" alt="かものはしのイラスト" >
             </div>
         </header>
     </body>
