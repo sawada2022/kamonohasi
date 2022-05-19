@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('comment');//コメント
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
