@@ -11,7 +11,7 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
         //
     }
@@ -21,7 +21,7 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() //リクエストを受け、会員情報・資料情報を表示
     {
         //
     }
@@ -32,7 +32,7 @@ class RentalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //会員IDと資料IDをrentalsテーブルに保存
     {
         //
     }
@@ -43,7 +43,7 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request) //貸出完了画面表示
     {
         //
     }
@@ -66,7 +66,7 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) 
     {
         //
     }

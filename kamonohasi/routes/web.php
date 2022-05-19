@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::resource('books', BookController::class);
 Route::resource('users', UserController::class);
-Route::resource('rental', RentalController::class);
+Route::resource('rentals', RentalController::class);
