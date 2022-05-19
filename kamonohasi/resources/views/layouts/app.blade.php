@@ -12,5 +12,6 @@
                 <img src="../image/kamonohasi.png" alt="かものはしのイラスト" >
             </div>
         </header>
+        @yield('content')
     </body>
 </html>
