@@ -13,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //「http://localhost:8000/users」でアクセスすると表示できた！
+        return view('users/index');
     }
 
     /**
@@ -23,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //「http://localhost:8000/users/create」でアクセスすると表示できた！
+        return view('users/create');
     }
 
     /**
@@ -56,7 +58,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //「http://localhost:8000/users/2/edit」でアクセスすると表示できた！
+        return view('users/edit');
     }
 
     /**
