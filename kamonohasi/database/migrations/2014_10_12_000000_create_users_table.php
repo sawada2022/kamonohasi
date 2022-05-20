@@ -17,11 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('user_name',40);//名前
             $table->date('birthday');//誕生日
-            $table->string('address',100);//住所
-            $table->string('postal_code',7);//郵便番号
+            $table->string('adress',100);//住所
+            $table->string('postal_code',10)->nullable();;//郵便番号
             $table->string('tel',20);//電話番号
             $table->string('email',100)->unique();//メールアドレス
-            $table->string('comment');//コメント
+            $table->string('comment')->nullable();//コメント
             $table->rememberToken();
             $table->timestamps();
         });
