@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class RentalController extends Controller
 {
@@ -21,9 +22,10 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() //リクエストを受け、会員情報・資料情報を表示
+    public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
-        //
+        $users = User::find($request->user_id);
+        return view('rentals/create', ['users' => $users]);
     }
 
     /**
@@ -34,7 +36,8 @@ class RentalController extends Controller
      */
     public function store(Request $request) //会員IDと資料IDをrentalsテーブルに保存
     {
-        //
+        $book=$request->create($request->all());
+        return redirect(route('create'));
     }
 
     /**
