@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $email = $request->input('email');
+        $email = $request->email;
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();

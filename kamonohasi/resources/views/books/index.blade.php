@@ -2,11 +2,11 @@
 
 @section('content')
 <h1>蔵書情報</h1>
-<a href="{{ route('book.create') }}">新規登録</a>
+<a href="{{ route('books.create') }}">新規登録</a>
 
-@include('index_form')
+@include('books/index_form')
 
-@if($books)
+@if(count($books)!=0)
     <table>
         <thead>
             <tr>
@@ -28,7 +28,8 @@
                 <td>{{ $book->published_on }}</td>
                 <td>{{ $book->created_at }}</td>
             </tr>
+            @endforeach
         </tbody>       
     </table>
-    {{ $book->links() }}
+    {{ $books->links() }}
 @endif

@@ -17,7 +17,7 @@
 <tr>
     <td>キーワード<input type="text" name="keyword" value="{{ old('') }}"></td>
     <td>出版年<select name="publised_year">
-        @for($i=getFullYear(); $i>=1900; $i--)
+        @for($i=2022; $i>=1900; $i--)
         <option value=$i>{{ $i }}</option>
         @endfor
     </select></td>

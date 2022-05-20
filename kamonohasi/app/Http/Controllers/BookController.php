@@ -12,9 +12,30 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Book $books)
+    public function index(Request $request)
     {
-        //$books = Book::where() 検索条件
+        $query = Book::query();
+        if($request->title){
+            $query->where('title', 'LIKE', '%'.$request->title.'%');
+        }
+        if($request->author){
+            $query->where('author', 'LIKE', '%'.$request->author.'%');
+        }
+        if($request->keyword){
+            $query->where('title', 'LIKE', '%'.$request->title.'%')
+            ->orWhere('author', 'LIKE', '%'.$request->author.'%');
+        }
+        if($request->book_id){
+            $query->where('id', '=', $request->book_id);
+        }
+        if($request->genre){
+            $query->where('category_id', '=', $request->genre);
+        }
+        if($request->published_year){
+            $query->where('publised_on', '=', $request->published_year);
+        }
+        $books = $query->orderBy('created_at')->paginate(10);
+        
         return view('books.index', ['books' => $books]);
     }
 
