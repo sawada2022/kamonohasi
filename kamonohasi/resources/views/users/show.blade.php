@@ -5,9 +5,6 @@
 
 <h1>会員情報詳細</h1>
 
-<p>{{ $users->email }}</p>
-<p>{{ $users->user_name }}</p>
-
 <form action="{{ route('users.show', $users->email) }}" method="get">
     @csrf
     <label>
@@ -22,19 +19,19 @@
     <tbody>
         <tr>
             <td>会員ID</td>
-            <td>123456789</td>
+            <td>{{ $users->id }}</td>
         </tr>
         <tr>
             <td>名前</td>
-            <td>山田太郎</td>
+            <td>{{ $users->user_name }}</td>
         </tr>
         <tr>
             <td>メールアドレス</td>
-            <td>sample@sample.com</td>
+            <td>{{ $users->email }}</td>
         </tr>
         <tr>
             <td>住所</td>
-            <td>東京都○○○○1丁目○○○○</td>
+            <td>{{ $users->adress }}</td>
         </tr>
     </tbody>
 </table>
