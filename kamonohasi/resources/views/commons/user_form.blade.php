@@ -1,5 +1,3 @@
-<form action="{{ route('') }}" method="post">
-    @csrf
     <label>
         会員ID
         <input type="text" name="user_id" value="{{ old('') }}">
@@ -32,5 +30,3 @@
         備考
         <input type="text" name="remarks" value="{{ old('') }}">
     </label>
-    <button>登録</button>
-</form>
