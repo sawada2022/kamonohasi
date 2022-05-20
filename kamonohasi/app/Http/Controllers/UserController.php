@@ -52,11 +52,13 @@ class UserController extends Controller
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
+            $flag = 0;
         }else{
             $users = User::first();
+            $flag = 1;
         }
         
-        return view('users/show', ['users' => $users]);
+        return view('users/show', ['users' => $users, 'flag' => $flag]);
     }
 
     /**

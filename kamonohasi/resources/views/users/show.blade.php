@@ -15,6 +15,7 @@
 </form>
 
 <p>会員情報</p>
+@if ($flag === 0)
 <table>
     <tbody>
         <tr>
@@ -35,6 +36,7 @@
         </tr>
     </tbody>
 </table>
+@endif
 
 <button>編集</button>
 <button>削除</button>
