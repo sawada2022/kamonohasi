@@ -55,9 +55,7 @@ class UserController extends Controller
         }else{
             $users = User::first();
         }
-        //$users = User::all();
-        //$users = User::where('email', '=', $request->email)->first();
-        //$users = User::where('email', '=', 'user1@gmail.com')->first();
+        
         return view('users/show', ['users' => $users]);
     }
 
