@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -56,11 +57,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(User $user)
     {
         //「http://localhost:8000/users/2/edit」でアクセスすると表示できた！
-        //$user->update($request->all());
-        return view('users/edit');
+        return view('users/edit',['user' => $user]);
     }
 
     /**
