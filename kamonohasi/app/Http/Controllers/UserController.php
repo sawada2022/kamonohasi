@@ -46,9 +46,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        return view('users/show');
+        $email = $request->input('email');
+        
+        if(!empty($email)){
+            $users = User::where('email', '=', $email)->first();
+        }else{
+            $users = User::first();
+        }
+        //$users = User::all();
+        //$users = User::where('email', '=', $request->email)->first();
+        //$users = User::where('email', '=', 'user1@gmail.com')->first();
+        return view('users/show', ['users' => $users]);
     }
 
     /**

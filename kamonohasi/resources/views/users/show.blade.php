@@ -5,7 +5,10 @@
 
 <h1>会員情報詳細</h1>
 
-<form action="" method="get">
+<p>{{ $users->email }}</p>
+<p>{{ $users->user_name }}</p>
+
+<form action="{{ route('users.show', $users->email) }}" method="get">
     @csrf
     <label>
         メールアドレス
