@@ -56,9 +56,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //「http://localhost:8000/users/2/edit」でアクセスすると表示できた！
+        //$user->update($request->all());
         return view('users/edit');
     }
 
