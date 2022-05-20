@@ -1,4 +1,5 @@
 <table>
+
 <form action="{{ route('books.index') }}" method="post">
     @csrf
 <tr>
