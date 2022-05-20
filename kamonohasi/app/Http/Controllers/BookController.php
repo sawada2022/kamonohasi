@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -11,9 +12,10 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Book $books)
     {
-        //
+        //$books = Book::where() 検索条件
+        return view('books.index', ['books' => $books]);
     }
 
     /**
