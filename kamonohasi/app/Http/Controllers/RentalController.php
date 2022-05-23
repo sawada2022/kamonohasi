@@ -12,9 +12,19 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index(Request $request) 
     {
-        //
+        $user_id = $request->input('user_id');
+        
+        if(!empty($user_id)){
+            $users = User::where('id', '=', $user_id)->first();
+            $flag = 0;
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        
+        return view('rentals/index', ['users' => $users, 'flag' => $flag]);
     }
 
     /**
