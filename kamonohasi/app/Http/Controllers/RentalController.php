@@ -31,7 +31,7 @@ class RentalController extends Controller
         $book_id = $request->input('book_id');
         if(!empty($book_id)){
             $request->session()->push('bookinfo', $book_id);
-            foreach($request->session()->get('bookinfo') as $i){
+            foreach(array_unique($request->session()->get('bookinfo')) as $i){
                 $books[] = Book::where('id', '=', $i)->first();
             }
             $flag = 0;
@@ -39,7 +39,7 @@ class RentalController extends Controller
             $books=[];//booksが入ってない空配列を返す
             session_start();
         }
-        //dd($books);
+        //dd($request->session()->get('bookinfo'));
         return view('rentals/create', ['books' => $books, 'flag' => $flag]);
     }
 
