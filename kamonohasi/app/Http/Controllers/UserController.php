@@ -59,6 +59,7 @@ class UserController extends Controller
         }
         
         return view('users/show', ['users' => $users, 'flag' => $flag]);
+
     }
 
     /**

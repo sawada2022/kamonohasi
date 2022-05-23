@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('commons/header')
+
 <button>戻る</button>
 
 <form action="{{ route('rentals.index', $users->email) }}" method="get">

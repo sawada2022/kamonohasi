@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('commons/header')
+
 <button>戻る</button>
 
 <h1>会員情報詳細</h1>
