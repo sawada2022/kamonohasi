@@ -13,8 +13,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request ,Book $books)
+    public function index(Request $request)
     {
+        if($request){
         $query = Book::query();
         if($request->title){
             $query->where('title', 'LIKE', '%'.$request->title.'%');
@@ -36,8 +37,14 @@ class BookController extends Controller
             $query->where('publised_on', '=', $request->published_year);
         }
         $books = $query->orderBy('created_at')->paginate(10);
+        $flag = 0;
+    }
+    else{
+        $books = Book::first();
+        $flag = 1;
+    }
         
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $books, 'flag' => $flag]);
     }
 
     /**
