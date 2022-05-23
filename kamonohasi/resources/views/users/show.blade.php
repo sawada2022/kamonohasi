@@ -38,8 +38,12 @@
 </table>
 @endif
 
-<button>編集</button>
-<button>削除</button>
+<a href="{{ route('users.edit', $users->id) }}">編集</a>
+<a href="#" id="deleteUserBtn">削除</a>
+<form action="{{ route('users.destroy', $users->id) }}" method="post" type id="user-delete">
+    @csrf
+    @method('delete')
+</form>
 
 <p>借りている本</p>
 <table>
