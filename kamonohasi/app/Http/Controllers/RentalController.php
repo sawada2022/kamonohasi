@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Book;
 
 class RentalController extends Controller
 {
@@ -67,9 +68,10 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+
+        return view('rentals.edit',['books'=>$books, 'user'=>$user]);
     }
 
     /**
