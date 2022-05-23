@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Rental;
 
 class RentalController extends Controller
 {
@@ -25,6 +26,20 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
+        //リクエストを受け、資料情報を表示
+        $book_flag = 1;
+        $book_id = $request->input('book_id');
+        if(!empty($book_id)){
+            $request->session()->push('bookinfo', $book_id);
+            foreach(array_unique($request->session()->get('bookinfo')) as $i){
+                $books[] = Book::where('id', '=', $i)->first();
+            }
+            $book_flag = 0;
+        }else{//初回用
+            $books=[];//booksが入ってない空配列を返す
+            session_start();
+        }
+        //dd($request->session()->get('bookinfo'));
         //入力された個人IDの取得
         $user_id = $request->input('user_id');
         $user_flag = 1;
@@ -33,16 +48,6 @@ class RentalController extends Controller
             $user_flag = 0;
         }else{
             $users = User::first();
-        }
-        //入力された資料IDの取得
-        $book_id = $request->input('book_id');
-
-        $book_flag = 1;
-        if(!empty($book_id)){
-            $books = Book::where('id', '=', $book_id)->first();
-            $book_flag = 0;
-        }else{
-            $books = Book::first();
         }
         
         //return

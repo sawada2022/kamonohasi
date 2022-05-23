@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Ap\Model\User;
 
 class UserController extends Controller
 {
@@ -49,7 +48,7 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $email = $request->input('email');
+        $emails = [$request->input('email')];
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
