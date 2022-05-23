@@ -12,7 +12,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request ,Book $books)
     {
         $query = Book::query();
         if($request->title){
