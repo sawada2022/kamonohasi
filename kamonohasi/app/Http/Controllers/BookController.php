@@ -58,7 +58,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('books.edit'); 
     }
 
     /**
