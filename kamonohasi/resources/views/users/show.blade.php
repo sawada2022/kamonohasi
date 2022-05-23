@@ -38,7 +38,7 @@
 </table>
 @endif
 
-<button>編集</button>
+<a href="{{ route('users.edit', $users->id) }}">編集</a>
 <button>削除</button>
 
 <p>借りている本</p>
