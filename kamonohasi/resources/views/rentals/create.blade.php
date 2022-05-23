@@ -2,54 +2,31 @@
 
 @section('content')
 <a href="rental/index">戻る</a>
-<h3>会員情報</h3>
-<!-- フォームの挿入  -->
-<form action="{{route('rentals.create')}}" method="post">
-    会員ID
-    <input type="number" name="user_id" value="user_id">
-    <input type="submit" value="検索">
-</form>
-<!-- 会員情報を表にする-->
-<table>
-    <tr>
-        <th>ID</th>
-        <td>{{$users->user_id}}</td>
-    </tr>
-    <tr>
-        <th>名前</th>
-        <td>{{$users->name}}</td>
-    </tr>
-    <tr>
-        <th>備考</th>
-        <td>{{$users->commnent}}</td>
-    </tr>
-</table>
-<!-- 「会員詳細」の作成 -->
-<button>会員詳細</button>
-<!-- 「借りてる本の詳細」の作成 -->
-<button>借りてる本の詳細</button>
 
 <h3>資料情報</h3>
-<!-- 借りる本の情報を表にする--><!-- フォームの挿入  -->
-<form action="{{route('rentals.create')}}" method="post">
-    会員ID
-    <input type="number" name="book_id" value="book_id">
-    <input type="submit" value="検索">
+<!-- フォームの挿入  -->
+<form action="{{route('rentals.create')}}" method="get">
+    <input type="number" name="book_id" >
+    <input type="submit" value="追加">
 </form>
+<!-- 資料情報を表にする-->
+@if ($flag === 0)
 <table>
     <tr>
-        <th></th>
         <th>資料名</th>
-        <th>著者名</th>
+        <th>著者</th>
         <th>出版社</th>
     </tr>
+    @foreach($books as $book)
     <tr>
-        <td>
-            <!--ここに冊数をインクリメントしたい-->
-        </td><!--本当は、5冊以上だったらエラーをだしたい-->
-        <td>{{$book_id->name}}</td>
-        <td>{{$book_id->author}}</td>
-        <td>{{$book_id->publisher}}</td>
-    <tr>
+        <td>{{$book->title}}</td>
+        <td>{{$book->author}}</td>
+        <td>{{$book->publisher}}</td>
+    </tr>
+    @endforeach
 </table>
-@endsection
+@endif
+
+<!-- 貸し出しボタンの作成 -->
+<button>貸し出し</button>
+@endsection('content')
