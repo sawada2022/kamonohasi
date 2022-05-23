@@ -17,14 +17,19 @@ class UserController extends Controller
         $email = $request->input('email');
         
         if(!empty($email)){
-            $users = User::where('email', '=', $email)->first();
-            $flag = 0;
-            return view('users/show', ['users' => $users, 'flag' => $flag]);
+            if(User::where('email', '=', $email)->first()){
+                $users = User::where('email', '=', $email)->first();
+                $flag = 0;
+                return view('users/show', ['users' => $users, 'flag' => $flag]);
+            }else{
+                $users = User::first();
+                $flag = 0;
+            }
         }else{
             $users = User::first();
             $flag = 1;
         }
-        return view('users/index', ['users' => $users, 'flag' => $flag]);
+        return view('users/index', ['users' => $users, 'flag' => $flag, 'email' => $email]);
     }
 
     /**
