@@ -20,7 +20,9 @@
     </label>
     <label for="category">分類コード</label>
     <select id="category">
-        <option></option>
+        @foreach($categories as $category)
+        <option>{{ $category->category_id }}：{{ $category->genre }}</option>
+        @endforeach
     </select>
     <label>
         出版日
