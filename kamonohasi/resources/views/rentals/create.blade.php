@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('commons/header')
 <a href="rental/index">戻る</a>
 
 <h3>会員情報</h3>
@@ -32,6 +33,7 @@
 <button>会員詳細</button>
 <!-- 「借りてる本の詳細」の作成 -->
 <button>借りてる本の詳細</button>
+
 
 <h3>資料情報</h3>
 <!-- 借りる本の情報を表にする--><!-- フォームの挿入  -->
@@ -67,5 +69,6 @@
     <input type="text" value="{{$books->id}}" name="book_id_rental" style='display:none;'>
     <input type="submit" value="貸し出し">
 </form>
+
 
 @endsection
