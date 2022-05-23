@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'comment',
     ];
-     
 
+    public function rental_books(){
+        return $this->belongsToMany(Book::class, 'rentals')->withTimestamps(); 
+       }
 }
