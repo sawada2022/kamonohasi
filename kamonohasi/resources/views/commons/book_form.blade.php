@@ -19,9 +19,9 @@
         <input type="text" name="isbn" value="">
     </label>
     <label for="category">分類コード</label>
-    <select id="category">
+    <select id="category" name="category">
         @foreach($categories as $category)
-        <option>{{ $category->category_id }}：{{ $category->genre }}</option>
+        <option value="{{ $category->category_id }}">{{ $category->category_id }}：{{ $category->genre }}</option>
         @endforeach
     </select>
     <label>
