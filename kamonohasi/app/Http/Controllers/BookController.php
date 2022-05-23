@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Books;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -56,9 +56,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        return view('books.edit'); 
+        return view('books.edit',['book' => $book]); 
     }
 
     /**
