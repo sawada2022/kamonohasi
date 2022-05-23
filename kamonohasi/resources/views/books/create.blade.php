@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('commons/header')
 <h3>資料新規登録</h3>
 <form action="{{ route('books.create') }}" method="post">
     @csrf

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('commons/header')
 <a href="rental/index">戻る</a>
 <h3>会員情報</h3>
 <!-- フォームの挿入  -->
