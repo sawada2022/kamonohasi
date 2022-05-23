@@ -12,10 +12,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //「http://localhost:8000/users」でアクセスすると表示できた！
-        return view('users/index');
+        $email = $request->input('email');
+        
+        if(!empty($email)){
+            $users = User::where('email', '=', $email)->first();
+            $flag = 0;
+            return view('users/show', ['users' => $users, 'flag' => $flag]);
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        return view('users/index', ['users' => $users, 'flag' => $flag]);
     }
 
     /**
