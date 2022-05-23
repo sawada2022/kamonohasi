@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
-use App\Models\Create;
+use App\Models\Rental;
 
 class RentalController extends Controller
 {
@@ -24,24 +24,22 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,Book $books) //リクエストを受け、会員情報・資料情報を表示
+    public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
         //リクエストを受け、資料情報を表示
-        $book_id = $request->input('book_id');
         $flag = 1;
+        $book_id = $request->input('book_id');
         if(!empty($book_id)){
-            $book = Book::where('id', '=', $book_id)->first();
-            $request->session()->push('bookinfo', $book);// セッションに情報を保存
-            // セッションの値を全て取得
-            $bookinfo = $request->session()->all();
-            $books[] = $bookinfo;
+            $request->session()->push('bookinfo', $book_id);
+            foreach($request->session()->get('bookinfo') as $i){
+                $books[] = Book::where('id', '=', $i)->first();
+            }
             $flag = 0;
         }else{//初回用
             $books=[];//booksが入ってない空配列を返す
             session_start();
-            $_SESSION['bookinfo'] = [];
         }
-
+        //dd($books);
         return view('rentals/create', ['books' => $books, 'flag' => $flag]);
     }
 
