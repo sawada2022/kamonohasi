@@ -7,6 +7,6 @@
 
 <form action="{{ route('books.update', $book->id) }}" method="post">
 @method('patch')
-@include('commons/book_form', ['categories' => $categories])
+@include('commons/book_form', ['book' => $book, 'categories' => $categories])
 
 @endsection
