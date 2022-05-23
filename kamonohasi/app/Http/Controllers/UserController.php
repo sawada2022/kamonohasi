@@ -52,13 +52,14 @@ class UserController extends Controller
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
+            $flag = 0;
         }else{
             $users = User::first();
+            $flag = 1;
         }
-        //$users = User::all();
-        //$users = User::where('email', '=', $request->email)->first();
-        //$users = User::where('email', '=', 'user1@gmail.com')->first();
-        return view('users/show', ['users' => $users]);
+        
+        return view('users/show', ['users' => $users, 'flag' => $flag]);
+
     }
 
     /**
@@ -92,8 +93,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        User::where('id', $user->id)->delete();
+        return redirect(route('users.show', $user));
     }
 }

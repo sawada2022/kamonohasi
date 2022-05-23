@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('commons/header')
+
 <button>戻る</button>
 
 <h1>新規会員登録</h1>
