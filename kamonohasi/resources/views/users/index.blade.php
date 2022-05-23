@@ -6,7 +6,10 @@
 <a href="{{route('users.create')}}">新規登録</a>
 
 <form action="{{route('users.index')}}" method="post">
-    <input type="text" name="name" >
+    <label>
+        メールアドレス
+        <input type="text" name="name" >
+    </label>
     <input type="submit" value="検索">
 </form>
 
