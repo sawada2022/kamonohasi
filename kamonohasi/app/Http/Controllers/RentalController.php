@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Book;
+use App\Models\Rental;
 
 class RentalController extends Controller
 {
@@ -34,8 +36,32 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
-        $users = User::find($request->user_id);
-        return view('rentals/create', ['users' => $users]);
+        //リクエストを受け、資料情報を表示
+        $book_flag = 1;
+        $book_id = $request->input('book_id');
+        if(!empty($book_id)){
+            $request->session()->push('bookinfo', $book_id);
+            foreach(array_unique($request->session()->get('bookinfo')) as $i){
+                $books[] = Book::where('id', '=', $i)->first();
+            }
+            $book_flag = 0;
+        }else{//初回用
+            $books=[];//booksが入ってない空配列を返す
+            session_start();
+        }
+        //dd($request->session()->get('bookinfo'));
+        //入力された個人IDの取得
+        $user_id = $request->input('user_id');
+        $user_flag = 1;
+        if(!empty($user_id)){
+            $users = User::where('id', '=', $user_id)->first();
+            $user_flag = 0;
+        }else{
+            $users = User::first();
+        }
+        
+        //return
+        return view('rentals/create', ['books' => $books, 'users' => $users,'user_flag' => $user_flag,'book_flag' => $book_flag]);
     }
 
     /**
@@ -46,8 +72,13 @@ class RentalController extends Controller
      */
     public function store(Request $request) //会員IDと資料IDをrentalsテーブルに保存
     {
-        $book=$request->create($request->all());
-        return redirect(route('create'));
+        //dd($request);
+        $book_id_rental = $request->input('user_id_rental');
+        $user_id_rental = $request->input('book_id_rental');
+        $user = User::find($user_id_rental);
+        $user->rental_books()->attach($book_id_rental);
+        //return redirect(route('rentals.show'));
+        return back();
     }
 
     /**
