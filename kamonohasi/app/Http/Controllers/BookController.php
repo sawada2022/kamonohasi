@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use App\Models\Books;
 
 class BookController extends Controller
 {
@@ -15,33 +14,39 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        $flag = 1;
         if($request){
         $query = Book::query();
         if($request->title){
             $query->where('title', 'LIKE', '%'.$request->title.'%');
+            $flag = 0;
         }
         if($request->author){
             $query->where('author', 'LIKE', '%'.$request->author.'%');
+            $flag = 0;
         }
         if($request->keyword){
             $query->where('title', 'LIKE', '%'.$request->title.'%')
             ->orWhere('author', 'LIKE', '%'.$request->author.'%');
+            $flag = 0;
         }
         if($request->book_id){
             $query->where('id', '=', $request->book_id);
+            $flag = 0;
         }
         if($request->genre){
             $query->where('category_id', '=', $request->genre);
+            $flag = 0;
         }
         if($request->published_year){
             $query->where('publised_on', '=', $request->published_year);
+            $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
-        $flag = 0;
+        var_dump($query);
     }
     else{
         $books = Book::first();
-        $flag = 1;
     }
         
         return view('books.index', ['books' => $books, 'flag' => $flag]);
@@ -65,7 +70,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $book = $request->create($request->all());
+        //$book = $request->create($request->all());
         return redirect(route('books/create'));
     }
 

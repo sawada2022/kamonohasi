@@ -6,6 +6,7 @@
 
 @include('books/index_form')
 
+
 @if($flag === 0)
     <table>
         <thead>
