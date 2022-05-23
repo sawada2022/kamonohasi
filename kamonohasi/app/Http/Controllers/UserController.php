@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Ap\Model\User;
 
 class UserController extends Controller
 {
@@ -52,13 +53,13 @@ class UserController extends Controller
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
+            $flag = 0;
         }else{
             $users = User::first();
+            $flag = 1;
         }
-        //$users = User::all();
-        //$users = User::where('email', '=', $request->email)->first();
-        //$users = User::where('email', '=', 'user1@gmail.com')->first();
-        return view('users/show', ['users' => $users]);
+        
+        return view('users/show', ['users' => $users, 'flag' => $flag]);
     }
 
     /**

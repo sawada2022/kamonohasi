@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Books;
 
 class BookController extends Controller
 {
@@ -46,7 +47,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create'); 
     }
 
     /**
@@ -57,7 +58,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = $request->create($request->all());
+        return redirect(route('books/create'));
     }
 
     /**
