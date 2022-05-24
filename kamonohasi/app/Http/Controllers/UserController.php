@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Rental;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,10 +15,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //「http://localhost:8000/users」でアクセスすると表示できた！
-        return view('users/index');
+        $email = $request->input('email');
+        
+        if(!empty($email)){
+            if(User::where('email', '=', $email)->first()){
+                $users = User::where('email', '=', $email)->first();
+                $rentals = Rental::where('user_id', '=', $users->id)->get();
+                if(count($rentals)){
+                    foreach($rentals as $rental){
+                        $books[] = Book::where('id', '=', $rental->book_id)->first();
+                    }
+                    $flag = 1;
+                }else{
+                    $books[] = Book::first();
+                    $flag = 0;
+                }
+                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
+            }else{
+                $users = User::first();
+                $flag = 0;
+            }
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        return view('users/index', ['users' => $users, 'flag' => $flag, 'email' => $email]);
     }
 
     /**
@@ -54,14 +79,12 @@ class UserController extends Controller
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
-            $flag = 0;
+            $rentals = Rental::where('user_id', '=', $users->id)->all();
         }else{
             $users = User::first();
-            $flag = 1;
-        }
-        $books = $users()->rental_books()->get(); //->where('user_id','=',$users->id)
-        dd($request);
-        return view('users/show', ['users' => $users, 'books' => $books, 'flag' => $flag]);
+        }        
+        return view('users/show', ['users' => $users]);
+
 
     }
 
