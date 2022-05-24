@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@include('commons/header')
 <h1>蔵書情報</h1>
 <a href="{{ route('books.create') }}">新規登録</a>
 
 @include('books/index_form')
-
 
 @if($flag === 0)
     <table>

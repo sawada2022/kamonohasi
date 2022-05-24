@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Category;
 
 class BookController extends Controller
 {
@@ -14,36 +15,43 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        var_dump($request->title);
+        var_dump($request->author);
+        var_dump($request->book_id);
+        var_dump($request->genre);
         $flag = 1;
         if($request){
         $query = Book::query();
         if($request->title){
-            $query->where('title', 'LIKE', '%'. $request->title .'%');
+            $query = Book::where('title', 'LIKE', '%'. $request->title .'%');
+            $flag = 0;
         }
         if($request->author){
-            $query->where('author', 'LIKE', '%'. $request->author .'%');
+            $query = Book::where('author', 'LIKE', '%'. $request->author .'%');
+            $flag = 0;
         }
         if($request->keyword){
-            $query->where('title', 'LIKE', '%'. $request->title .'%')
+            $query = Book::where('title', 'LIKE', '%'. $request->title .'%')
             ->orWhere('author', 'LIKE', '%'. $request->author .'%');
+            $flag = 0;
         }
         if($request->book_id){
-            $query->where('id', '=', $request->book_id);
+            $query = Book::where('id', '=', $request->book_id);
+            $flag = 0;
         }
         if($request->genre){
-            $query->where('category_id', '=', $request->genre);
+            $query = Book::where('category_id', '=', $request->genre);
+            $flag = 0;
         }
         if($request->published_year){
-            $query->where('publised_on', '=', $request->published_year);
+            $query = Book::where('publised_on', '=', $request->published_year);
+            $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
-        $flag = 0;
-        //dd($books);
     }
     else{
         $books = Book::first();
     }
-        
         return view('books.index', ['books' => $books, 'flag' => $flag]);
     }
 
@@ -54,7 +62,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create'); 
+        $book = new Book;
+        $categories = Category::all();
+        return view('books/create',['book'=>$book,'categories'=>$categories]); 
     }
 
     /**
@@ -65,8 +75,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //$book = $request->create($request->all());
-        return redirect(route('books/create'));
+        Book::create($request->all());      
+        return redirect(route('books.create'));
     }
 
     /**
@@ -86,9 +96,10 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+        $categories = Category::all();
+        return view('books.edit',['book' => $book, 'categories' => $categories]); 
     }
 
     /**
@@ -98,9 +109,10 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $book->update($request->all());
+        return redirect(route('books.show', $book));
     }
 
     /**
