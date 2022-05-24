@@ -60,6 +60,7 @@
         <td>{{$books->author}}</td>
         <td>{{$books->publisher}}</td>
     <tr>
+    @endforeach
 </table>
 @endif
 
