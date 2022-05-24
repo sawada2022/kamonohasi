@@ -17,7 +17,8 @@ class RentalController extends Controller
     public function index(Request $request) 
     {
         $user_id = $request->input('user_id');
-        
+        $book_flag = 1;
+
         if(!empty($user_id)){
             $users = User::where('id', '=', $user_id)->first();
             $flag = 0;
@@ -26,7 +27,7 @@ class RentalController extends Controller
             $flag = 1;
         }
         
-        return view('rentals/index', ['users' => $users, 'flag' => $flag]);
+        return view('rentals/index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
     }
 
     /**
@@ -36,10 +37,13 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
+        $users = User::where('id', '=', $request->users)->first();
+
         //リクエストを受け、資料情報を表示
         $book_flag = 1;
         $book_id = $request->input('book_id');
         if(!empty($book_id)){
+            $users = User::where('id', '=', $request->input('user_id'))->first();
             $request->session()->push('bookinfo', $book_id);
             foreach(array_unique($request->session()->get('bookinfo')) as $i){
                 $books[] = Book::where('id', '=', $i)->first();
@@ -50,18 +54,23 @@ class RentalController extends Controller
             session_start();
         }
         //dd($request->session()->get('bookinfo'));
+        /*
         //入力された個人IDの取得
         $user_id = $request->input('user_id');
-        $user_flag = 1;
+        //$user_flag = 1;
         if(!empty($user_id)){
             $users = User::where('id', '=', $user_id)->first();
-            $user_flag = 0;
+            //$user_flag = 0;
         }else{
             $users = User::first();
         }
-        
+        */
+
+        //dd($users);
+
         //return
-        return view('rentals/create', ['books' => $books, 'users' => $users,'user_flag' => $user_flag,'book_flag' => $book_flag]);
+        //return view('rentals/create', ['books' => $books, 'users' => $users,'user_flag' => $user_flag,'book_flag' => $book_flag]);
+        return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag]);
     }
 
     /**
@@ -89,7 +98,7 @@ class RentalController extends Controller
      */
     public function show(Request $request) //貸出完了画面表示
     {
-        //
+        return view('rentals/show');
     }
 
     /**
