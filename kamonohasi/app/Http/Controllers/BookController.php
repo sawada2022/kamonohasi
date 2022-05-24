@@ -18,32 +18,27 @@ class BookController extends Controller
         if($request){
         $query = Book::query();
         if($request->title){
-            $query->where('title', 'LIKE', '%'.$request->title.'%');
-            $flag = 0;
+            $query->where('title', 'LIKE', '%'. $request->title .'%');
         }
         if($request->author){
-            $query->where('author', 'LIKE', '%'.$request->author.'%');
-            $flag = 0;
+            $query->where('author', 'LIKE', '%'. $request->author .'%');
         }
         if($request->keyword){
-            $query->where('title', 'LIKE', '%'.$request->title.'%')
-            ->orWhere('author', 'LIKE', '%'.$request->author.'%');
-            $flag = 0;
+            $query->where('title', 'LIKE', '%'. $request->title .'%')
+            ->orWhere('author', 'LIKE', '%'. $request->author .'%');
         }
         if($request->book_id){
             $query->where('id', '=', $request->book_id);
-            $flag = 0;
         }
         if($request->genre){
             $query->where('category_id', '=', $request->genre);
-            $flag = 0;
         }
         if($request->published_year){
             $query->where('publised_on', '=', $request->published_year);
-            $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
-        dd($books);
+        $flag = 0;
+        //dd($books);
     }
     else{
         $books = Book::first();
