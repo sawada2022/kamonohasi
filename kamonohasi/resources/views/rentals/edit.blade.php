@@ -48,6 +48,6 @@
 
 @if($flag === 0)
 <a href="{{ route('rentals.update', $user->id) }}">返却</a>
-</form>
 @endif
+
 @endsection

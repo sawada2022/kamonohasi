@@ -144,7 +144,7 @@ class RentalController extends Controller
                 $rental->save();
             }
             $flag = 1;
-        return view('rentals.index', ['users' => $users, 'flag' => $flag]);
+        return back();
     }
 
     /**
