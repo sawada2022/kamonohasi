@@ -3,6 +3,7 @@
 
 @include('commons/header')
 <h1>会員情報</h1>
+@if($flag === 0)
 <table>
     <tr>
         <td>ID</td>
@@ -17,8 +18,12 @@
         <td>{{ $user->comment }}</td>
     </tr>
 </table>
-<a href="{{ route('users.show', $user->id) }}">会員詳細</a>
-
+<form action="{{ route('users.show) }}" method="post">
+    @csrf
+    <input type="hidden" name="email" value="">
+    <input type="submit" value="会員詳細">
+</form>
+@endif
 <h1>資料情報</h1>
 <table>
     <thead>
@@ -28,7 +33,7 @@
             <th>出版社</th>
         </tr>
     </thead>
-    @if(flag === 0)
+    @if($flag === 0)
     <tbody>
         @foreach($books as $book)
         <tr>
@@ -40,4 +45,9 @@
     </tbody>
     @endif
 </table>
+
+@if($flag === 0)
+<a href="{{ route('rentals.update', $user->id) }}">返却</a>
+</form>
+@endif
 @endsection
