@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+@include('commons/header')
 <h1>会員情報</h1>
 <table>
     <tr>
@@ -26,6 +28,7 @@
             <th>出版社</th>
         </tr>
     </thead>
+    @if(flag === 0)
     <tbody>
         @foreach($books as $book)
         <tr>
@@ -35,5 +38,6 @@
         </tr>
         @endforeach
     </tbody>
+    @endif
 </table>
 @endsection

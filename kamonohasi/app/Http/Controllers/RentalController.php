@@ -99,11 +99,11 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($user_id)
+    public function edit($id)
     {        
-        if(!empty($user_id)){
-            if(User::where('id', '=', $user_id)->first()){
-                $users = User::where('id', '=', $user_id)->first();
+        if(!empty($id)){
+            if(User::where('id', '=', $id)->first()){
+                $users = User::where('id', '=', $id)->first();
                 $rentals = Rental::where('user_id', '=', $users->id)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
@@ -113,16 +113,17 @@ class RentalController extends Controller
                     $books[] = Book::first();
                 }
                 $flag = 0;
-                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
             }else{
                 $users = User::first();
-                $flag = 0;
+                $books = Book::first();
+                $flag = 1;
             }
         }else{
             $users = User::first();
+            $books = Book::first();
             $flag = 1;
         }
-        return view('users.edit', ['users' => $users, 'flag' => $flag, 'user_id' => $user_id]);
+        return view('rentals.edit', ['user' => $users, 'flag' => $flag, 'books' => $books]);
     }
 
     /**
