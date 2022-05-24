@@ -9,7 +9,7 @@
     @csrf
     <label>
         会員ID
-        <input type="text" name="user_id" value="">
+        <input type="number" name="user_id" value="">
     </label>
     <button>検索</button>
 </form>
