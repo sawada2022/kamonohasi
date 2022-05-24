@@ -1,14 +1,10 @@
     <label>
-        会員ID
-        <input type="text" name="user_id" value="{{ old('') }}">
-    </label>
-    <label>
         名前
         <input type="text" name="user_name" value="{{ old('') }}">
     </label>
     <label>
         メールアドレス
-        <input type="email" name="mail_adress" value="{{ old('') }}">
+        <input type="email" name="email" value="{{ old('') }}">
     </label>
     <label>
         電話番号
@@ -28,5 +24,5 @@
     </label>
     <label>
         備考
-        <input type="text" name="remarks" value="{{ old('') }}">
+        <input type="text" name="comment" value="{{ old('') }}">
     </label>

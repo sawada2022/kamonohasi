@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -37,7 +38,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect(route('users.index'));
     }
 
     /**
@@ -57,8 +59,9 @@ class UserController extends Controller
             $users = User::first();
             $flag = 1;
         }
-        
-        return view('users/show', ['users' => $users, 'flag' => $flag]);
+        $books = $users()->rental_books()->get(); //->where('user_id','=',$users->id)
+        dd($request);
+        return view('users/show', ['users' => $users, 'books' => $books, 'flag' => $flag]);
 
     }
 
