@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('title','貸し借り業務')
 @section('content')
+
 @include('commons/header')
 <a href="{{ route('rentals.index') }}">戻る</a>
 
