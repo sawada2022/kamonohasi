@@ -82,11 +82,22 @@ class RentalController extends Controller
      */
     public function store(Request $request) //会員IDと資料IDをrentalsテーブルに保存
     {
-        //dd($request);
-        $book_id_rental = $request->input('user_id_rental');
-        $user_id_rental = $request->input('book_id_rental');
+        //dd($request->session()->get('bookinfo'));
+        $user_id_rental = $request->input('user_id_rental');
+        //$user_id_rental = $request->input('book_id_rental');
+
         $user = User::find($user_id_rental);
-        $user->rental_books()->attach($book_id_rental);
+        //$user->rental_books()->attach($book_id_rental);
+
+        $rentals = $request->session()->get('bookinfo');
+        //dd($rentals);
+        foreach($rentals as $rental){
+            //dd($rental);
+            $book = Book::find($rental);
+            //dd($book->id);
+            $user->rental_books()->attach($book->id);
+        }
+
         //return redirect(route('rentals.show'));
         return back();
     }
