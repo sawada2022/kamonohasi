@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+@section('title','貸し借り業務')
 @section('content')
-@include('commons/header')
+
 <a href="rental/index">戻る</a>
 
 <h3>会員情報</h3>

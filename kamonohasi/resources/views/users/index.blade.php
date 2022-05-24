@@ -1,6 +1,8 @@
 @extends('layouts.app')
+
+@section('title','会員管理業務')
 @section('content')
-@include('commons/header')
+
 
 <h3>会員詳細情報</h3>
 <a href="{{route('users.create')}}">新規登録</a>
