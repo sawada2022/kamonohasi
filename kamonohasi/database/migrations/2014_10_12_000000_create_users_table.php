@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('user_name',40);//名前
-            $table->date('birthday');//誕生日
+            $table->date('birthday')->nullable();//誕生日
             $table->string('adress',100);//住所
             $table->string('postal_code',10)->nullable();;//郵便番号
             $table->string('tel',20);//電話番号
