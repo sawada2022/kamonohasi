@@ -59,13 +59,15 @@
         </tr>
     </thead>
     <tbody>
+        @foreach($books as $book)
         <tr>
-            <td>1</td>
-            <td>phpの本</td>
-            <td>山田太郎</td>
-            <td>テスト出版</td>
-            <td>2022年6月1日</td>
+            <td>{{ $book->id }}</td>
+            <td>{{ $book->title }}</td>
+            <td>{{ $book->author }}</td>
+            <td>{{ $book->publisher }}</td>
+            <td>{{ $book->created_at }}</td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 
