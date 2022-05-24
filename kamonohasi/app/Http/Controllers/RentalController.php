@@ -52,6 +52,7 @@ class RentalController extends Controller
         }else{//初回用
             $books=[];//booksが入ってない空配列を返す
             session_start();
+            $request->session()->remove('bookinfo');
         }
         //dd($request->session()->get('bookinfo'));
         /*
