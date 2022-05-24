@@ -26,10 +26,11 @@ class UserController extends Controller
                     foreach($rentals as $rental){
                         $books[] = Book::where('id', '=', $rental->book_id)->first();
                     }
+                    $flag = 1;
                 }else{
                     $books[] = Book::first();
+                    $flag = 0;
                 }
-                $flag = 0;
                 return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
             }else{
                 $users = User::first();

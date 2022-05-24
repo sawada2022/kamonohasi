@@ -48,6 +48,7 @@
         </tr>
     </thead>
     <tbody>
+        @if($flag === 1)
         @foreach($books as $book)
         <tr>
             <td>{{ $book->id }}</td>
@@ -57,6 +58,7 @@
             <td>{{ $book->created_at }}</td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 
