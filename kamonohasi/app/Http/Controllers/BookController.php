@@ -43,7 +43,7 @@ class BookController extends Controller
             $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
-        var_dump($query);
+        dd($books);
     }
     else{
         $books = Book::first();
