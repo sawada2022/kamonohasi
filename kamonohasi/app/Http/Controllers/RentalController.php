@@ -54,23 +54,7 @@ class RentalController extends Controller
             session_start();
             $request->session()->remove('bookinfo');
         }
-        //dd($request->session()->get('bookinfo'));
-        /*
-        //入力された個人IDの取得
-        $user_id = $request->input('user_id');
-        //$user_flag = 1;
-        if(!empty($user_id)){
-            $users = User::where('id', '=', $user_id)->first();
-            //$user_flag = 0;
-        }else{
-            $users = User::first();
-        }
-        */
 
-        //dd($users);
-
-        //return
-        //return view('rentals/create', ['books' => $books, 'users' => $users,'user_flag' => $user_flag,'book_flag' => $book_flag]);
         return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag]);
     }
 
@@ -82,24 +66,16 @@ class RentalController extends Controller
      */
     public function store(Request $request) //会員IDと資料IDをrentalsテーブルに保存
     {
-        //dd($request->session()->get('bookinfo'));
         $user_id_rental = $request->input('user_id_rental');
-        //$user_id_rental = $request->input('book_id_rental');
-
         $users = User::find($user_id_rental);
-        //$user->rental_books()->attach($book_id_rental);
 
         $rentals = $request->session()->get('bookinfo');
-        //dd($rentals);
         foreach($rentals as $rental){
-            //dd($rental);
             $book = Book::find($rental);
             $books[] = $book;
-            //dd($book->id);
             $users->rental_books()->attach($book->id);
         }
-
-        //return redirect(route('rentals.show'));
+        
         return view('rentals/show', ['books' => $books, 'users' => $users]);
     }
 
