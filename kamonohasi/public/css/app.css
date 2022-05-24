@@ -1,3 +1,30 @@
-body {
-  color: red;
+.modal {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
+.modalContent {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: block;
+  background-color: #fff;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 5px;
 }
