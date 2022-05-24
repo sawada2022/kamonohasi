@@ -17,6 +17,7 @@ class CreateRentalsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->boolean('rental_status')->default(0);
             $table->timestamps();
         });
     }
