@@ -86,7 +86,7 @@ class RentalController extends Controller
         $user_id_rental = $request->input('user_id_rental');
         //$user_id_rental = $request->input('book_id_rental');
 
-        $user = User::find($user_id_rental);
+        $users = User::find($user_id_rental);
         //$user->rental_books()->attach($book_id_rental);
 
         $rentals = $request->session()->get('bookinfo');
@@ -94,12 +94,13 @@ class RentalController extends Controller
         foreach($rentals as $rental){
             //dd($rental);
             $book = Book::find($rental);
+            $books[] = $book;
             //dd($book->id);
-            $user->rental_books()->attach($book->id);
+            $users->rental_books()->attach($book->id);
         }
 
         //return redirect(route('rentals.show'));
-        return back();
+        return view('rentals/show', ['books' => $books, 'users' => $users]);
     }
 
     /**
