@@ -9,7 +9,7 @@
     @csrf
     <label>
         会員ID
-        <input type="text" name="user_id" value="">
+        <input type="number" name="user_id" value="">
     </label>
     <button>検索</button>
 </form>
@@ -29,7 +29,7 @@
 </table>
 @endif
 
-<a href="{{ route('rentals.create', $users->id) }}">貸出</a>
+<a href="{{ route('rentals.create', ['users' => $users,'book_flag' => $book_flag]) }}">貸出</a>
 <a href="{{ route('rentals.edit', $users->id) }}">返却</a>
 
 @endsection
