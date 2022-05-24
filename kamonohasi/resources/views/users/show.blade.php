@@ -3,10 +3,10 @@
 
 @include('commons/header')
 
-<button>戻る</button>
+<a href="{{ route('users.index') }}">戻る</a>
 
 <h1>会員情報詳細</h1>
-
+{{--
 <form action="{{ route('users.show', $users->email) }}" method="get">
     @csrf
     <label>
@@ -15,9 +15,9 @@
     </label>
     <button>検索</button>
 </form>
-
 <p>会員情報</p>
-@if ($flag === 0)
+--}}
+{{--@if ($flag === 0)--}}
 <table>
     <tbody>
         <tr>
@@ -38,7 +38,7 @@
         </tr>
     </tbody>
 </table>
-@endif
+{{--@endif--}}
 
 <a href="{{ route('users.edit', $users->id) }}">編集</a>
 <a href="#" id="deleteUserBtn">削除</a>
