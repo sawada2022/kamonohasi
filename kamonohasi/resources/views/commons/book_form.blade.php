@@ -4,7 +4,7 @@
     @csrf
     <label>
         資料名
-        <input type="text" name="book_name" value="{{ $book->title }}">
+        <input type="text" name="title" value="{{ $book->title }}">
     </label>
     <label>
         著者
@@ -19,7 +19,7 @@
         <input type="text" name="isbn" value="{{ $book->isbn }}">
     </label>
     <label for="category">分類コード</label>
-    <select id="category" name="category">
+    <select id="category" name="category_id">
         @foreach($categories as $category)
         @if($category->category_id === $book->category_id)
         <option value="{{ $category->category_id }}" selected>
@@ -32,15 +32,15 @@
     </select>
     <label>
         出版日
-        <input type="date" name="publication_date" value="{{ $book->published_on }}">
+        <input type="date" name="published_at" value="{{ $book->published_on }}">
     </label>
     <label>
         備考
-        <input type="text" name="remarks" value="{{ $book->comment }}">
+        <input type="text" name="comment" value="{{ $book->comment }}">
     </label>
     <label>
         廃棄年月日
-        <input type="date" name="remarks" value="{{ $book->deleted_on }}">
+        <input type="date" name="deleted_at" value="{{ $book->deleted_on }}">
     </label>
     <button>登録</button>
 </form>

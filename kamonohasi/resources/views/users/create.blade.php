@@ -1,7 +1,8 @@
 @extends('layouts.app')
+@section('title','会員管理業務')
 @section('content')
 
-@include('commons/header')
+
 
 <button>戻る</button>
 
