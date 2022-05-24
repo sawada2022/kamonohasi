@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>かものはしLibrary</title>
-        <!--   <link rel="stylesheet" href="/css/main.css">CSSファイルつくる-->
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         @yield('content')
