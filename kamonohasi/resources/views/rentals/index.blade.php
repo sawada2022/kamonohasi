@@ -29,7 +29,7 @@
 </table>
 @endif
 
-<a href="{{ route('rentals.create', $users->id) }}">貸出</a>
+<a href="{{ route('rentals.create', ['users' => $users,'book_flag' => $book_flag]) }}">貸出</a>
 <a href="{{ route('rentals.edit', $users->id) }}">返却</a>
 
 @endsection
