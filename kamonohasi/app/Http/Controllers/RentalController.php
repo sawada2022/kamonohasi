@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Rental;
 
 
 class RentalController extends Controller
@@ -98,10 +99,30 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
-    {
-
-        return view('rentals.edit',['books'=>$books, 'user'=>$user]);
+    public function edit($user_id)
+    {        
+        if(!empty($user_id)){
+            if(User::where('id', '=', $user_id)->first()){
+                $users = User::where('id', '=', $user_id)->first();
+                $rentals = Rental::where('user_id', '=', $users->id)->get();
+                if(count($rentals)){
+                    foreach($rentals as $rental){
+                        $books[] = Book::where('id', '=', $rental->book_id)->first();
+                    }
+                }else{
+                    $books[] = Book::first();
+                }
+                $flag = 0;
+                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
+            }else{
+                $users = User::first();
+                $flag = 0;
+            }
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        return view('users.edit', ['users' => $users, 'flag' => $flag, 'user_id' => $user_id]);
     }
 
     /**

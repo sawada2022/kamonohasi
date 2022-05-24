@@ -12,10 +12,10 @@
     </tr>
     <tr>
         <td>備考</td>
-        <td>{{ $user->remarks }}</td>
+        <td>{{ $user->comment }}</td>
     </tr>
 </table>
-<a href="{{ route('users.show', $user) }}">会員詳細</a>
+<a href="{{ route('users.show', $user->id) }}">会員詳細</a>
 
 <h1>資料情報</h1>
 <table>
