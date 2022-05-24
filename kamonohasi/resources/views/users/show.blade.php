@@ -6,18 +6,8 @@
 <a href="{{ route('users.index') }}">戻る</a>
 
 <h1>会員情報詳細</h1>
-{{--
-<form action="{{ route('users.show', $users->email) }}" method="get">
-    @csrf
-    <label>
-        メールアドレス
-        <input type="email" name="email" value="">
-    </label>
-    <button>検索</button>
-</form>
+
 <p>会員情報</p>
---}}
-{{--@if ($flag === 0)--}}
 <table>
     <tbody>
         <tr>
@@ -38,7 +28,6 @@
         </tr>
     </tbody>
 </table>
-{{--@endif--}}
 
 <a href="{{ route('users.edit', $users->id) }}">編集</a>
 <a href="#" id="deleteUserBtn">削除</a>
@@ -55,7 +44,7 @@
             <th>資料名</th>
             <th>著者</th>
             <th>出版社</th>
-            <th>貸出期限</th>
+            <th>貸出日</th>
         </tr>
     </thead>
     <tbody>
