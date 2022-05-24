@@ -11,17 +11,14 @@
     </tr>
     <tr>
         <td>名前</td>
-        <td>{{ $user->name }}</td>
+        <td>{{ $user->user_name }}</td>
     </tr>
     <tr>
         <td>備考</td>
         <td>{{ $user->comment }}</td>
     </tr>
 </table>
-<form action="{{ route('users.show) }}" method="post">
-    @csrf
-    <input type="hidden" name="email" value="">
-    <input type="submit" value="会員詳細">
+<button>会員詳細</button>
 </form>
 @endif
 <h1>資料情報</h1>
@@ -46,8 +43,11 @@
     @endif
 </table>
 
-@if($flag === 0)
-<a href="{{ route('rentals.update', $user->id) }}">返却</a>
-@endif
+<form action="{{ route('rentals.update', $user->id) }}" method="post">
+@method('patch')
+@csrf
+<input type="hidden" name="user_id" value="{{ $user->id }}">
+<input type="submit" value="返却">
+</form>
 
 @endsection
