@@ -15,10 +15,6 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        var_dump($request->title);
-        var_dump($request->author);
-        var_dump($request->book_id);
-        var_dump($request->genre);
         $flag = 1;
         if($request){
         $query = Book::query();
