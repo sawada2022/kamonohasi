@@ -2,8 +2,6 @@
 @section('title','貸し借り業務')
 @section('content')
 
-@include('commons/header')
-
 <div id="userModal" class="modal">
     <div class="modalContent">
         <table class="modalTable">
