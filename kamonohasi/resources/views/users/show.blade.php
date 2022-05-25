@@ -1,7 +1,7 @@
 @extends('layouts.app')
+@section('title','会員管理業務')
 @section('content')
 
-@include('commons/header')
 
 <a href="{{ route('users.index') }}">戻る</a>
 
