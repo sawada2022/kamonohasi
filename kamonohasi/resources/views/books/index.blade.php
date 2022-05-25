@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('commons/header')
+
+@include('commons/backBtn', ['path' => '/'])
+
 <h1>蔵書情報</h1>
 <a href="{{ route('books.create') }}">新規登録</a>
 
@@ -34,3 +36,5 @@
     </table>
     {{ $books->links() }}
 @endif
+
+@endsection

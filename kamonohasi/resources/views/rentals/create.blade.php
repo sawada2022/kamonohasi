@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<a href="{{ route('rentals.index') }}">戻る</a>
+@include('commons/backBtn', ['path' => 'rentals'])
 
 <h3>会員情報</h3>
 <table>

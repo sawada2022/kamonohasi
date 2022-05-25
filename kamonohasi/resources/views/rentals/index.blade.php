@@ -2,7 +2,7 @@
 @section('title','貸し借り業務')
 @section('content')
 
-<button>戻る</button>
+@include('commons/backBtn', ['path' => '/'])
 
 <form action="{{ route('rentals.index', $users->email) }}" method="get">
     @csrf
