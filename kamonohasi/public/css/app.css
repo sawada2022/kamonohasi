@@ -16,7 +16,8 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  display: block;
+  display: flex;
+  gap: 1rem;
   background-color: #fff;
   margin: 0 auto;
   position: absolute;
@@ -27,4 +28,25 @@
   margin: auto;
   padding: 2rem;
   border-radius: 5px;
+}
+
+.modalBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0 0 1rem auto;
+}
+.modalBtn .modalIcon {
+  font-size: 1.3rem;
 }

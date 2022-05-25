@@ -5,7 +5,6 @@
 
 <div id="userModal" class="modal">
     <div class="modalContent">
-        <button onclick="modalClose('user')">x</button>
         <table>
             <tr>
                 <th>ID</th>
@@ -24,12 +23,12 @@
                 <td>{{$users->tel}}</td>
             </tr>
         </table>
+        <button class="modalBtn" onclick="modalClose('user')"><i class="fa-solid fa-xmark modalIcon"></i></button>
     </div>
 </div>
 
 <div  id="bookModal" class="modal">
     <div class="modalContent">
-        <button onclick="modalClose('book')">x</button>
         <table>
             <!-- 対象ユーザが借りている本の表示に変更 -->
             <tr>
@@ -47,6 +46,7 @@
             @endforeach
             @endif
         </table>
+        <button class="modalBtn" onclick="modalClose('book')"><i class="fa-solid fa-xmark modalIcon"></i></button>
     </div>
 </div>
 
