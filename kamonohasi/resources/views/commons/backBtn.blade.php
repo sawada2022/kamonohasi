@@ -1,1 +1,4 @@
-<a href="{{ url($path) }}">戻る</a>
+<a href="{{ url($path) }}" class="backBtn">
+    <p>戻る</p>
+    <div class="backBtnArrow"></div>
+</a>
