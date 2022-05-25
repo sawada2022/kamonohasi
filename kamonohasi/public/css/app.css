@@ -1,0 +1,63 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
+.modalContent {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 2rem;
+  background-color: #fff;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  padding: 2.5rem 3rem 2.5rem 4rem;
+  border-radius: 5px;
+}
+
+.modalBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0 0 1rem auto;
+}
+.modalBtn .modalIcon {
+  font-size: 1.3rem;
+}
+
+.modalTable {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-collapse: collapse;
+}
+.modalTable th, .modalTable td {
+  border: 1px solid #a1a1a1;
+  padding: 0.6rem 1.5rem;
+}

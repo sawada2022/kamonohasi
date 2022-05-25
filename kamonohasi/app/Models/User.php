@@ -20,12 +20,14 @@ class User extends Authenticatable
     protected $fillable = [
         'user_name',
         'birthday',
-        'address',
+        'adress',
         'postal_code',
         'tel',
         'email',
         'comment',
     ];
-     
 
+    public function rental_books(){
+        return $this->belongsToMany(Book::class, 'rentals')->withTimestamps(); 
+       }
 }
