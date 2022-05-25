@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-@include('commons/header')
+@include('commons/backBtn', ['path' => 'rentals'])
+
 <h1>会員情報</h1>
 <table>
     <tr>
@@ -31,11 +32,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($books as $book)
+        @foreach($books as $index => $book)
         <tr>
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
             <td>{{ $book->publisher }}</td>
+            <td>
+            <form action="{{ route('rentals.edit', $user->id) }}" method="get">
+                @csrf
+                <input type="hidden" name="delete_index" value="{{ $index }}">
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="submit" value="削除">
+            </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -2,8 +2,7 @@
 @section('title','会員管理業務')
 @section('content')
 
-
-<a href="{{ route('users.index') }}">戻る</a>
+@include('commons/backBtn', ['path' => 'users'])
 
 <h1>会員情報詳細</h1>
 
@@ -36,7 +35,8 @@
     @method('delete')
 </form>
 
-<p>借りている本</p>
+<h1>借りている本</h1>
+@if($flag === 1)
 <table>
     <thead>
         <tr>
@@ -48,7 +48,6 @@
         </tr>
     </thead>
     <tbody>
-        @if($flag === 1)
         @foreach($books as $book)
         <tr>
             <td>{{ $book->id }}</td>
@@ -58,8 +57,10 @@
             <td>{{ $book->created_at }}</td>
         </tr>
         @endforeach
-        @endif
     </tbody>
 </table>
-
+@endif
+@if($flag === 2)
+<p>貸出無し</p>
+@endif
 @endsection

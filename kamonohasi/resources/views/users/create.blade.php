@@ -1,15 +1,14 @@
 @extends('layouts.app')
 @section('title','会員管理業務')
 @section('content')
+@include('commons/backBtn', ['path' => 'users'])
 
 
-
-<button>戻る</button>
-
-<h1>新規会員登録</h1>
-
-<form action="" method="get">
+<h1>会員情報登録</h1>
+<form action="{{ route('users.store', $user->id) }}" method="post">
     @csrf
+    @include('commons/user_form')
+
 
     <p>
         <label>会員ID</label>
