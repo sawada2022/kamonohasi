@@ -1,4 +1,6 @@
     <label>
+
+
         名前
         <input type="text" name="user_name" value="{{ old('$user->user_name') }}">
     </label>
@@ -24,5 +26,6 @@
     </label>
     <label>
         備考
+
         <input type="text" name="comment" value="{{ old('comment') }}">
     </label>
