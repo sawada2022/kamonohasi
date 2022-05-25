@@ -31,11 +31,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($books as $book)
+        @foreach($books as $index => $book)
         <tr>
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
             <td>{{ $book->publisher }}</td>
+            <td>
+            <form action="{{ route('rentals.update', $user->id) }}" method="post">
+                @method('patch')
+                @csrf
+                <input type="hidden" name="delete_index" value="{{ $index }}">
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="submit" value="削除">
+            </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

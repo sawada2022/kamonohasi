@@ -38,20 +38,19 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
     {
-        $users = User::where('id', '=', $request->users)->first();
-
-        //リクエストを受け、資料情報を表示
+        $users = User::where('id', '=', $request->user_id)->first();
+        $books=[];//booksが入ってない空配列を用意
         $book_flag = 1;
         $book_id = $request->input('book_id');
+
+        //リクエストを受け、資料情報を表示
         if(!empty($book_id)){
-            $users = User::where('id', '=', $request->input('user_id'))->first();
             $request->session()->push('bookinfo', $book_id);
             foreach(array_unique($request->session()->get('bookinfo')) as $i){
                 $books[] = Book::where('id', '=', $i)->first();
             }
             $book_flag = 0;
         }else{//初回用
-            $books=[];//booksが入ってない空配列を返す
             session_start();
             $request->session()->remove('bookinfo');
         }
@@ -97,28 +96,27 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $flag = 1; 
-        if(!empty($id)){
-            if(User::where('id', '=', $id)->first()){
-                $users = User::where('id', '=', $id)->first();
-                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==1
-                if(count($rentals)){
-                    foreach($rentals as $rental){
-                        $books[] = Book::where('id', '=', $rental->book_id)->first();
-                    }
-                    $flag = 0;
-                }else{
-                    $books[] = Book::first();
-                }
-            }else{
-                $users = User::first();
-                $books = Book::first();
+        dd($request);
+        $users = User::where('id', '=', $request->user_id)->first();
+        //dd($users);
+        $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==1
+            foreach($rentals as $rental){
+                $books[] = Book::where('id', '=', $rental->book_id)->first();
             }
-        }else{
-            $users = User::first();
-            $books = Book::first();
+        $flag = 1;
+        $index = $request->delete_index;
+
+        if(!empty($index)){
+            $request->session()->push('deleteinfo', $index);
+            foreach(array_unique($request->session()->get('deleteinfo')) as $i){
+                $books = array_splice($books, $index, 1);
+            }
+            $flag = 0;
+        }else{//初回用
+            session_start();
+            $request->session()->remove('deleteinfo');
         }
         return view('rentals.edit', ['user' => $users, 'flag' => $flag, 'books' => $books]);
     }
