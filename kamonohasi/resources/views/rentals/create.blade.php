@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('title','貸し借り業務')
 @section('content')
+
 @include('commons/header')
 
 <div id="userModal" class="modal">
