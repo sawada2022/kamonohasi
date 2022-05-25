@@ -98,7 +98,8 @@ class RentalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        
+    {
+        $flag = 1; 
         if(!empty($id)){
             if(User::where('id', '=', $id)->first()){
                 $users = User::where('id', '=', $id)->first();
@@ -107,21 +108,17 @@ class RentalController extends Controller
                     foreach($rentals as $rental){
                         $books[] = Book::where('id', '=', $rental->book_id)->first();
                     }
+                    $flag = 0;
                 }else{
                     $books[] = Book::first();
                 }
-                $flag = 0;
             }else{
                 $users = User::first();
                 $books = Book::first();
-                //$rentals = Rental::first();
-                $flag = 1;
             }
         }else{
             $users = User::first();
             $books = Book::first();
-            //$rentals = Rental::first();
-            $flag = 1;
         }
         return view('rentals.edit', ['user' => $users, 'flag' => $flag, 'books' => $books]);
     }

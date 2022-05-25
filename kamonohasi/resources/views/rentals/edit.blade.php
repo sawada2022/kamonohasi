@@ -3,7 +3,6 @@
 
 @include('commons/header')
 <h1>会員情報</h1>
-@if($flag === 0)
 <table>
     <tr>
         <td>ID</td>
@@ -20,8 +19,9 @@
 </table>
 <button>会員詳細</button>
 </form>
-@endif
+
 <h1>資料情報</h1>
+@if($flag === 0)
 <table>
     <thead>
         <tr>
@@ -30,7 +30,6 @@
             <th>出版社</th>
         </tr>
     </thead>
-    @if($flag === 0)
     <tbody>
         @foreach($books as $book)
         <tr>
@@ -40,14 +39,15 @@
         </tr>
         @endforeach
     </tbody>
-    @endif
 </table>
-
 <form action="{{ route('rentals.update', $user->id) }}" method="post">
 @method('patch')
 @csrf
 <input type="hidden" name="user_id" value="{{ $user->id }}">
 <input type="submit" value="返却">
 </form>
+@else
+<p>貸出無し</p>
+@endif
 
 @endsection
