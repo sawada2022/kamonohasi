@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+@section('title','蔵書業務')
 @section('content')
-@include('commons/header')
+
 <h1>蔵書情報</h1>
 <a href="{{ route('books.create') }}">新規登録</a>
 
@@ -22,7 +22,7 @@
         <tbody>
             @foreach($books as $book)
             <tr>
-                <td>{{ $book->title }}</td>
+                <td><a href="{{ route('books.show', $book->id) }}"> {{ $book->title }}</a></td>
                 <td>{{ $book->author }}</td>
                 <td>{{ $book->publisher }}</td>
                 <td>{{ $book->category_id }}</td>
