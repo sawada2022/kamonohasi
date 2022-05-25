@@ -1,5 +1,44 @@
-$text-color: #000000;
+$text-color: #505050;
 $table-border-color: #a1a1a1;
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+// header
+header {
+    width: 100vw;
+    div {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin: 0 auto 0 2rem;
+        padding: 1rem 0;
+        a {
+            width: fit-content;
+            height: fit-content;
+            cursor: pointer;
+            text-decoration: none;
+            &:active {
+                color: $text-color;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        img {
+            width: 5rem;
+        }
+    }
+}
+.headerText {
+    color: $text-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
 // backBtn
 $backBtn-arrow-color: #5e5e5e;

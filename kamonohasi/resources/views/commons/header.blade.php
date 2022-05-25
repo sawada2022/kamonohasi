@@ -1,7 +1,9 @@
 <header>
-    <div class="container">
-        <a class="brand" href="/">かものはしLibrary</a>
+    <div>
+        <a href="/">
+            <p class="headerText">かものはしLibrary</p>
+        </a>
         <img src="/image/kamonohasi.png" alt="かものはしのイラスト" />          
-    <p>@yield('title')</p>
+        <p class="headerText">@yield('title')</p>
     </div>
 </header>
