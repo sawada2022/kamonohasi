@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!--   <link rel="stylesheet" href="/css/main.css">CSSファイルつくる-->
+        <title>かものはしLibrary</title>
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         @include('commons/header')
