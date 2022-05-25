@@ -17,7 +17,7 @@
   height: -moz-fit-content;
   height: fit-content;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   background-color: #fff;
   margin: 0 auto;
   position: absolute;
@@ -26,7 +26,7 @@
   bottom: 0;
   left: 0;
   margin: auto;
-  padding: 2rem;
+  padding: 2.5rem 3rem 2.5rem 4rem;
   border-radius: 5px;
 }
 
@@ -49,4 +49,15 @@
 }
 .modalBtn .modalIcon {
   font-size: 1.3rem;
+}
+
+.modalTable {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-collapse: collapse;
+}
+.modalTable th, .modalTable td {
+  border: 1px solid #a1a1a1;
+  padding: 0.6rem 1.5rem;
 }

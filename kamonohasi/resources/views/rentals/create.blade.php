@@ -5,7 +5,7 @@
 
 <div id="userModal" class="modal">
     <div class="modalContent">
-        <table>
+        <table class="modalTable">
             <tr>
                 <th>ID</th>
                 <td>{{$users->id}}</td>
@@ -29,7 +29,7 @@
 
 <div  id="bookModal" class="modal">
     <div class="modalContent">
-        <table>
+        <table class="modalTable">
             <!-- 対象ユーザが借りている本の表示に変更 -->
             <tr>
                 <th>資料名</th>

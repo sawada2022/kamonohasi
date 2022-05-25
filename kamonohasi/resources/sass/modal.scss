@@ -22,7 +22,7 @@
     bottom: 0;
     left: 0;
     margin: auto;
-    padding: 2rem;
+    padding: 2.5rem 3rem 2.5rem 4rem;
     border-radius: 5px;
 }
 
@@ -39,5 +39,14 @@
     margin: 0 0 1rem auto;
     .modalIcon {
         font-size: 1.3rem;
+    }
+}
+
+.modalTable {
+    width: fit-content;
+    border-collapse:  collapse;
+    th, td {
+        border: 1px solid $table-border-color;
+        padding: 0.6rem 1.5rem;
     }
 }
