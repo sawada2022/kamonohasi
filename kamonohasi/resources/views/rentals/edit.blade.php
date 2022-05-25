@@ -37,8 +37,7 @@
             <td>{{ $book->author }}</td>
             <td>{{ $book->publisher }}</td>
             <td>
-            <form action="{{ route('rentals.update', $user->id) }}" method="post">
-                @method('patch')
+            <form action="{{ route('rentals.edit', $user->id) }}" method="get">
                 @csrf
                 <input type="hidden" name="delete_index" value="{{ $index }}">
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
