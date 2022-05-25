@@ -79,7 +79,7 @@
     資料ID
     <input type="hidden" name="user_id" value="{{$users->id}}">
     <input type="number" name="book_id" >
-    <input type="submit" value="検索">
+    <input type="submit" value="追加">
 </form>
 <table>
     <tr>
