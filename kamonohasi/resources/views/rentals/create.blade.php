@@ -5,6 +5,7 @@
 
 <div id="userModal" class="modal">
     <div class="modalContent">
+        <button onclick="modalClose('user')">x</button>
         <table>
             <tr>
                 <th>ID</th>
@@ -28,6 +29,7 @@
 
 <div  id="bookModal" class="modal">
     <div class="modalContent">
+        <button onclick="modalClose('book')">x</button>
         <table>
             <!-- 対象ユーザが借りている本の表示に変更 -->
             <tr>
@@ -112,14 +114,22 @@
         }
     }
 
-    // user modal close
+    function modalClose(flg){
+        if(flg === 'user'){
+            document.getElementById('userModal').style.display = 'none';
+        }else if(flg === 'book'){
+            document.getElementById('bookModal').style.display = 'none';
+        }
+    }
+
+    // user modal close when click outside
     document.getElementById('userModal').addEventListener('click',function(e) {
         if(!e.target.closest('.modalContent')){
         document.getElementById('userModal').style.display = 'none';
         }
     })
 
-    // book modal close
+    // book modal close when click outside
     document.getElementById('bookModal').addEventListener('click',function(e) {
         if(!e.target.closest('.modalContent')){
         document.getElementById('bookModal').style.display = 'none';
