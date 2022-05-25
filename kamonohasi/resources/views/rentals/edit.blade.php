@@ -46,8 +46,10 @@
 <input type="hidden" name="user_id" value="{{ $user->id }}">
 <input type="submit" value="返却">
 </form>
+
 @else
 <p>貸出無し</p>
+
 @endif
 
 @endsection
