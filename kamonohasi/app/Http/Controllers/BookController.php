@@ -50,7 +50,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        $users = $book->rental_users;
+        $rentals = Rental::where('book_id', '=', $books->id)->get();
+        //$users = $book->rental_users;
        //dd($book);
         return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
     }
