@@ -36,7 +36,7 @@ class RentalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request) //リクエストを受け、会員情報・資料情報を表示
+    public function create(Request $request) //リクエストを受け、資料情報を表示
     {
         $users = User::where('id', '=', $request->users)->first();
 
@@ -44,12 +44,30 @@ class RentalController extends Controller
         $book_flag = 1;
         $book_id = $request->input('book_id');
         if(!empty($book_id)){
-            $users = User::where('id', '=', $request->input('user_id'))->first();
-            $request->session()->push('bookinfo', $book_id);
-            foreach(array_unique($request->session()->get('bookinfo')) as $i){
-                $books[] = Book::where('id', '=', $i)->first();
-            }
             $book_flag = 0;
+            $users = User::where('id', '=', $request->input('user_id'))->first();
+            $book_ids = $request->session()->get('bookinfo');
+            if(!is_array($book_ids)) $book_ids=[];
+            if(count($book_ids) >= 5 ){
+                //$book_idsの中身の数を数えて、それが５回以上だったらエラーにしよう
+                $books=[];
+                foreach(array_unique($book_ids) as $i){
+                    $books[] = Book::where('id', '=', $i)->first();
+                }
+                return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag])
+                ->withErrors(["max_books"=>"5冊以上の資料の貸し出しはできません"]);//viewのメソッドで、bladeテンプレートにエラーを渡している
+
+            }else{//１回目にボタンを押したとき
+                $request->session()->push('bookinfo', $book_id);
+                $book_ids = $request->session()->get('bookinfo');
+                if(!is_array($book_ids)) $book_ids=[];
+                $books=[];//配列の初期化
+                foreach(array_unique($book_ids) as $i){
+                    $books[] = Book::where('id', '=', $i)->first();
+                }
+            }
+             
+           
         }else{//初回用
             $books=[];//booksが入ってない空配列を返す
             session_start();
