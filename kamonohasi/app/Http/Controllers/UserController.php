@@ -22,15 +22,15 @@ class UserController extends Controller
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
-                $rentals = Rental::where('user_id', '=', $users->id)->get();
+                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
                         $books[] = Book::where('id', '=', $rental->book_id)->first();
                     }
-                    $flag = 1;
+                    $flag = 1; //貸出中あり
                 }else{
                     $books[] = Book::first();
-                    $flag = 0;
+                    $flag = 2; //貸出中無
                 }
                 return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
             }else{
@@ -52,8 +52,9 @@ class UserController extends Controller
     public function create()
     {
         //「http://localhost:8000/users/create」でアクセスすると表示できた！
-        $users = new User;
-        return view('users/create');
+
+        $user = new User;
+        return view('users/create', ['user' => $user]);
     }
 
     /**
@@ -80,7 +81,7 @@ class UserController extends Controller
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
-            $rentals = Rental::where('user_id', '=', $users->id)->all();
+            //$rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->all();
         }else{
             $users = User::first();
         }        
