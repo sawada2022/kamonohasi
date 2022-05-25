@@ -1,0 +1,29 @@
+$text-color: #000000;
+$table-border-color: #a1a1a1;
+
+// backBtn
+$backBtn-arrow-color: #5e5e5e;
+$backBtn-arrow-weight: 0.1rem;
+.backBtn {
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    &:active {
+        color: $text-color;
+    }
+    &:focus {
+        outline: none;
+    }
+    p {
+        color: $text-color;
+        margin: 0 1.8rem -1rem;
+    }
+}
+.backBtnArrow {
+    width: 6rem;
+    height: 1rem;
+    border-bottom: $backBtn-arrow-weight solid $backBtn-arrow-color;
+    border-left: $backBtn-arrow-weight solid $backBtn-arrow-color;
+    transform: skew(135deg);
+}

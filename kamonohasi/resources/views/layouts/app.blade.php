@@ -3,15 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>かものはしLibrary</title>
-        <!--   <link rel="stylesheet" href="/css/main.css">CSSファイルつくる-->
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
-        <header>
-            <div class="container">
-                <a class="brand" href="/">かものはしLibrary</a>
-                <img src="/image/kamonohasi.png" alt="かものはしのイラスト" />
-            </div>
-        </header>
+        @include('commons/header')
         @yield('content')
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

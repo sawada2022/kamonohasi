@@ -1,2 +1,3 @@
-require('./bootstrap');
+//require('./bootstrap');
 require("./fontawesome");
+require('./deleteUser');

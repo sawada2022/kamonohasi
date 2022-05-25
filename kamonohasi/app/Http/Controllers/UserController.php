@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Book;
+use App\Models\Rental;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,9 +15,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $email = $request->input('email');
+        
+        if(!empty($email)){
+            if(User::where('email', '=', $email)->first()){
+                $users = User::where('email', '=', $email)->first();
+                $rentals = Rental::where('user_id', '=', $users->id)->get();
+                if(count($rentals)){
+                    foreach($rentals as $rental){
+                        $books[] = Book::where('id', '=', $rental->book_id)->first();
+                    }
+                    $flag = 1;
+                }else{
+                    $books[] = Book::first();
+                    $flag = 0;
+                }
+                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
+            }else{
+                $users = User::first();
+                $flag = 0;
+            }
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        return view('users/index', ['users' => $users, 'flag' => $flag, 'email' => $email]);
     }
 
     /**
@@ -23,7 +51,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //「http://localhost:8000/users/create」でアクセスすると表示できた！
+        return view('users/create');
     }
 
     /**
@@ -34,7 +63,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect(route('users.index'));
     }
 
     /**
@@ -43,9 +73,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        return view('users/show');
+        $email = $request->email;
+        
+        if(!empty($email)){
+            $users = User::where('email', '=', $email)->first();
+            $rentals = Rental::where('user_id', '=', $users->id)->all();
+        }else{
+            $users = User::first();
+        }        
+        return view('users/show', ['users' => $users]);
+
+
     }
 
     /**
@@ -54,9 +94,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        //「http://localhost:8000/users/2/edit」でアクセスすると表示できた！
+        return view('users/edit',['user' => $user]);
     }
 
     /**
@@ -66,9 +107,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+        return redirect(route('users.show', $user));
     }
 
     /**
@@ -77,8 +119,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        User::where('id', $user->id)->delete();
+        return redirect(route('users.show', $user));
     }
 }
