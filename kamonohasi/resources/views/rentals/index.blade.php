@@ -29,6 +29,6 @@
 @endif
 
 <a href="{{ route('rentals.create', ['users' => $users,'book_flag' => $book_flag, 'rental_flag' => $rental_flag, 'rentals' => $rentals]) }}">貸出</a>
-<a href="{{ route('rentals.edit', $users->id) }}">返却</a>
+<a href="{{ route('rentals.edit', [$users->id,'book_flag' => $book_flag]) }}">返却</a>
 
 @endsection
