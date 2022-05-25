@@ -2,7 +2,6 @@
 @section('title','貸し借り業務')
 @section('content')
 
-@include('commons/header')
 
 <div id="userModal" class="modal">
     <div class="modalContent">
@@ -51,9 +50,10 @@
     </div>
 </div>
 
-<a href="{{ route('rentals.index') }}">戻る</a>
+@include('commons/backBtn', ['path' => 'rentals'])
 
 <h3>会員情報</h3>
+@include('commons/flash')
 <table>
     <tr>
         <th>ID</th>
@@ -79,9 +79,10 @@
 @csrf
     資料ID
     <input type="hidden" name="user_id" value="{{$users->id}}">
-    <input type="number" name="book_id" >
+    <input type="number" name="book_id" min="1">
     <input type="submit" value="追加">
 </form>
+
 <table>
     <tr>
         <th>資料名</th>
@@ -91,15 +92,15 @@
     @if($book_flag === 0)
     @foreach($books as $book)
     <tr>
-        <!--本当は、5冊以上だったらエラーをだしたい-->
         <td>{{$book->title}}</td>
         <td>{{$book->author}}</td>
         <td>{{$book->publisher}}</td>
-    <tr>
+        <input type='hidden' name='added_book_ids[]' value="{{$book->id}}">
+    </tr>
     @endforeach
     @endif
 </table>
-
+</form>
 <form action="{{route('rentals.store')}}" method="post">
     @csrf
     <input type="text" value="{{$users->id}}" name="user_id_rental" style='display:none;'>

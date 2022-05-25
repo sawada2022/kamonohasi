@@ -2,13 +2,13 @@
 @section('title','貸し借り業務')
 @section('content')
 
-<button>戻る</button>
+@include('commons/backBtn', ['path' => '/'])
 
 <form action="{{ route('rentals.index', $users->email) }}" method="get">
     @csrf
     <label>
         会員ID
-        <input type="number" name="user_id" value="">
+        <input type="number" name="user_id" min="1" value="">
     </label>
     <button>検索</button>
 </form>
