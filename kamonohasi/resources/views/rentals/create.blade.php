@@ -2,10 +2,10 @@
 @section('title','貸し借り業務')
 @section('content')
 
-@include('commons/header')
 <a href="{{ route('rentals.index') }}">戻る</a>
 
 <h3>会員情報</h3>
+@include('commons/flash')
 <table>
     <tr>
         <th>ID</th>
@@ -33,7 +33,6 @@
     <input type="hidden" name="user_id" value="{{$users->id}}">
     <input type="number" name="book_id" >
     <input type="submit" value="検索">
-</form>
 <table>
     <tr>
         <th>資料名</th>
@@ -43,15 +42,15 @@
     @if($book_flag === 0)
     @foreach($books as $book)
     <tr>
-        <!--本当は、5冊以上だったらエラーをだしたい-->
         <td>{{$book->title}}</td>
         <td>{{$book->author}}</td>
         <td>{{$book->publisher}}</td>
-    <tr>
+        <input type='hidden' name='added_book_ids[]' value="{{$book->id}}">
+    </tr>
     @endforeach
     @endif
 </table>
-
+</form>
 <form action="{{route('rentals.store')}}" method="post">
     @csrf
     <input type="text" value="{{$users->id}}" name="user_id_rental" style='display:none;'>
