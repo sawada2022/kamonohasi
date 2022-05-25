@@ -8,7 +8,7 @@
     @csrf
     <label>
         会員ID
-        <input type="number" name="user_id" value="">
+        <input type="number" name="user_id" min="1" value="">
     </label>
     <button>検索</button>
 </form>

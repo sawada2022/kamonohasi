@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Rental;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -62,7 +63,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect(route('users.index'));
     }
 
     /**
@@ -73,16 +75,16 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $email = $request->input('email');
+        $email = $request->email;
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
             $rentals = Rental::where('user_id', '=', $users->id)->all();
         }else{
             $users = User::first();
-        }
-        
+        }        
         return view('users/show', ['users' => $users]);
+
 
     }
 

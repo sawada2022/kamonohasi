@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Rental;
 
+
 class RentalController extends Controller
 {
     /**
@@ -116,7 +117,28 @@ class RentalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flag = 1; 
+        if(!empty($id)){
+            if(User::where('id', '=', $id)->first()){
+                $users = User::where('id', '=', $id)->first();
+                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==1
+                if(count($rentals)){
+                    foreach($rentals as $rental){
+                        $books[] = Book::where('id', '=', $rental->book_id)->first();
+                    }
+                    $flag = 0;
+                }else{
+                    $books[] = Book::first();
+                }
+            }else{
+                $users = User::first();
+                $books = Book::first();
+            }
+        }else{
+            $users = User::first();
+            $books = Book::first();
+        }
+        return view('rentals.edit', ['user' => $users, 'flag' => $flag, 'books' => $books]);
     }
 
     /**
@@ -126,9 +148,18 @@ class RentalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) 
+    public function update(Request $request) 
     {
-        //
+
+            $users = User::where('id', '=', $request->user_id)->first();
+            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==0
+            foreach($rentals as $rental){
+                $rental->rental_status = 1;
+                $rental->save();
+            }
+            $flag = 1;
+            $book_flag = 1;
+        return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
     }
 
     /**
