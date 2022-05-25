@@ -52,6 +52,7 @@ class UserController extends Controller
     public function create()
     {
         //「http://localhost:8000/users/create」でアクセスすると表示できた！
+        $users = new User;
         return view('users/create');
     }
 

@@ -30,20 +30,21 @@
 <div  id="bookModal" class="modal">
     <div class="modalContent">
         <table class="modalTable">
-            <!-- 対象ユーザが借りている本の表示に変更 -->
+            @if($rental_flag === 0)
             <tr>
                 <th>資料名</th>
                 <th>著者</th>
                 <th>貸出期限</th>
             </tr>
-            @if($book_flag === 0)
-            @foreach($books as $book)
+            @foreach($rentals as $rental)
             <tr>
-                <td>{{$book->title}}</td>
-                <td>{{$book->author}}</td>
-                <td>{{$book->created_at}}</td>
+                <td>{{$rental->title}}</td>
+                <td>{{$rental->author}}</td>
+                <td>{{$rental->created_at}}</td>
             <tr>
             @endforeach
+            @else
+            <p>現在、{{$users->user_name}}さんに貸し出している本はありません。</p>
             @endif
         </table>
         <button class="modalBtn" onclick="modalClose('book')"><i class="fa-solid fa-xmark modalIcon"></i></button>
