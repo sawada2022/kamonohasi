@@ -1,3 +1,3 @@
 //require('./bootstrap');
-//require("./fontawesome");
+require("./fontawesome");
 require('./deleteUser');
