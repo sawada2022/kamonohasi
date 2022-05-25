@@ -2,8 +2,7 @@
 @section('title','会員管理業務')
 @section('content')
 
-
-<a href="{{ route('users.index') }}">戻る</a>
+@include('commons/backBtn', ['path' => 'users'])
 
 <h1>会員情報詳細</h1>
 
