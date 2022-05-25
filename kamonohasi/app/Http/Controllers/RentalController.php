@@ -151,7 +151,6 @@ class RentalController extends Controller
 
         if(!is_null($index)){
             $request->session()->push('deleteinfo', $index);
-            //dd(array_unique($request->session()->get('deleteinfo')));
             foreach(array_unique($request->session()->get('deleteinfo')) as $i){
                 unset($books[$i]);
             }
@@ -175,14 +174,18 @@ class RentalController extends Controller
     {
 
             $users = User::where('id', '=', $request->user_id)->first();
-            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==0
+            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+            foreach(array_unique($request->session()->get('deleteinfo')) as $i){
+                unset($rentals[$i]);
+            }
             foreach($rentals as $rental){
                 $rental->rental_status = 1;
                 $rental->save();
             }
             $flag = 1;
             $book_flag = 1;
-        return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        //return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        return redirect(route('rentals.index',['users'=>$users]));
     }
 
     /**
