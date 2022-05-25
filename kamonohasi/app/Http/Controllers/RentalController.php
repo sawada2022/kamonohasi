@@ -19,16 +19,25 @@ class RentalController extends Controller
     {
         $user_id = $request->input('user_id');
         $book_flag = 1;
+        $rental_flag = 1;
+        $rentals = [];
 
         if(!empty($user_id)){
             $users = User::where('id', '=', $user_id)->first();
+            $rentalsAll = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+            if(count($rentalsAll)){
+                foreach($rentalsAll as $rental){
+                    $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                }
+                $rental_flag = 0;
+            }
             $flag = 0;
         }else{
             $users = User::first();
             $flag = 1;
         }
         
-        return view('rentals/index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        return view('rentals/index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals]);
     }
 
     /**
@@ -39,6 +48,9 @@ class RentalController extends Controller
     public function create(Request $request) //リクエストを受け、資料情報を表示
     {
         $users = User::where('id', '=', $request->users)->first();
+
+        $rental_flag = 1;
+        $rentals = [];
 
         //リクエストを受け、資料情報を表示
         $book_flag = 1;
@@ -66,15 +78,22 @@ class RentalController extends Controller
                     $books[] = Book::where('id', '=', $i)->first();
                 }
             }
-             
-           
         }else{//初回用
             $books=[];//booksが入ってない空配列を返す
             session_start();
             $request->session()->remove('bookinfo');
         }
 
-        return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag]);
+        // 現在貸し出している本を取得
+        $rentalsAll = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+        if(count($rentalsAll)){
+            foreach($rentalsAll as $rental){
+                $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+            }
+            $rental_flag = 0;
+        }
+
+        return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals]);
     }
 
     /**
