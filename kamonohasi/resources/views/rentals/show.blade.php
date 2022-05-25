@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
-@include('commons/header')
 
-<a href="{{ route('rentals.index') }}">戻る</a>
+@include('commons/backBtn', ['path' => 'rentals'])
 
 <p>以下の内容で貸し出し完了しました</p>
 

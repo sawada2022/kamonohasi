@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-@include('commons/header')
+@include('commons/backBtn', ['path' => 'rentals'])
+
 <h1>会員情報</h1>
 <table>
     <tr>
