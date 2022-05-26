@@ -156,6 +156,13 @@ $backBtn-arrow-weight: 0.1rem;
     border-radius: 5px;
 }
 
+.btnFlex {
+    width: fit-content;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
 // table
 .tableBase {
     width: fit-content;

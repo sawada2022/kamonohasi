@@ -28,8 +28,10 @@
     </tbody>
 </table>
 
-<a class="btnBase" href="{{ route('users.edit', $users->id) }}"><i class="fa-solid fa-user-pen"></i><span>編集</span></a>
-<a class="btnBase" href="#" id="deleteUserBtn"><i class="fa-solid fa-trash-can"></i><span>削除</span></a>
+<div class="btnFlex">
+    <a class="btnBase" href="{{ route('users.edit', $users->id) }}"><i class="fa-solid fa-user-pen"></i><span>編集</span></a>
+    <a class="btnBase" href="#" id="deleteUserBtn"><i class="fa-solid fa-trash-can"></i><span>削除</span></a>
+</div>
 
 <form action="{{ route('users.destroy', $users->id) }}" method="post" type id="user-delete">
     @csrf
