@@ -2,7 +2,9 @@ $main-green: #4f9442;
 $main-yellow: #dde011;
 $main-light-green: #8cd860;
 $text-color: #505050;
-$table-border-color: #a1a1a1;
+$table-border-color: #c7c7c7;
+$shadow-line-color: #ececec;
+$shadow-color: #e7e7e7;
 
 html, body {
     width: 100vw;
@@ -10,13 +12,24 @@ html, body {
     margin: 0;
 }
 
+h1 {
+    width: fit-content;
+    color: $text-color;
+    font-size: 1.6rem;
+    margin: 2rem auto 2rem 10rem;
+}
+p {
+    width: fit-content;
+    margin: 0;
+}
+
 // header
-$header-shadow: #dbdbdb;
 header {
     width: 100vw;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 5px 8px $header-shadow;
+    border-bottom: 1px solid $shadow-line-color;
+    box-shadow: 0 5px 8px $shadow-color;
     div {
         width: fit-content;
         display: flex;
@@ -97,11 +110,13 @@ header {
 }
 
 // backBtn
-$backBtn-arrow-color: #5e5e5e;
+$backBtn-arrow-color: #7c7c7c;
 $backBtn-arrow-weight: 0.1rem;
 .backBtn {
+    display: block;
     width: fit-content;
     height: fit-content;
+    margin: 2rem 3rem 3rem;
     cursor: pointer;
     text-decoration: none;
     &:active {
@@ -121,4 +136,79 @@ $backBtn-arrow-weight: 0.1rem;
     border-bottom: $backBtn-arrow-weight solid $backBtn-arrow-color;
     border-left: $backBtn-arrow-weight solid $backBtn-arrow-color;
     transform: skew(135deg);
+}
+
+// btn component
+.btnBase {
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    &:active {
+        color: $text-color;
+    }
+    &:focus {
+        outline: none;
+        color: $text-color;
+    }
+    &:visited {
+        color: $text-color;
+    }
+    &:link {
+        color: $text-color;
+    }
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid $text-color;
+    border-radius: 5px;
+}
+
+.btnFlex {
+    width: fit-content;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+// table
+.tableBase {
+    width: fit-content;
+    border-collapse:  collapse;
+    th, td {
+        border: 1px solid $table-border-color;
+        padding: 0.6rem 1.5rem;
+    }
+}
+caption {
+    margin-bottom: 1rem;
+    color: $text-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.showTableFlex {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.card {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid $shadow-line-color;
+    box-shadow: 5px 5px 5px $shadow-color;
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.mainContentFlex {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 2rem;
+    margin: 0 auto;
 }
