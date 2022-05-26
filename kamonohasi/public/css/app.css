@@ -1,3 +1,96 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 5px 8px #dbdbdb;
+}
+header div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 0 2rem;
+  padding: 1rem 0;
+}
+header div a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+}
+header div a:active {
+  color: #505050;
+}
+header div a:focus {
+  outline: none;
+}
+header div a p {
+  margin: 0;
+  color: #505050;
+}
+
+.headerLeft {
+  gap: 2rem;
+  margin: 0 auto 0 3rem;
+}
+.headerLeft img {
+  width: 5rem;
+}
+
+.headerRight {
+  gap: 4rem;
+  margin: 0 5rem 0 auto;
+}
+
+.headerText {
+  color: #505050;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.headerTextLink {
+  font-size: 1.2rem;
+}
+
+.indexLinkBar {
+  position: relative;
+  display: inline-block;
+}
+.indexLinkBar::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 2px;
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform 0.3s;
+}
+.indexLinkBar:nth-child(1)::after {
+  background: #4f9442;
+}
+.indexLinkBar:nth-child(2)::after {
+  background: #dde011;
+}
+.indexLinkBar:nth-child(3)::after {
+  background: #8cd860;
+}
+.indexLinkBar:hover::after {
+  transform: scale(1, 1);
+}
+
 .backBtn {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -9,13 +102,13 @@
   text-decoration: none;
 }
 .backBtn:active {
-  color: #000000;
+  color: #505050;
 }
 .backBtn:focus {
   outline: none;
 }
 .backBtn p {
-  color: #000000;
+  color: #505050;
   margin: 0 1.8rem -1rem;
 }
 
