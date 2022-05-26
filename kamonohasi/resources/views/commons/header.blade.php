@@ -7,13 +7,13 @@
         <p class="headerText">@yield('title')</p>
     </div>
     <div class="headerRight">
-        <a href="{{route('rentals.index')}}">
+        <a class="indexLinkBar" href="{{route('rentals.index')}}">
             <p class="headerTextLink">貸借業務</p>
         </a>
-        <a href="{{route('users.index')}}">
+        <a class="indexLinkBar" href="{{route('users.index')}}">
             <p class="headerTextLink">会員管理業務</p>
         </a>
-        <a href="{{route('books.index')}}">
+        <a class="indexLinkBar" href="{{route('books.index')}}">
             <p class="headerTextLink">資料管理業務</p>
         </a>
     </div>
