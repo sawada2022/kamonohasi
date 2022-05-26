@@ -61,14 +61,14 @@
     </thead>
     <tbody>
         @if($flag === 1)
-        @foreach($users as $user)
+       
         <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->user_name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->adress }}</td>
+            <td>{{ $users->id }}</td>
+            <td>{{ $users->user_name }}</td>
+            <td>{{ $users->email }}</td>
+            <td>{{ $users->adress }}</td>
         </tr>
-        @endforeach
+        
         @endif
     </tbody>
 </table>
