@@ -26,9 +26,8 @@
         </tr>
     </tbody>
 </table>
+<a href="{{ route('rentals.create', ['user_id' => $users,'book_flag' => $book_flag, 'rental_flag' => $rental_flag, 'rentals' => $rentals]) }}" id="btn1">貸出</a>
+<a href="{{ route('rentals.edit', [$users->id,'book_flag' => $book_flag]) }}" id="btn2" >返却</a>
+
 @endif
-
-<a href="{{ route('rentals.create', ['user_id' => $users,'book_flag' => $book_flag, 'rental_flag' => $rental_flag, 'rentals' => $rentals]) }}">貸出</a>
-<a href="{{ route('rentals.edit', [$users->id,'book_flag' => $book_flag]) }}">返却</a>
-
 @endsection
