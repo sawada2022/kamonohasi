@@ -134,13 +134,9 @@ header div a p {
 .backBtnArrow {
   width: 6rem;
   height: 1rem;
-  border-bottom: 0.13rem solid #7c7c7c;
-  border-left: 0.13rem solid #7c7c7c;
+  border-bottom: 0.1rem solid #7c7c7c;
+  border-left: 0.1rem solid #7c7c7c;
   transform: skew(135deg);
-}
-.backBtnArrow:hover {
-  border-bottom: 0.13rem solid #4f9442;
-  border-left: 0.13rem solid #4f9442;
 }
 
 .btnBase {

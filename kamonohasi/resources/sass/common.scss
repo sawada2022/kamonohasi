@@ -111,7 +111,7 @@ header {
 
 // backBtn
 $backBtn-arrow-color: #7c7c7c;
-$backBtn-arrow-weight: 0.13rem;
+$backBtn-arrow-weight: 0.1rem;
 .backBtn {
     display: block;
     width: fit-content;
@@ -136,10 +136,6 @@ $backBtn-arrow-weight: 0.13rem;
     border-bottom: $backBtn-arrow-weight solid $backBtn-arrow-color;
     border-left: $backBtn-arrow-weight solid $backBtn-arrow-color;
     transform: skew(135deg);
-    &:hover {
-        border-bottom: $backBtn-arrow-weight solid $main-green;
-        border-left: $backBtn-arrow-weight solid $main-green;
-    }
 }
 
 // btn component
