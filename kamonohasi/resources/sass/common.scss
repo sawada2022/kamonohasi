@@ -149,3 +149,13 @@ $backBtn-arrow-weight: 0.1rem;
     border: 1px solid $text-color;
     border-radius: 5px;
 }
+
+// table
+.tableBase {
+    width: fit-content;
+    border-collapse:  collapse;
+    th, td {
+        border: 1px solid $table-border-color;
+        padding: 0.6rem 1.5rem;
+    }
+}

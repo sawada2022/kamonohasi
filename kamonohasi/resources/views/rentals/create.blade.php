@@ -5,7 +5,7 @@
 
 <div id="userModal" class="modal">
     <div class="modalContent">
-        <table class="modalTable" frame="void">
+        <table class="tableBase" frame="void">
             <tr>
                 <th>ID</th>
                 <td>{{$users->id}}</td>
@@ -29,7 +29,7 @@
 
 <div  id="bookModal" class="modal">
     <div class="modalContent">
-        <table class="modalTable" frame="void">
+        <table class="tableBase" frame="void">
             @if($rental_flag === 0)
             <tr>
                 <th>資料名</th>

@@ -7,7 +7,7 @@
 <h1>会員情報詳細</h1>
 
 <p>会員情報</p>
-<table>
+<table class="tableBase" frame="void">
     <tbody>
         <tr>
             <td>会員ID</td>
@@ -38,7 +38,7 @@
 
 <h1>借りている本</h1>
 @if($flag === 1)
-<table>
+<table class="tableBase" frame="void">
     <thead>
         <tr>
             <th>冊数</th>
