@@ -14,7 +14,7 @@ class AddCategoryIdToCaregories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table-> integer('category_id');
+            $table-> bigInteger('category_id')->unsigned()->index();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('author',100)->nullable();
             $table->string('publisher',100)->nullable();
             $table->text('comment')->nullable();
+            //$table->boolean('rental_status')->default(0);
             $table->date('published_on')->nullable();
             $table->date('deleted_on')->nullable();
             $table->timestamps();
