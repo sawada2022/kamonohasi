@@ -16,9 +16,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {      
         $email = $request->input('email');
-        
+        $this->validate($request,[
+            'email'=>'max:100'
+        ]);
+
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
@@ -65,6 +68,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'user_name' => 'required|max:40',
+            'adress' => 'required|max:100',
+            'tel' => 'required|max:20',
+            'email'=>'required|max:100',
+            'postal_code'=>'max:7'
+        ]);
         User::create($request->all());
         return redirect(route('users.index'));
     }
@@ -111,6 +121,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->validate($request,[
+            'user_name' => 'required|max:40',
+            'adress' => 'required|max:100',
+            'tel' => 'required|max:20',
+            'email'=>'required|max:100',
+            'postal_code'=>'max:8'
+        ]);
         $user->update($request->all());
         return redirect(route('users.show', $user));
     }

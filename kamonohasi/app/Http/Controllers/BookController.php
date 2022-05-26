@@ -15,6 +15,12 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        $this->validate($request,[
+            'isbn' => 'max:13',
+            'title' => 'max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100',
+        ]);
         $flag = 1;
         if($request){
         $query = Book::query();
@@ -71,6 +77,12 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'isbn' => 'required|max:13',
+            'title' => 'required|max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100'
+        ]);
         Book::create($request->all());      
         return redirect(route('books.create'));
     }
@@ -107,6 +119,12 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $this->validate($request,[
+            'isbn' => 'required|max:13',
+            'title' => 'required|max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100'
+        ]);
         $book->update($request->all());
         return redirect(route('books.show', $book));
     }
