@@ -112,7 +112,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        return redirect(route('users.show', $user));
+        $rentals = Rental::where('user_id', '=', $user->id)->where('rental_status', '=', 0)->get();
+        if(count($rentals)){
+            foreach($rentals as $rental){
+                $books[] = Book::where('id', '=', $rental->book_id)->first();
+            }
+            $flag = 1; //貸出中あり
+        }else{
+            $books[] = Book::first();
+            $flag = 2; //貸出中無
+        }
+        return view('users/show', ['users' => $user, 'flag' => $flag, 'books' => $books]);
     }
 
     /**
