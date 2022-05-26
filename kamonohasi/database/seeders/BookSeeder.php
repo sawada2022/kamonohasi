@@ -24,7 +24,7 @@ class BookSeeder extends Seeder
             }
             $book = new \App\Models\Book([
                 'isbn' => 123456789000 + $i,
-                'category_id' => rand(1,10),
+                'category_id' => rand(0,9),
                 'title' => 'サンプル本' . $i,
                 'author' => '作者' . $i,
                 'publisher' => '出版社' . $i,
