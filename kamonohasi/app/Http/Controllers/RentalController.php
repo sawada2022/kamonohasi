@@ -82,6 +82,8 @@ class RentalController extends Controller
                     return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals])
                 ->withErrors(["now_rentaled"=>"現在貸出中の資料です"]);
                 }
+                $book_ids = $request->session()->get('bookinfo');
+                if(!is_array($book_ids)) $book_ids=[];
                 $books=[];//配列の初期化
                 foreach(array_unique($book_ids) as $i){
                         $books[] = Book::where('id', '=', $i)->first();    
