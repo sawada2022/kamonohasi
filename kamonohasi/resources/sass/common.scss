@@ -8,13 +8,16 @@ html, body {
 }
 
 // header
+$header-shadow: #dbdbdb;
 header {
     width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 5px 8px $header-shadow;
     div {
         width: fit-content;
         display: flex;
         align-items: center;
-        gap: 2rem;
         margin: 0 auto 0 2rem;
         padding: 1rem 0;
         a {
@@ -28,16 +31,31 @@ header {
             &:focus {
                 outline: none;
             }
-        }
-        img {
-            width: 5rem;
+            p {
+                margin: 0;
+                color: $text-color;
+            }
         }
     }
 }
+.headerLeft {
+    gap: 2rem;
+    margin: 0 auto 0 3rem;
+    img {
+        width: 5rem;
+    }
+}
+.headerRight {
+    gap: 4rem;
+    margin: 0 5rem 0 auto;
+}
 .headerText {
     color: $text-color;
-    font-size: 1.5rem;
     font-weight: bold;
+    font-size: 1.5rem;
+}
+.headerTextLink {
+    font-size: 1.2rem;
 }
 
 // backBtn
