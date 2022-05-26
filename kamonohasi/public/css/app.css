@@ -23,7 +23,7 @@ header {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #e9e9e9;
   box-shadow: 0 5px 8px #dadada;
 }
 header div {
@@ -182,12 +182,15 @@ header div a p {
   border-collapse: collapse;
 }
 .tableBase th, .tableBase td {
-  border: 1px solid #a1a1a1;
+  border: 1px solid #c7c7c7;
   padding: 0.6rem 1.5rem;
 }
 
 caption {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #505050;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .showTableFlex {
@@ -207,10 +210,22 @@ caption {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  border: 1px solid #eeeeee;
+  border: 1px solid #e9e9e9;
   box-shadow: 5px 5px 5px #dadada;
   border-radius: 0.5rem;
   padding: 2rem;
+}
+
+.mainContentFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
 }
 
 .modal {
