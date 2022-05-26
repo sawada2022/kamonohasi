@@ -95,7 +95,6 @@ class RentalController extends Controller
             $index = $request->delete_index;
             if(!is_null($index)){
             $book_ids = $request->session()->get('bookinfo');
-            var_dump($book_ids);
             if(!is_array($book_ids)) $book_ids=[];
             unset($book_ids[$index]);
             //var_dump($book_ids);
