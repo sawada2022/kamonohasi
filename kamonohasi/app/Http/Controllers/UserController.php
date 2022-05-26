@@ -134,6 +134,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::where('id', $user->id)->delete();
-        return redirect(route('users.show', $user));
+        return redirect(route('users.index', $user));
     }
 }
