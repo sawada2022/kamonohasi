@@ -120,6 +120,36 @@ header div a p {
   transform: skew(135deg);
 }
 
+.btnBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  border: 1px solid #505050;
+  border-radius: 5px;
+}
+.btnBase:active {
+  color: #505050;
+}
+.btnBase:focus {
+  outline: none;
+  color: #505050;
+}
+.btnBase:visited {
+  color: #505050;
+}
+.btnBase:link {
+  color: #505050;
+}
+
 .modal {
   width: 100vw;
   height: 100vh;

@@ -28,8 +28,9 @@
     </tbody>
 </table>
 
-<a href="{{ route('users.edit', $users->id) }}">編集</a>
-<a href="#" id="deleteUserBtn">削除</a>
+<a class="btnBase" href="{{ route('users.edit', $users->id) }}"><i class="fa-solid fa-user-pen"></i><span>編集</span></a>
+<a class="btnBase" href="#" id="deleteUserBtn"><i class="fa-solid fa-trash-can"></i><span>削除</span></a>
+
 <form action="{{ route('users.destroy', $users->id) }}" method="post" type id="user-delete">
     @csrf
     @method('delete')

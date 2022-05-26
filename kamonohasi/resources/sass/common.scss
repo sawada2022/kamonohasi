@@ -122,3 +122,30 @@ $backBtn-arrow-weight: 0.1rem;
     border-left: $backBtn-arrow-weight solid $backBtn-arrow-color;
     transform: skew(135deg);
 }
+
+// btn component
+.btnBase {
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    text-decoration: none;
+    &:active {
+        color: $text-color;
+    }
+    &:focus {
+        outline: none;
+        color: $text-color;
+    }
+    &:visited {
+        color: $text-color;
+    }
+    &:link {
+        color: $text-color;
+    }
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid $text-color;
+    border-radius: 5px;
+}
