@@ -12,11 +12,19 @@ h1 {
   font-size: 1.5rem;
 }
 
+p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
 header {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 8px #dbdbdb;
+  border-bottom: 1px solid #eeeeee;
+  box-shadow: 0 5px 8px #dadada;
 }
 header div {
   width: -webkit-fit-content;
@@ -176,6 +184,33 @@ header div a p {
 .tableBase th, .tableBase td {
   border: 1px solid #a1a1a1;
   padding: 0.6rem 1.5rem;
+}
+
+caption {
+  margin-bottom: 0.5rem;
+}
+
+.showTableFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.card {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #eeeeee;
+  box-shadow: 5px 5px 5px #dadada;
+  border-radius: 0.5rem;
+  padding: 2rem;
 }
 
 .modal {

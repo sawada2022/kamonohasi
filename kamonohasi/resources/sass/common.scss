@@ -3,6 +3,8 @@ $main-yellow: #dde011;
 $main-light-green: #8cd860;
 $text-color: #505050;
 $table-border-color: #a1a1a1;
+$shadow-line-color: #eeeeee;
+$shadow-color: #dadada;
 
 html, body {
     width: 100vw;
@@ -15,14 +17,18 @@ h1 {
     color: $text-color;
     font-size: 1.5rem;
 }
+p {
+    width: fit-content;
+    margin: 0;
+}
 
 // header
-$header-shadow: #dbdbdb;
 header {
     width: 100vw;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 5px 8px $header-shadow;
+    border-bottom: 1px solid $shadow-line-color;
+    box-shadow: 0 5px 8px $shadow-color;
     div {
         width: fit-content;
         display: flex;
@@ -171,4 +177,24 @@ $backBtn-arrow-weight: 0.1rem;
         border: 1px solid $table-border-color;
         padding: 0.6rem 1.5rem;
     }
+}
+caption {
+    margin-bottom: 0.5rem;
+}
+
+.showTableFlex {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.card {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid $shadow-line-color;
+    box-shadow: 5px 5px 5px $shadow-color;
+    border-radius: 0.5rem;
+    padding: 2rem;
 }
