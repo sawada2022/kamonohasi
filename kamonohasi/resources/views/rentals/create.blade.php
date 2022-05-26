@@ -91,11 +91,19 @@
         <th>出版社</th>
     </tr>
     @if($book_flag === 0)
-    @foreach($books as $book)
+    @foreach($books as $index => $book)
     <tr>
         <td>{{$book->title}}</td>
         <td>{{$book->author}}</td>
         <td>{{$book->publisher}}</td>
+        <td>
+            <form action="{{ route('rentals.create') }}" method="get">
+                @csrf
+                <input type="hidden" name="delete_index" value="{{ $index }}">
+                <input type="hidden" name="user_id" value="{{ $users->id }}">
+                <input type="submit" value="削除">
+            </form>
+        </td>
         <input type='hidden' name='added_book_ids[]' value="{{$book->id}}">
     </tr>
     @endforeach
