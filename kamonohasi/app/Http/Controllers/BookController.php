@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Rental;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -81,9 +83,16 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        //dd($book);
+        $rentals = Rental::where('book_id', '=', $book->id)->first();
+       // dd($rentals->user_id);
+        //$users = $book->rental_users;
+        $users = User::where('id', '=', $rentals->user_id)->first();
+        //dd($users);
+       
+        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
     }
 
     /**
