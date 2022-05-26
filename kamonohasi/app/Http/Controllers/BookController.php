@@ -89,10 +89,13 @@ class BookController extends Controller
         $rentals = Rental::where('book_id', '=', $book->id)->first();
        // dd($rentals->user_id);
         //$users = $book->rental_users;
-        $users = User::where('id', '=', $rentals->user_id)->first();
-        //dd($users);
-       
+        if($rentals === NULL || $rentals->rental_status === 1){
+            return view('books/show', ['book' => $book, 'flag' => 0]);//,'users'=> $users
+        }else{
+            $users = User::where('id', '=', $rentals->user_id)->first();
         return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
+        }
+        
     }
 
     /**
