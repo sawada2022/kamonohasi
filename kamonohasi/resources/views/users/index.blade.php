@@ -7,7 +7,7 @@
 
 <h3>会員詳細情報</h3>
 <a href="{{route('users.create')}}">新規登録</a>
-
+@include('commons/flash')
 <form action="{{route('users.index', $users->email)}}" method="get">
     @csrf
     <label>
