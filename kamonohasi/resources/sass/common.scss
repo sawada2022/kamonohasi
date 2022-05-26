@@ -10,6 +10,12 @@ html, body {
     margin: 0;
 }
 
+h1 {
+    width: fit-content;
+    color: $text-color;
+    font-size: 1.5rem;
+}
+
 // header
 $header-shadow: #dbdbdb;
 header {

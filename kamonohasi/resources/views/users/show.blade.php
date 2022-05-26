@@ -36,7 +36,7 @@
     @method('delete')
 </form>
 
-<h1>借りている本</h1>
+<p>借りている本</p>
 @if($flag === 1)
 <table class="tableBase" frame="void">
     <thead>
