@@ -67,8 +67,12 @@
         </table>
         @endif
         @if($flag === 2)
-        <p>借りている本</p>
-        <p>貸出無し</p>
+        <table style="width:15rem;">
+            <caption>借りている本</caption>
+            <tr>
+                <td style="text-align: center;">貸出無し</td>
+            </tr>
+        </table>
         @endif
     </div>
 </div>
