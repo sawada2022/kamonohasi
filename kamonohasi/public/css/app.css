@@ -9,7 +9,8 @@ h1 {
   width: -moz-fit-content;
   width: fit-content;
   color: #505050;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  margin: 2rem auto 2rem 8rem;
 }
 
 p {
