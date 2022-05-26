@@ -63,7 +63,7 @@ class RentalController extends Controller
         if(!empty($book_id)){
             $book_flag = 0;
             $users = User::where('id', '=', $request->input('user_id'))->first();
-
+            
             if(count($book_ids) >= 5 ){//$book_idsの中身の数を数えて、それが５回以上だったらエラーにしよう
                 $books=[];
                 foreach(array_unique($book_ids) as $i){
@@ -74,7 +74,8 @@ class RentalController extends Controller
 
             }else{//１回目にボタンを押したとき
                 $rental_status = Rental::where('book_id', '=', $book_id)->orderBy('id', 'desc')->first();
-                if($rental_status->rental_status === 1){
+                //dd($rental_status);
+                if($rental_status === NULL || $rental_status->rental_status === 1){
                     if(in_array($book_id, $book_ids) === false){
                     $request->session()->push('bookinfo', $book_id);
                     }
@@ -135,16 +136,12 @@ class RentalController extends Controller
     {
         $user_id_rental = $request->input('user_id_rental');
         $users = User::find($user_id_rental);
-        
-        $created_at = $request->input('created_at');
-        $deadline = date("Y-m-d",$created_at.strtotime("+10 day"));
-        //dd($deadline);
 
         $rentals = $request->session()->get('bookinfo');
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
-            $users->rental_books()->attach($book->id,['deadline' => $deadline]);
+            $users->rental_books()->attach($book->id);
         }
         
         return view('rentals/show', ['books' => $books, 'users' => $users]);
