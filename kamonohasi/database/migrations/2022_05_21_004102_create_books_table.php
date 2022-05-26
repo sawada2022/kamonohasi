@@ -25,7 +25,7 @@ class CreateBooksTable extends Migration
             $table->date('deleted_on')->nullable();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('category_id')->on('categories');
         });
     }
 

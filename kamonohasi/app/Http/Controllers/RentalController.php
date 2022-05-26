@@ -47,8 +47,7 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、資料情報を表示
     {
-        //dd($request);
-        $users = User::where('id', '=', $request->users)->first();
+        $users = User::where('id', '=', $request->user_id)->first();
         $books=[];//booksが入ってない空配列を用意
         $rental_flag = 1;
         $rentals = [];
@@ -57,38 +56,66 @@ class RentalController extends Controller
         $book_flag = 1;
         $book_id = $request->input('book_id');
 
+        $book_ids = $request->session()->get('bookinfo');
+            if(!is_array($book_ids)) $book_ids=[];
+
         //リクエストを受け、資料情報を表示
         if(!empty($book_id)){
-
             $book_flag = 0;
             $users = User::where('id', '=', $request->input('user_id'))->first();
-            $book_ids = $request->session()->get('bookinfo');
-            if(!is_array($book_ids)) $book_ids=[];
-            if(count($book_ids) >= 5 ){
-                //$book_idsの中身の数を数えて、それが５回以上だったらエラーにしよう
+            $rental_count = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->count();
+            if(count($book_ids) + $rental_count >= 5 ){//$book_idsの中身の数を数えて、それが５回以上だったらエラーにしよう
                 $books=[];
                 foreach(array_unique($book_ids) as $i){
                     $books[] = Book::where('id', '=', $i)->first();
                 }
-                return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag])
+                return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals])
                 ->withErrors(["max_books"=>"5冊以上の資料の貸し出しはできません"]);//viewのメソッドで、bladeテンプレートにエラーを渡している
 
             }else{//１回目にボタンを押したとき
-                $request->session()->push('bookinfo', $book_id);
+                $rental_status = Rental::where('book_id', '=', $book_id)->orderBy('id', 'desc')->first();
+                //dd($rental_status);
+                if($rental_status === NULL || $rental_status->rental_status === 1){
+                    if(in_array($book_id, $book_ids) === false){
+                    $request->session()->push('bookinfo', $book_id);
+                    }
+                }else{
+                    return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals])
+                ->withErrors(["now_rentaled"=>"現在貸出中の資料です"]);
+                }
                 $book_ids = $request->session()->get('bookinfo');
                 if(!is_array($book_ids)) $book_ids=[];
                 $books=[];//配列の初期化
                 foreach(array_unique($book_ids) as $i){
+                        $books[] = Book::where('id', '=', $i)->first();    
+                }
+                    
+            }
+                
+            
+
+        }else{//初回用、削除ボタン用
+            $index = $request->delete_index;
+            if(!is_null($index)){
+            unset($book_ids[$index]);
+            $request->session()->remove('bookinfo');
+            foreach($book_ids as $book_id){
+                $request->session()->push('bookinfo', $book_id);
+            }
+            $books=[];//配列の初期化
+                foreach(array_unique($book_ids) as $i){
                     $books[] = Book::where('id', '=', $i)->first();
                 }
-            }
-        }else{//初回用
+            $book_flag = 0;
+            }else{
             session_start();
             $request->session()->remove('bookinfo');
+            }
         }
 
+
         // 現在貸し出している本を取得
-        $rentalsAll = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+        $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
         if(count($rentalsAll)){
             foreach($rentalsAll as $rental){
                 $rentals[] = Book::where('id', '=', $rental->book_id)->first();
@@ -109,12 +136,16 @@ class RentalController extends Controller
     {
         $user_id_rental = $request->input('user_id_rental');
         $users = User::find($user_id_rental);
+        
+        $created_at = $request->input('created_at');
+        $deadline = date("Y-m-d",$created_at.strtotime("+10 day"));
+        //dd($deadline);
 
         $rentals = $request->session()->get('bookinfo');
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
-            $users->rental_books()->attach($book->id);
+            $users->rental_books()->attach($book->id,['deadline' => $deadline]);
         }
         
         return view('rentals/show', ['books' => $books, 'users' => $users]);
@@ -151,7 +182,6 @@ class RentalController extends Controller
 
         if(!is_null($index)){
             $request->session()->push('deleteinfo', $index);
-            //dd(array_unique($request->session()->get('deleteinfo')));
             foreach(array_unique($request->session()->get('deleteinfo')) as $i){
                 unset($books[$i]);
             }
@@ -175,14 +205,20 @@ class RentalController extends Controller
     {
 
             $users = User::where('id', '=', $request->user_id)->first();
-            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==0
+            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+            if($request->session()->get('deleteinfo')){
+            foreach(array_unique($request->session()->get('deleteinfo')) as $i){
+                unset($rentals[$i]);
+            }
+            }   
             foreach($rentals as $rental){
                 $rental->rental_status = 1;
                 $rental->save();
             }
             $flag = 1;
             $book_flag = 1;
-        return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        //return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        return redirect(route('rentals.index',['users'=>$users]));
     }
 
     /**
