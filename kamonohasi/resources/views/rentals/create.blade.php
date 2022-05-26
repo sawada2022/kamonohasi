@@ -109,13 +109,14 @@
     @endforeach
     @endif
 </table>
+@if($books)
 </form>
 <form action="{{route('rentals.store')}}" method="post">
     @csrf
     <input type="text" value="{{$users->id}}" name="user_id_rental" style='display:none;'>
     <input type="submit" value="貸し出し">
 </form>
-
+@endif
 <script>
     function modal(flg){
         if(flg === 'user'){
