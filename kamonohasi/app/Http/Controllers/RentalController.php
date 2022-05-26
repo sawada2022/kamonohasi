@@ -47,8 +47,7 @@ class RentalController extends Controller
      */
     public function create(Request $request) //リクエストを受け、資料情報を表示
     {
-        //dd($request);
-        $users = User::where('id', '=', $request->users)->first();
+        $users = User::where('id', '=', $request->user_id)->first();
         $books=[];//booksが入ってない空配列を用意
         $rental_flag = 1;
         $rentals = [];
@@ -70,7 +69,7 @@ class RentalController extends Controller
                 foreach(array_unique($book_ids) as $i){
                     $books[] = Book::where('id', '=', $i)->first();
                 }
-                return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag])
+                return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals])
                 ->withErrors(["max_books"=>"5冊以上の資料の貸し出しはできません"]);//viewのメソッドで、bladeテンプレートにエラーを渡している
 
             }else{//１回目にボタンを押したとき
@@ -81,14 +80,35 @@ class RentalController extends Controller
                 foreach(array_unique($book_ids) as $i){
                     $books[] = Book::where('id', '=', $i)->first();
                 }
+                
             }
-        }else{//初回用
+
+        }else{//初回用、削除ボタン用
+            $index = $request->delete_index;
+            if(!is_null($index)){
+            $book_ids = $request->session()->get('bookinfo');
+            var_dump($book_ids);
+            if(!is_array($book_ids)) $book_ids=[];
+            unset($book_ids[$index]);
+            //var_dump($book_ids);
+            $request->session()->remove('bookinfo');
+            foreach($book_ids as $book_id){
+                $request->session()->push('bookinfo', $book_id);
+            }
+            $books=[];//配列の初期化
+                foreach(array_unique($book_ids) as $i){
+                    $books[] = Book::where('id', '=', $i)->first();
+                }
+            $book_flag = 0;
+            }else{
             session_start();
             $request->session()->remove('bookinfo');
+            }
         }
 
+
         // 現在貸し出している本を取得
-        $rentalsAll = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+        $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
         if(count($rentalsAll)){
             foreach($rentalsAll as $rental){
                 $rentals[] = Book::where('id', '=', $rental->book_id)->first();
@@ -151,7 +171,6 @@ class RentalController extends Controller
 
         if(!is_null($index)){
             $request->session()->push('deleteinfo', $index);
-            //dd(array_unique($request->session()->get('deleteinfo')));
             foreach(array_unique($request->session()->get('deleteinfo')) as $i){
                 unset($books[$i]);
             }
@@ -175,14 +194,20 @@ class RentalController extends Controller
     {
 
             $users = User::where('id', '=', $request->user_id)->first();
-            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get(); //かつrental_status==0
+            $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+            if($request->session()->get('deleteinfo')){
+            foreach(array_unique($request->session()->get('deleteinfo')) as $i){
+                unset($rentals[$i]);
+            }
+            }   
             foreach($rentals as $rental){
                 $rental->rental_status = 1;
                 $rental->save();
             }
             $flag = 1;
             $book_flag = 1;
-        return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        //return view('rentals.index', ['users' => $users, 'flag' => $flag,'book_flag' => $book_flag]);
+        return redirect(route('rentals.index',['users'=>$users]));
     }
 
     /**
