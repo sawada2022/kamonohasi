@@ -134,12 +134,13 @@ class RentalController extends Controller
         
         $created_at = $request->input('created_at');
         $deadline = date("Y-m-d",$created_at.strtotime("+10 day"));
+        //dd($deadline);
 
         $rentals = $request->session()->get('bookinfo');
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
-            $users->rental_books()->attach($book->id);
+            $users->rental_books()->attach($book->id,['deadline' => $deadline]);
         }
         
         return view('rentals/show', ['books' => $books, 'users' => $users]);
