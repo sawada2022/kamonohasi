@@ -75,21 +75,28 @@ class RentalController extends Controller
                 ->withErrors(["max_books"=>"5冊以上の資料の貸し出しはできません"]);//viewのメソッドで、bladeテンプレートにエラーを渡している
 
             }else{//１回目にボタンを押したとき
-                $request->session()->push('bookinfo', $book_id);
+                $rental_status = Rental::where('book_id', '=', $book_id)->orderBy('id', 'desc')->first();
+                if($rental_status->rental_status === 1){
+                    $request->session()->push('bookinfo', $book_id);
+                }else{
+                    return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals])
+                ->withErrors(["now_rentaled"=>"現在貸出中の資料です"]);
+                }
                 $book_ids = $request->session()->get('bookinfo');
                 if(!is_array($book_ids)) $book_ids=[];
                 $books=[];//配列の初期化
                 foreach(array_unique($book_ids) as $i){
-                    $books[] = Book::where('id', '=', $i)->first();
+                        $books[] = Book::where('id', '=', $i)->first();    
                 }
-                
+                    
             }
+                
+            
 
         }else{//初回用、削除ボタン用
             $index = $request->delete_index;
             if(!is_null($index)){
             $book_ids = $request->session()->get('bookinfo');
-            var_dump($book_ids);
             if(!is_array($book_ids)) $book_ids=[];
             unset($book_ids[$index]);
             //var_dump($book_ids);
