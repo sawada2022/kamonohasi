@@ -63,6 +63,7 @@ class RentalController extends Controller
             $book_flag = 0;
             $users = User::where('id', '=', $request->input('user_id'))->first();
             $book_ids = $request->session()->get('bookinfo');
+            array_unique($book_ids);
             if(!is_array($book_ids)) $book_ids=[];
             if(count($book_ids) >= 5 ){
                 //$book_idsの中身の数を数えて、それが５回以上だったらエラーにしよう
