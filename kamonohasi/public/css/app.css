@@ -150,6 +150,17 @@ header div a p {
   color: #505050;
 }
 
+.tableBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-collapse: collapse;
+}
+.tableBase th, .tableBase td {
+  border: 1px solid #a1a1a1;
+  padding: 0.6rem 1.5rem;
+}
+
 .modal {
   width: 100vw;
   height: 100vh;
@@ -201,15 +212,4 @@ header div a p {
 }
 .modalBtn .modalIcon {
   font-size: 1.3rem;
-}
-
-.modalTable {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-collapse: collapse;
-}
-.modalTable th, .modalTable td {
-  border: 1px solid #a1a1a1;
-  padding: 0.6rem 1.5rem;
 }
