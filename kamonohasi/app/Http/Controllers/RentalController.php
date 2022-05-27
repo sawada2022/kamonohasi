@@ -102,19 +102,19 @@ class RentalController extends Controller
         }else{//book_idが渡ってこない、初回/削除ボタン用
             $index = $request->delete_index;
             if(!is_null($index)){ //削除ボタン用
-            unset($book_ids[$index]);
-            $request->session()->remove('bookinfo');
-            foreach($book_ids as $book_id){
-                $request->session()->push('bookinfo', $book_id);
-            }
-            $book_ids = $request->session()->get('bookinfo');
-            if(!is_array($book_ids)) $book_ids=[]; 
-            $books=[];//配列の初期化
-            foreach(array_unique($book_ids) as $i){
-                $books[] = Book::where('id', '=', $i)->first(); //book_id追加後のカートを作成
-            }
-
-            $book_flag = 0;
+                unset($book_ids[$index]);
+                $request->session()->remove('bookinfo');
+                foreach($book_ids as $book_id){
+                    $request->session()->push('bookinfo', $book_id);
+                }
+                $book_ids = $request->session()->get('bookinfo');
+                if(!is_array($book_ids)) $book_ids=[]; 
+                $books=[];//配列の初期化
+                foreach(array_unique($book_ids) as $i){
+                    $books[] = Book::where('id', '=', $i)->first(); //book_id削除後のカートを作成
+                }
+                $book_flag = 0;
+                
             }else{ //初回用
             session_start();
             $request->session()->remove('bookinfo');
@@ -144,6 +144,7 @@ class RentalController extends Controller
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
+            $request->session()->regenerateToken();
             $users->rental_books()->attach($book->id,['deadline' => $deadline]);
         }
         
