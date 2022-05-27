@@ -36,11 +36,11 @@
                 <th>著者</th>
                 <th>貸出期限</th>
             </tr>
-            @foreach($rentals as $rental)
+            @foreach($rentals as $index => $rental)
             <tr>
                 <td>{{$rental->title}}</td>
                 <td>{{$rental->author}}</td>
-                <td>{{$rental->created_at}}</td>
+                <td>{{$rentalsAll[$index]->deadline}}</td>
             <tr>
             @endforeach
             @else
