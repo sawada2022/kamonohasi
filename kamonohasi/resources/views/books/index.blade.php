@@ -4,7 +4,7 @@
 
 @include('commons/backBtn', ['path' => '/'])
 <h1>蔵書情報</h1>
-<a href="{{ route('books.create') }}">新規登録</a>
+<a class="btnBase" href="{{ route('books.create') }}"><i class="fa-solid fa-plus"></i><span>新規登録</span></a>
 
 @include('books/index_form')
 @include('commons/flash')
