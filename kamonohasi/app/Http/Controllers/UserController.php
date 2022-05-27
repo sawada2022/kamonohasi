@@ -28,6 +28,17 @@ class UserController extends Controller
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
+
+                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->paginate(10);
+                if(count($rental_hist)){
+                    foreach($rental_hist as $hist){
+                        $book_hist[] = Book::where('id', '=', $hist->book_id)->first();
+                    }
+                    $rental_flag = 0; //貸出履歴あり
+                }else{
+                    $rental_flag = 1; //貸出履歴なし
+                }
+                
                 $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
@@ -45,7 +56,8 @@ class UserController extends Controller
                     $books[] = Book::first();
                     $flag = 2; //貸出中無
                 }
-                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
+                
+                return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books, 'book_hist' => $book_hist, 'rental_hist' => $rental_hist, 'rental_flag' => $rental_flag]);
             }else{
                 $users = User::first();
                 $flag = 0;
@@ -99,14 +111,23 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $email = $request->email;
-        
+
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
-            //$rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->all();
+            $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->get();
+            if(count($rental_hist)){
+                foreach($rental_hist as $hist){
+                    $book_hist[] = Book::where('id', '=', $hist->book_id)->first();
+                }
+                $rental_flag = 0; //貸出履歴あり
+            }else{
+                $rental_flag = 1; //貸出履歴なし
+            }
         }else{
             $users = User::first();
-        }        
-        return view('users/show', ['users' => $users]);
+        }
+        dd($rental_flag);        
+        return view('users/show', ['users' => $users, 'book_hist' => $book_hist, 'rental_hist' => $rental_hist, 'rental_flag' => $rental_flag]);
 
 
     }
