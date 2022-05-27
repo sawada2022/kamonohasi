@@ -77,6 +77,7 @@ class RentalController extends Controller
             if(count($book_ids) + $rental_count >= 5 ){ //$book_ids+$rental_countが5以上ならエラーにする
 
                 return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals, 'rentalsAll' => $rentalsAll])
+
                 ->withErrors(["max_books"=>"5冊以上の資料の貸し出しはできません"]);//viewのメソッドで、bladeテンプレートにエラーを渡す
 
             }else{ //$book_ids+$rental_countが5以下ならbooks_ids(bookinfo)にbook_idを追加する
@@ -95,6 +96,7 @@ class RentalController extends Controller
 
                 }else{ //借りられる状態でないならば
                     return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals, 'rentalsAll' => $rentalsAll])
+
                 ->withErrors(["now_rentaled"=>"現在貸出中の資料です"]);
                 }                    
             }   
