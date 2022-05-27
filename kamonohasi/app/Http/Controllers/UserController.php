@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Rental;
+use App\Rules\PostalCode;
 
 use Illuminate\Http\Request;
 
@@ -80,7 +81,7 @@ class UserController extends Controller
             'adress' => 'required|max:100',
             'tel' => 'required|max:20',
             'email'=>'required|max:100',
-            'postal_code'=>'max:7'
+            'postal_code'=>new PostalCode,
         ]);
         User::create($request->all());
         $request->session()->regenerateToken();
@@ -134,7 +135,7 @@ class UserController extends Controller
             'adress' => 'required|max:100',
             'tel' => 'required|max:20',
             'email'=>'required|max:100',
-            'postal_code'=>'max:8'
+            'postal_code'=>new PostalCode,
         ]);
         $user->update($request->all());
         $rentals = Rental::where('user_id', '=', $user->id)->where('rental_status', '=', 0)->get();
