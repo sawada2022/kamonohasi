@@ -4,6 +4,7 @@
 @include('commons/backBtn', ['path' => 'books'])
 
 <h3>資料新規登録</h3>
+@include('commons/flash')
 <form action="{{ route('books.store') }}" method="post">
 
 @csrf

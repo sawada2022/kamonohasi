@@ -3,7 +3,7 @@
 @section('content')
 
 @include('commons/backBtn', ['path' => '/'])
-
+@include('commons/flash')
 <form action="{{ route('rentals.index', $users->email) }}" method="get">
     @csrf
     <label>

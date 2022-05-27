@@ -2,10 +2,10 @@
 @section('title','貸し借り業務')
 @section('content')
 
-
+@include('commons/flash')
 <div id="userModal" class="modal">
     <div class="modalContent">
-        <table class="modalTable">
+        <table class="tableBase" frame="void">
             <tr>
                 <th>ID</th>
                 <td>{{$users->id}}</td>
@@ -29,7 +29,7 @@
 
 <div  id="bookModal" class="modal">
     <div class="modalContent">
-        <table class="modalTable">
+        <table class="tableBase" frame="void">
             @if($rental_flag === 0)
             <tr>
                 <th>資料名</th>
@@ -42,6 +42,7 @@
                 <td>{{$rental->author}}</td>
                 <td>{{$rentalsAll[$index]->deadline}}</td>
             <tr>
+
             @endforeach
             @else
             <p>現在、{{$users->user_name}}さんに貸し出している本はありません。</p>

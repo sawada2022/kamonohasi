@@ -7,7 +7,7 @@
 <a href="{{ route('books.create') }}">新規登録</a>
 
 @include('books/index_form')
-
+@include('commons/flash')
 @if($flag === 0)
     <table>
         <thead>
@@ -33,7 +33,7 @@
             @endforeach
         </tbody>       
     </table>
-    {{ $books->links() }}
+    {{ $books->appends(request()->query())->links() }}
 @endif
 
 @endsection

@@ -4,11 +4,28 @@ html, body {
   margin: 0;
 }
 
+h1 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #505050;
+  font-size: 1.6rem;
+  margin: 2rem auto 2rem 10rem;
+}
+
+p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
 header {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 5px 8px #dbdbdb;
+  border-bottom: 1px solid #ececec;
+  box-shadow: 0 5px 8px #e7e7e7;
 }
 header div {
   width: -webkit-fit-content;
@@ -92,12 +109,14 @@ header div a p {
 }
 
 .backBtn {
+  display: block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  margin: 2rem 3rem 3rem;
   cursor: pointer;
   text-decoration: none;
 }
@@ -115,9 +134,101 @@ header div a p {
 .backBtnArrow {
   width: 6rem;
   height: 1rem;
-  border-bottom: 0.1rem solid #5e5e5e;
-  border-left: 0.1rem solid #5e5e5e;
+  border-bottom: 0.1rem solid #7c7c7c;
+  border-left: 0.1rem solid #7c7c7c;
   transform: skew(135deg);
+}
+
+.btnBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #505050;
+  border-radius: 5px;
+}
+.btnBase:active {
+  color: #505050;
+}
+.btnBase:focus {
+  outline: none;
+  color: #505050;
+}
+.btnBase:visited {
+  color: #505050;
+}
+.btnBase:link {
+  color: #505050;
+}
+
+.btnFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.tableBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-collapse: collapse;
+}
+.tableBase th, .tableBase td {
+  border: 1px solid #c7c7c7;
+  padding: 0.6rem 1.5rem;
+}
+
+caption {
+  margin-bottom: 1rem;
+  color: #505050;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.showTableFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.card {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #ececec;
+  box-shadow: 5px 5px 5px #e7e7e7;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.mainContentFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
 }
 
 .modal {
@@ -171,15 +282,4 @@ header div a p {
 }
 .modalBtn .modalIcon {
   font-size: 1.3rem;
-}
-
-.modalTable {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-collapse: collapse;
-}
-.modalTable th, .modalTable td {
-  border: 1px solid #a1a1a1;
-  padding: 0.6rem 1.5rem;
 }
