@@ -2,7 +2,7 @@
 @section('title','貸し借り業務')
 @section('content')
 
-
+@include('commons/flash')
 <div id="userModal" class="modal">
     <div class="modalContent">
         <table class="tableBase" frame="void">

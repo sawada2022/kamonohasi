@@ -2,7 +2,7 @@
 @section('content')
 
 @include('commons/backBtn', ['path' => 'rentals'])
-
+@include('commons/flash')
 <h1>会員情報</h1>
 <table>
     <tr>
