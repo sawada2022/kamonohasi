@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-
 <button>戻る</button>
 
 <h1>資料詳細情報</h1>
@@ -42,8 +40,8 @@
 </table>
 
 <a href="{{ route('books.edit', $book->id) }}">編集</a>
-<a href="#" id="deleteUserBtn">削除</a>
-<form action="{{ route('books.destroy', $book->id) }}" method="post" type id="book-delete">
+<a href="#" id="deleteBookBtn">削除</a>
+<form action="{{ route('books.destroy', $book->id) }}" method="post" id="book-delete">
     @csrf
     @method('delete')
 </form>
@@ -61,14 +59,12 @@
     </thead>
     <tbody>
         @if($flag === 1)
-       
         <tr>
             <td>{{ $users->id }}</td>
             <td>{{ $users->user_name }}</td>
             <td>{{ $users->email }}</td>
             <td>{{ $users->adress }}</td>
         </tr>
-        
         @endif
     </tbody>
 </table>
