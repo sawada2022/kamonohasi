@@ -283,3 +283,85 @@ caption {
 .modalBtn .modalIcon {
   font-size: 1.3rem;
 }
+
+.p-pagination {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+.p-pagination ul {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.p-pagination ul li a {
+  cursor: pointer;
+  text-decoration: none;
+}
+.p-pagination ul li a:active {
+  color: #505050;
+}
+.p-pagination ul li a:focus {
+  outline: none;
+  color: #505050;
+}
+.p-pagination ul li a:visited {
+  color: #505050;
+}
+.p-pagination ul li a:link {
+  color: #505050;
+}
+
+.active {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.activeNum {
+  width: 2.32rem;
+  height: 2.32rem;
+  border-radius: 50%;
+  border: 0.18rem solid #fff;
+  display: block;
+}
+.activeNum:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.pagenateBtn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 0.18rem solid #ddd;
+  color: #505050;
+  margin: 0 1rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagenateBtn:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.disabled .pagenateBtn {
+  cursor: default;
+}
+.disabled .pagenateBtn:hover {
+  border: 0.18rem solid #ddd;
+}
+
+.nowChoicePage {
+  background-color: #8cd860;
+  border-radius: 50%;
+}

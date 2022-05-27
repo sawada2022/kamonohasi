@@ -33,7 +33,7 @@
             @endforeach
         </tbody>       
     </table>
-    {{ $books->appends(request()->query())->links() }}
+    {{ $books->appends(request()->query())->links('vendor.pagination.custom') }}
 @endif
 
 @endsection

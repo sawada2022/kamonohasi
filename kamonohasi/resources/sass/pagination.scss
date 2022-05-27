@@ -1,0 +1,81 @@
+$paginate-color: $main-light-green;
+$paginate-li-size: 2.5rem;
+.p-pagination {
+    width: fit-content;
+    margin: 0 auto;
+    ul {
+        width: fit-content;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        li {
+            a {
+                cursor: pointer;
+                text-decoration: none;
+                &:active {
+                    color: $text-color;
+                }
+                &:focus {
+                    outline: none;
+                    color: $text-color;
+                }
+                &:visited {
+                    color: $text-color;
+                }
+                &:link {
+                    color: $text-color;
+                }
+            }
+        }
+    }
+}
+
+.active {
+    width: $paginate-li-size;
+    height: $paginate-li-size;
+    text-align: center;
+    line-height: $paginate-li-size;
+}
+
+$paginate-li-border: 0.18rem;
+.activeNum {
+    width: calc($paginate-li-size - $paginate-li-border);
+    height: calc($paginate-li-size - $paginate-li-border);
+    border-radius: 50%;
+    border: $paginate-li-border solid #fff;
+    display: block;
+    &:hover {
+        border: $paginate-li-border solid $paginate-color;
+    }
+}
+
+.pagenateBtn {
+    width: fit-content;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border: $paginate-li-border solid #ddd;
+    color: $text-color;
+    margin: 0 1rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        border: $paginate-li-border solid $paginate-color;
+    }
+}
+.disabled {
+    .pagenateBtn{
+        cursor: default;
+        &:hover {
+            border: $paginate-li-border solid #ddd;
+        }
+    }
+}
+
+.nowChoicePage {
+    background-color: $paginate-color;
+    border-radius: 50%;
+}
