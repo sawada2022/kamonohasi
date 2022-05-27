@@ -33,7 +33,7 @@
             @endforeach
         </tbody>       
     </table>
-    {{ $books->links() }}
+    {{ $books->appends(request()->query())->links() }}
 @endif
 
 @endsection
