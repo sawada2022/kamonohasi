@@ -83,6 +83,7 @@ class UserController extends Controller
             'postal_code'=>'max:7'
         ]);
         User::create($request->all());
+        $request->session()->regenerateToken();
         return redirect(route('users.index'));
     }
 

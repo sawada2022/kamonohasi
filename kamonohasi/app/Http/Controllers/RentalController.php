@@ -121,6 +121,20 @@ class RentalController extends Controller
             $books=[];
             }
         }
+
+        // 現在貸し出している本を取得
+        $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
+        if(count($rentalsAll)){
+            foreach($rentalsAll as $rental){
+                if(Book::where('id', '=', $rental->book_id)->first()){
+                    $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                }
+            }
+            if(count($rentals)){
+                $rental_flag = 0; //貸出中あり
+            }
+        }
+
         return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals, 'rentalsAll' => $rentalsAll]);
     }
 
@@ -144,10 +158,9 @@ class RentalController extends Controller
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
-            $request->session()->regenerateToken();
             $users->rental_books()->attach($book->id,['deadline' => $deadline]);
         }
-        
+        $request->session()->regenerateToken();
         return view('rentals/show', ['books' => $books, 'users' => $users, 'rentaldate' => $rentaldate, 'deadline' => $deadline]);
     }
 
@@ -175,9 +188,16 @@ class RentalController extends Controller
         $rentals = Rental::where('user_id', '=', $user_id)->where('rental_status', '=', 0)->get(); 
         $books = [];
         foreach($rentals as $rental){
+            if(Book::where('id', '=', $rental->book_id)->first()){
                 $books[] = Book::where('id', '=', $rental->book_id)->first();
-                $flag = 0;
             }
+        }
+        if(count($books)){
+            $flag = 0; //貸出中あり
+        }else{
+            $books[] = Book::first();
+            $flag = 1; //貸出中無
+        }
         $index = $request->delete_index;
 
         if(!is_null($index)){

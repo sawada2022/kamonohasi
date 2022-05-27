@@ -85,7 +85,8 @@ class BookController extends Controller
             'author'=>'max:100',
             'publisher'=>'max:100'
         ]);
-        Book::create($request->all());      
+        Book::create($request->all());  
+        $request->session()->regenerateToken();    
         return redirect(route('books.create'));
     }
 
