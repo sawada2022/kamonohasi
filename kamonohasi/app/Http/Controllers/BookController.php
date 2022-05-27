@@ -52,12 +52,14 @@ class BookController extends Controller
             $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
+        //dd($request);
         $categories=Category::all();
     }
     else{
         $books = Book::first();
+        $request = Book::first();
     }
-        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories]);
+        return view('books.index', ['request'=>$request,'books' => $books, 'flag' => $flag,'categories'=>$categories]);
     }
 
     /**
