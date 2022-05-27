@@ -253,6 +253,34 @@ caption {
   margin: 0 auto;
 }
 
+.input {
+  width: 10rem;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+/* rentals.index */
+.rentalIndexForm {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+.rentalIndexForm div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.rentalIndexForm button {
+  color: #505050;
+  padding: 0.4rem 1rem;
+}
+
 /* rentals.show */
 .rentalResult {
   display: flex;

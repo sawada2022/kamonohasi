@@ -4,13 +4,13 @@
 
 @include('commons/backBtn', ['path' => '/'])
 @include('commons/flash')
-<form action="{{ route('rentals.index', $users->email) }}" method="get">
+<form class="card rentalIndexForm" action="{{ route('rentals.index', $users->email) }}" method="get">
     @csrf
-    <label>
-        会員ID
-        <input type="number" name="user_id" min="1" value="">
-    </label>
-    <button>検索</button>
+    <div>
+        <label for="user_id">会員ID</label>
+        <input type="number" id="user_id" class="input" name="user_id" min="1" value="">
+    </div>
+    <button class="btnBase"><span>検索</span><i class="fa-solid fa-magnifying-glass"></i></button>
 </form>
 
 @if ($flag === 0)
