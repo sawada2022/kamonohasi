@@ -6,9 +6,19 @@ $table-border-color: #c7c7c7;
 $shadow-line-color: #ececec;
 $shadow-color: #e7e7e7;
 
+/* reset css */
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    font-size: 1rem;
+}
+
 html, body {
     width: 100vw;
-    height: 100vh;
     margin: 0;
 }
 
@@ -26,6 +36,7 @@ p {
 // header
 header {
     width: 100vw;
+    height: 7rem;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $shadow-line-color;
@@ -179,6 +190,7 @@ $backBtn-arrow-weight: 0.1rem;
     th, td {
         border: 1px solid $table-border-color;
         padding: 0.6rem 1.5rem;
+        text-align: center;
     }
 }
 caption {

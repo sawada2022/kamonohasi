@@ -1,6 +1,18 @@
+/* reset css */
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 1rem;
+}
+
 html, body {
   width: 100vw;
-  height: 100vh;
   margin: 0;
 }
 
@@ -22,6 +34,7 @@ p {
 
 header {
   width: 100vw;
+  height: 7rem;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ececec;
@@ -187,6 +200,7 @@ header div a p {
 .tableBase th, .tableBase td {
   border: 1px solid #c7c7c7;
   padding: 0.6rem 1.5rem;
+  text-align: center;
 }
 
 caption {
@@ -229,6 +243,64 @@ caption {
   display: flex;
   gap: 2rem;
   margin: 0 auto;
+}
+
+.createBookBtn {
+  margin: 0 0.5rem 0.5rem auto;
+}
+
+.searchForm {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto 4rem;
+  padding: 2rem 3rem;
+}
+.searchForm button {
+  margin: 0 auto 0.5rem;
+  color: #505050;
+}
+
+.searchInputArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+}
+
+.searchFormInputFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
+}
+.searchFormInputFlex span {
+  display: flex;
+  gap: 1rem;
+}
+.searchFormInputFlex span label {
+  width: 6rem;
+  text-align: right;
+}
+
+.searchResult {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem;
+  margin: 4rem auto 6rem;
 }
 
 .modal {
@@ -282,4 +354,87 @@ caption {
 }
 .modalBtn .modalIcon {
   font-size: 1.3rem;
+}
+
+.p-pagination {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+.p-pagination ul {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.p-pagination ul li a {
+  cursor: pointer;
+  text-decoration: none;
+}
+.p-pagination ul li a:active {
+  color: #505050;
+}
+.p-pagination ul li a:focus {
+  outline: none;
+  color: #505050;
+}
+.p-pagination ul li a:visited {
+  color: #505050;
+}
+.p-pagination ul li a:link {
+  color: #505050;
+}
+
+.active {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.activeNum {
+  width: 2.32rem;
+  height: 2.32rem;
+  border-radius: 50%;
+  border: 0.18rem solid #fff;
+  display: block;
+}
+.activeNum:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.pagenateBtn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 0.18rem solid #ddd;
+  color: #505050;
+  margin: 0 1rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagenateBtn:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.disabled .pagenateBtn {
+  cursor: default;
+}
+.disabled .pagenateBtn:hover {
+  border: 0.18rem solid #ddd;
+}
+
+.nowChoicePage {
+  background-color: #8cd860;
+  border-radius: 50%;
 }
