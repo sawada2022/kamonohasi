@@ -1,3 +1,16 @@
+/* reset css */
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 1rem;
+}
+
 html, body {
   width: 100vw;
   height: 100vh;
