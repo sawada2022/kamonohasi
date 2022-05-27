@@ -50,7 +50,7 @@ $rental-index-btn-size: 9.5rem;
     line-height: $rental-index-btn-size;
     font-size: 1.7rem;
     font-weight: bold;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.1rem;
 }
 #rental-index-btn1 {
     background-color: $main-light-green;
@@ -64,6 +64,14 @@ $rental-index-btn-size: 9.5rem;
     gap: 8rem;
     align-items: center;
     margin: 4rem auto;
+}
+
+/* rentals.create */
+.rentalCardTitle {
+    font-size: 1.6rem;
+}
+.rentalCardForm {
+    padding: 0;
 }
 
 /* rentals.show */

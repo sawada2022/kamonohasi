@@ -303,7 +303,7 @@ caption {
   line-height: 9.5rem;
   font-size: 1.7rem;
   font-weight: bold;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
 }
 .rentalIndexBtnBase:active {
   color: #505050;
@@ -335,6 +335,15 @@ caption {
   gap: 8rem;
   align-items: center;
   margin: 4rem auto;
+}
+
+/* rentals.create */
+.rentalCardTitle {
+  font-size: 1.6rem;
+}
+
+.rentalCardForm {
+  padding: 0;
 }
 
 /* rentals.show */
