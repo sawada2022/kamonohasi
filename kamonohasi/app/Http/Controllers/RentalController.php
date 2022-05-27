@@ -63,9 +63,13 @@ class RentalController extends Controller
         $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
         if(count($rentalsAll)){
             foreach($rentalsAll as $rental){
-                $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                if(Book::where('id', '=', $rental->book_id)->first()){
+                    $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                }
             }
-            $rental_flag = 0;
+            if(count($rentals)){
+                $rental_flag = 0; //貸出中あり
+            }
         }
                     //ここまで、必要な返り値と毎回の処理に必要な変数の準備//
 
