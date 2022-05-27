@@ -3,6 +3,30 @@
 
 @include('commons/backBtn', ['path' => 'rentals'])
 @include('commons/flash')
+<div id="userModal" class="modal">
+    <div class="modalContent">
+        <table class="tableBase" frame="void">
+            <tr>
+                <th>ID</th>
+                <td>{{$user->id}}</td>
+            </tr>
+            <tr>
+                <th>名前</th>
+                <td>{{$user->user_name}}</td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td>{{$user->adress}}</td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>{{$user->tel}}</td>
+            </tr>
+        </table>
+        <button class="modalBtn" onclick="modalClose('user')"><i class="fa-solid fa-xmark modalIcon"></i></button>
+    </div>
+</div>
+
 <h1>会員情報</h1>
 <table>
     <tr>
@@ -18,7 +42,7 @@
         <td>{{ $user->comment }}</td>
     </tr>
 </table>
-<button>会員詳細</button>
+<button onclick="modal('user')">会員詳細</button>
 </form>
 
 <h1>資料情報</h1>
@@ -60,5 +84,26 @@
 <p>貸出無し</p>
 
 @endif
+
+<script>
+    function modal(flg){
+        if(flg === 'user'){
+            document.getElementById('userModal').style.display = 'block';
+        }
+    }
+
+    function modalClose(flg){
+        if(flg === 'user'){
+            document.getElementById('userModal').style.display = 'none';
+        }
+    }
+
+    // user modal close when click outside
+    document.getElementById('userModal').addEventListener('click',function(e) {
+        if(!e.target.closest('.modalContent')){
+        document.getElementById('userModal').style.display = 'none';
+        }
+    })
+</script>
 
 @endsection
