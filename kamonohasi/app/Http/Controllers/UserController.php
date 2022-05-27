@@ -81,7 +81,7 @@ class UserController extends Controller
         $this->validate($request,[
             'user_name' => 'required|max:40',
             'adress' => 'required|max:100',
-            'tel' => ['max:20', new Tel],
+            'tel' => ['max:20', 'required', new Tel],
             'email'=> ['max:100','unique:users', 'required', new Email],
             'postal_code'=>['max:20', new PostalCode],
         ]);
@@ -135,7 +135,7 @@ class UserController extends Controller
         $this->validate($request,[
             'user_name' => 'required|max:40',
             'adress' => 'required|max:100',
-            'tel' => ['max:20', new Tel],
+            'tel' => ['max:20', 'required', new Tel],
             'email'=> ['max:100','unique:users', 'required', new Email],
             'postal_code'=>['max:20', new PostalCode],
         ]);
