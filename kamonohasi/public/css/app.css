@@ -282,6 +282,58 @@ caption {
 }
 
 .rentalIndexResult {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 4rem auto;
+}
+
+.rentalIndexBtnBase {
+  width: 9.5rem;
+  height: 9.5rem;
+  display: block;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 9.5rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+}
+.rentalIndexBtnBase:active {
+  color: #505050;
+}
+.rentalIndexBtnBase:focus {
+  outline: none;
+  color: #505050;
+}
+.rentalIndexBtnBase:visited {
+  color: #505050;
+}
+.rentalIndexBtnBase:link {
+  color: #505050;
+}
+
+#rental-index-btn1 {
+  background-color: #8cd860;
+}
+
+#rental-index-btn2 {
+  background-color: #dde011;
+}
+
+.rentalIndexBtnArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 8rem;
+  align-items: center;
   margin: 4rem auto;
 }
 
