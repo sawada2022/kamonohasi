@@ -43,8 +43,8 @@ class BookController extends Controller
             $query = Book::where('id', '=', $request->book_id);
             $flag = 0;
         }
-        if($request->genre){
-            $query = Book::where('category_id', '=', $request->genre);
+        if($request->category_id){
+            $query = Book::where('category_id', '=', $request->category_id);//分類コードのIDをもってきて、category_idと比較している
             $flag = 0;
         }
         if($request->published_year){
@@ -52,11 +52,12 @@ class BookController extends Controller
             $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
+        $categories=Category::all();
     }
     else{
         $books = Book::first();
     }
-        return view('books.index', ['books' => $books, 'flag' => $flag]);
+        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories]);
     }
 
     /**
