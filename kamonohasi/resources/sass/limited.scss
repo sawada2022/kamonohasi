@@ -1,0 +1,35 @@
+.searchForm {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    button {
+        margin: 0 auto;
+        color: $text-color;
+    }
+}
+
+.searchInputArea{
+    width: fit-content;
+    display: flex;
+    gap: 3rem;
+    margin: 0;
+}
+
+.searchFormInputFlex {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    span {
+        display: flex;
+        gap: 1rem;
+        label {
+            width: 6rem;
+            text-align: right;
+        }
+    }
+}
