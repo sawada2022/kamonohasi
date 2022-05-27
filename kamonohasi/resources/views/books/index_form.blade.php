@@ -1,6 +1,8 @@
 <form class="searchForm card" action="{{ route('books.index') }}" method="get">
     @csrf
 
+    <a class="btnBase createBookBtn" href="{{ route('books.create') }}"><i class="fa-solid fa-plus"></i><span>新規登録</span></a>
+
     <div class="searchInputArea">
         <div class="searchFormInputFlex">
             <span>
@@ -25,7 +27,7 @@
                 <label for="genre">ジャンル</label>
                 <select id="genre" name="genre">
                     <option value=""></option>
-                    @for($i=0; $i<=10; $i++)
+                    @for($i=0; $i<=9; $i++)
                     <option value={!! $i !!} >{{ $i }}</option>
                     @endfor
                 </select>

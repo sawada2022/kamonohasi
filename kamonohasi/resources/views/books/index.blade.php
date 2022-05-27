@@ -3,13 +3,14 @@
 @section('content')
 
 @include('commons/backBtn', ['path' => '/'])
+
 <h1>蔵書情報</h1>
-<a class="btnBase" href="{{ route('books.create') }}"><i class="fa-solid fa-plus"></i><span>新規登録</span></a>
 
 @include('books/index_form')
 @include('commons/flash')
 @if($flag === 0)
-    <table>
+<div class="card searchResult">
+    <table class="tableBase"  frame="void">
         <thead>
             <tr>
                 <th>資料名</th>
@@ -34,6 +35,7 @@
         </tbody>       
     </table>
     {{ $books->appends(request()->query())->links('vendor.pagination.custom') }}
+</div>
 @endif
 
 @endsection

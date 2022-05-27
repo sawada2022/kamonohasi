@@ -19,7 +19,6 @@ button{
 
 html, body {
     width: 100vw;
-    height: 100vh;
     margin: 0;
 }
 
@@ -190,6 +189,7 @@ $backBtn-arrow-weight: 0.1rem;
     th, td {
         border: 1px solid $table-border-color;
         padding: 0.6rem 1.5rem;
+        text-align: center;
     }
 }
 caption {
