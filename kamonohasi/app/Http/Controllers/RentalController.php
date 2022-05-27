@@ -118,9 +118,13 @@ class RentalController extends Controller
         $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
         if(count($rentalsAll)){
             foreach($rentalsAll as $rental){
-                $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                if(Book::where('id', '=', $rental->book_id)->first()){
+                    $rentals[] = Book::where('id', '=', $rental->book_id)->first();
+                }
             }
-            $rental_flag = 0;
+            if(count($rentals)){
+                $rental_flag = 0; //貸出中あり
+            }
         }
 
         return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals]);
@@ -175,9 +179,16 @@ class RentalController extends Controller
         $rentals = Rental::where('user_id', '=', $user_id)->where('rental_status', '=', 0)->get(); 
         $books = [];
         foreach($rentals as $rental){
+            if(Book::where('id', '=', $rental->book_id)->first()){
                 $books[] = Book::where('id', '=', $rental->book_id)->first();
-                $flag = 0;
             }
+        }
+        if(count($books)){
+            $flag = 0; //貸出中あり
+        }else{
+            $books[] = Book::first();
+            $flag = 1; //貸出中無
+        }
         $index = $request->delete_index;
 
         if(!is_null($index)){
