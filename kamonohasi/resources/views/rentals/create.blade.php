@@ -55,7 +55,6 @@
 @include('commons/backBtn', ['path' => 'rentals'])
 
 <h3>会員情報</h3>
-@include('commons/flash')
 <table>
     <tr>
         <th>ID</th>
