@@ -10,13 +10,8 @@
     @csrf
     @include('commons/user_form')
 
-
-
-    <button>登録</button>
+    <input type="submit" value="登録">
 </form>
-
-
-
 
 
 @endsection

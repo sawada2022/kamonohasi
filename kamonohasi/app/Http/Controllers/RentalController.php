@@ -160,10 +160,9 @@ class RentalController extends Controller
         foreach($rentals as $rental){
             $book = Book::find($rental);
             $books[] = $book;
-            $request->session()->regenerateToken();
             $users->rental_books()->attach($book->id,['deadline' => $deadline]);
         }
-        
+        $request->session()->regenerateToken();
         return view('rentals/show', ['books' => $books, 'users' => $users, 'rentaldate' => $rentaldate, 'deadline' => $deadline]);
     }
 

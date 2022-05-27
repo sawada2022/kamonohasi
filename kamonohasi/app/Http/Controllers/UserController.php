@@ -84,6 +84,7 @@ class UserController extends Controller
             'postal_code'=>new PostalCode,
         ]);
         User::create($request->all());
+        $request->session()->regenerateToken();
         return redirect(route('users.index'));
     }
 
