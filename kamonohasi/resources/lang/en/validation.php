@@ -129,6 +129,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'PostalCode' => '郵便番号はハイフン有りか無しで半角英数字7個の数字で入力してください。',
+    
 
     /*
     |--------------------------------------------------------------------------
