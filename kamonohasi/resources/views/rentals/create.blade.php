@@ -36,12 +36,13 @@
                 <th>著者</th>
                 <th>貸出期限</th>
             </tr>
-            @foreach($rentals as $rental)
+            @foreach($rentals as $index => $rental)
             <tr>
                 <td>{{$rental->title}}</td>
                 <td>{{$rental->author}}</td>
-                <td>{{$rental->created_at}}</td>
-            </tr>
+                <td>{{$rentalsAll[$index]->deadline}}</td>
+            <tr>
+
             @endforeach
             @else
             <p>現在、{{$users->user_name}}さんに貸し出している本はありません。</p>
