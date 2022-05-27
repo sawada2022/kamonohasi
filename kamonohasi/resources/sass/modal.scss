@@ -41,12 +41,3 @@
         font-size: 1.3rem;
     }
 }
-
-.modalTable {
-    width: fit-content;
-    border-collapse:  collapse;
-    th, td {
-        border: 1px solid $table-border-color;
-        padding: 0.6rem 1.5rem;
-    }
-}
