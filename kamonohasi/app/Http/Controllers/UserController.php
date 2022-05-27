@@ -28,9 +28,16 @@ class UserController extends Controller
                 $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
-                        $books[] = Book::where('id', '=', $rental->book_id)->first();
+                        if(Book::where('id', '=', $rental->book_id)->first()){
+                            $books[] = Book::where('id', '=', $rental->book_id)->first();
+                        }
                     }
-                    $flag = 1; //貸出中あり
+                    if(count($books)){
+                        $flag = 1; //貸出中あり
+                    }else{
+                        $books[] = Book::first();
+                        $flag = 2; //貸出中無
+                    }
                 }else{
                     $books[] = Book::first();
                     $flag = 2; //貸出中無
