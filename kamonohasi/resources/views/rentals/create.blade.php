@@ -2,7 +2,6 @@
 @section('title','貸し借り業務')
 @section('content')
 
-@include('commons/flash')
 <div id="userModal" class="modal">
     <div class="modalContent">
         <table class="tableBase" frame="void">
@@ -41,7 +40,7 @@
                 <td>{{$rental->title}}</td>
                 <td>{{$rental->author}}</td>
                 <td>{{$rentalsAll[$index]->deadline}}</td>
-            <tr>
+            </tr>
 
             @endforeach
             @else
