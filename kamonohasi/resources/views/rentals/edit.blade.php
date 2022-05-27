@@ -53,6 +53,7 @@
             <th>資料名</th>
             <th>著者</th>
             <th>出版社</th>
+            <th>貸出期限</th>
         </tr>
     </thead>
     <tbody>
@@ -61,6 +62,7 @@
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
             <td>{{ $book->publisher }}</td>
+            <td>{{$rentals[$index]->deadline}}</td>
             <td>
             <form action="{{ route('rentals.edit', $user->id) }}" method="get">
                 @csrf

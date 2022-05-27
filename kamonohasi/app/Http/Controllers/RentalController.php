@@ -96,7 +96,6 @@ class RentalController extends Controller
 
                 }else{ //借りられる状態でないならば
                     return view('rentals/create',['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals, 'rentalsAll' => $rentalsAll])
-
                 ->withErrors(["now_rentaled"=>"現在貸出中の資料です"]);
                 }                    
             }   
@@ -123,20 +122,6 @@ class RentalController extends Controller
             $books=[];
             }
         }
-
-        // 現在貸し出している本を取得
-        $rentalsAll = Rental::where('user_id', '=', $request->user_id)->where('rental_status', '=', 0)->get();
-        if(count($rentalsAll)){
-            foreach($rentalsAll as $rental){
-                if(Book::where('id', '=', $rental->book_id)->first()){
-                    $rentals[] = Book::where('id', '=', $rental->book_id)->first();
-                }
-            }
-            if(count($rentals)){
-                $rental_flag = 0; //貸出中あり
-            }
-        }
-
         return view('rentals/create', ['books' => $books, 'users' => $users,'book_flag' => $book_flag,'rental_flag' => $rental_flag, 'rentals' => $rentals, 'rentalsAll' => $rentalsAll]);
     }
 
@@ -213,7 +198,7 @@ class RentalController extends Controller
             $request->session()->remove('deleteinfo');
 
         }
-        return view('rentals.edit', ['user' => $user, 'flag' => $flag, 'books' => $books]);
+        return view('rentals.edit', ['user' => $user, 'flag' => $flag, 'books' => $books, 'rentals' => $rentals]);
     }
 
     /**
