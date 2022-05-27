@@ -2,7 +2,7 @@
 
 
         名前
-        <input type="text" name="user_name" value="{{ old('title', $user->user_name) }}">
+        <input type="text" name="user_name" value="{{ old('user_name', $user->user_name) }}">
     </label>
     <label>
         メールアドレス
