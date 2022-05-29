@@ -103,7 +103,9 @@
                 </tr>
                 @endforeach
                 @else
-                <p>{{ $users->user_name }}さんへの貸出履歴はありません</p>
+                <tr>
+                    <td>{{ $users->user_name }}さんへの貸出履歴はありません</td>
+                </tr>
                 @endif
         </table>
         </div>
