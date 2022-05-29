@@ -44,7 +44,7 @@
 
             @endforeach
             @else
-            <p>現在、{{$users->user_name}}さんに貸し出している本はありません。</p>
+            <p>現在、{{$users->user_name}}さんへの貸し出しはありません。</p>
             @endif
         </table>
         <button class="modalBtn" onclick="modalClose('book')"><i class="fa-solid fa-xmark modalIcon"></i></button>

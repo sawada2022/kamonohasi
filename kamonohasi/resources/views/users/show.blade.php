@@ -33,7 +33,7 @@
         <table style="width:15rem;">
             <caption>借りている本</caption>
             <tr>
-                <td style="text-align: center;">貸出無し</td>
+                <td style="text-align: center;">現在、{{ $users->user_name}}さんへの貸出はありません</td>
             </tr>
         </table>
         @endif
@@ -70,9 +70,9 @@
         </table>
 
         <div class="btnFlex">
+        <button class="btnBase" onclick="modal('history')"><i class="fa-solid fa-book"></i><span>貸出中</span></button>
             <a class="btnBase" href="{{ route('users.edit', $users->id) }}"><i class="fa-solid fa-user-pen"></i><span>編集</span></a>
             <a class="btnBase" href="#" id="deleteUserBtn"><i class="fa-solid fa-trash-can"></i><span>削除</span></a>
-            <button class="btnBase" onclick="modal('history')"><i class="fa-solid fa-book"></i><span>貸出中</span></button>
         </div>
         <form action="{{ route('users.destroy', $users->id) }}" method="post" id="user-delete" style="display:none;">
             @csrf
@@ -82,30 +82,32 @@
     </div>
 
     <div class="card">
-    <table class="tableBase" frame="void">
-        <caption>貸出履歴</caption>
-            @if($rental_flag === 0)
-            <tr>
-                <th>資料名</th>
-                <th>著者</th>
-                <th>出版社</th>
-                <th>貸出日</th>
-                <th>返却日</th>                
-            </tr>
-            @foreach($book_hist as $index => $hist)
-            <tr>
-                <td>{{$hist->title}}</td>
-                <td>{{$hist->author}}</td>
-                <td>{{$hist->publisher}}</td>
-                <td>{{$rental_hist[$index]->created_at}}</td>
-                <td>{{$rental_hist[$index]->updated_at}}</td>
-            </tr>
-            @endforeach
-            @else
-            <p>{{ $users->user_name }}さんへの貸出履歴はありません</p>
-            @endif
+        <div class="showTableFlex card">
+        <table class="tableBase" frame="void">
+            <caption>貸出履歴</caption>
+                @if($rental_flag === 0)
+                <tr>
+                    <th>資料名</th>
+                    <th>著者</th>
+                    <th>出版社</th>
+                    <th>貸出日</th>
+                    <th>返却日</th>                
+                </tr>
+                @foreach($book_hist as $index => $hist)
+                <tr>
+                    <td>{{$hist->title}}</td>
+                    <td>{{$hist->author}}</td>
+                    <td>{{$hist->publisher}}</td>
+                    <td>{{$rental_hist[$index]->created_at}}</td>
+                    <td>{{$rental_hist[$index]->updated_at}}</td>
+                </tr>
+                @endforeach
+                @else
+                <p>{{ $users->user_name }}さんへの貸出履歴はありません</p>
+                @endif
         </table>
-        {{ $rental_hist->appends(request()->query())->links('vendor.pagination.custom') }}
+        </div>
+            {{ $rental_hist->appends(request()->query())->links('vendor.pagination.custom') }}
     </div>
 </div>
 

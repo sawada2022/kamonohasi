@@ -28,7 +28,6 @@ class UserController extends Controller
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
-
                 $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->paginate(10);
                 if(count($rental_hist)){
                     foreach($rental_hist as $hist){
@@ -36,6 +35,7 @@ class UserController extends Controller
                     }
                     $rental_flag = 0; //貸出履歴あり
                 }else{
+                    $book_hist = [];
                     $rental_flag = 1; //貸出履歴なし
                 }
                 
