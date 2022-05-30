@@ -386,6 +386,23 @@ caption {
   font-size: 1.2rem;
 }
 
+/* users.index */
+.userSearchError {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 3rem auto;
+  font-size: 1.1rem;
+  color: #db0b0b;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.addUserBtn {
+  margin: 3rem auto;
+}
+
 /* books.index */
 .createBookBtn {
   margin: 0 0.5rem 0.5rem auto;
