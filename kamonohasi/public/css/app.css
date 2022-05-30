@@ -725,6 +725,10 @@ caption {
     opacity: 1;
   }
 }
+.no-rental-msg {
+  line-height: 4rem;
+}
+
 .p-pagination {
   width: -webkit-fit-content;
   width: -moz-fit-content;
