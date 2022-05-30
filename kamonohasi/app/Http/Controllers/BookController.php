@@ -19,7 +19,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'max:13',
+            'isbn' => 'integer|max:13',
             'title' => 'max:100',
             'author'=>'max:100',
             'publisher'=>'max:100',
@@ -81,7 +81,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'required|max:13',
+            'isbn' => 'required|integer|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
             'publisher'=>'max:100',
@@ -141,7 +141,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->validate($request,[
-            'isbn' => 'required|max:13',
+            'isbn' => 'required|integer|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
             'publisher'=>'max:100'

@@ -24,12 +24,14 @@
                 <input type="text" id="book_id" name="book_id" value="{{ old('book_id') }}">
             </span>
             <span>
-                <label for="genre">ジャンル</label>
+                <label for="genre">分類コード</label>
                 <select id="genre" name="genre">
                     <option value=""></option>
-                    @for($i=0; $i<=9; $i++)
-                    <option value={!! $i !!} >{{ $i }}</option>
-                    @endfor
+                   @foreach($categories as $category)
+                    <option value="{{ $category->category_id }}">
+                       {{ $category->category_id }}：{{ $category->genre }}
+                    </option>
+                   @endforeach
                 </select>
             </span>
             <span>
@@ -45,4 +47,5 @@
     </div>
 
     <button class="btnBase"><span>検索</span><i class="fa-solid fa-magnifying-glass"></i></button>
+
 </form>
