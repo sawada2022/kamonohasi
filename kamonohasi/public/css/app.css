@@ -190,6 +190,18 @@ header div a p {
   color: #505050;
 }
 
+.btn-green {
+  border: 2px solid #4f9442;
+}
+
+.btn-yellow {
+  border: 2px solid #dde011;
+}
+
+.btn-light-green {
+  border: 2px solid #8cd860;
+}
+
 .btnFlex {
   width: -webkit-fit-content;
   width: -moz-fit-content;

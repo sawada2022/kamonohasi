@@ -12,7 +12,7 @@
         @csrf
         @include('commons/user_form')
 
-        <button class="btnBase"><i class="fa-solid fa-check"></i><span>更新</span></button>
+        <button class="btnBase btn-green"><i class="fa-solid fa-check"></i><span>更新</span></button>
     </form>
 </div>
 
