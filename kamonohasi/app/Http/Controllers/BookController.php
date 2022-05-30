@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Rental;
 use App\Models\User;
+use App\Rules\CategoryRule;
 
 class BookController extends Controller
 {
@@ -84,7 +85,8 @@ class BookController extends Controller
             'isbn' => 'required|integer|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
         ]);
         Book::create($request->all());  
         $request->session()->regenerateToken();    
@@ -137,7 +139,8 @@ class BookController extends Controller
             'isbn' => 'required|integer|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
         ]);
         $book->update($request->all());
         return redirect(route('books.show', $book));
