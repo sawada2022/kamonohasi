@@ -1,7 +1,7 @@
 @if($errors->count())
-    <ul class="alart">
+    <div class="alart">
         @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <p><i class="fa-solid fa-circle-exclamation"></i><span>{{ $error }}</span></p>
         @endforeach
-    </ul>
+    </div>
 @endif

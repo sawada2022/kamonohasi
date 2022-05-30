@@ -1,4 +1,63 @@
-.backBtn {
+/* reset css */
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 1rem;
+}
+
+html, body {
+  width: 100vw;
+  margin: 0;
+}
+
+h1 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #505050;
+  font-size: 1.6rem;
+  margin: 2rem auto 2rem 10rem;
+}
+
+h3 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+  color: #505050;
+}
+
+p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
+header {
+  width: 100vw;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ececec;
+  box-shadow: 0 5px 8px #e7e7e7;
+}
+header div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 0 2rem;
+  padding: 1rem 0;
+}
+header div a {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -8,23 +67,550 @@
   cursor: pointer;
   text-decoration: none;
 }
+header div a:active {
+  color: #505050;
+}
+header div a:focus {
+  outline: none;
+}
+header div a p {
+  margin: 0;
+  color: #505050;
+}
+
+.headerLeft {
+  gap: 2rem;
+  margin: 0 auto 0 3rem;
+}
+.headerLeft img {
+  width: 5rem;
+}
+
+.headerRight {
+  gap: 4rem;
+  margin: 0 5rem 0 auto;
+}
+
+.headerText {
+  color: #505050;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.headerTextLink {
+  font-size: 1.2rem;
+}
+
+.indexLinkBar {
+  position: relative;
+  display: inline-block;
+}
+.indexLinkBar::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 2px;
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform 0.3s;
+}
+.indexLinkBar:nth-child(1)::after {
+  background: #4f9442;
+}
+.indexLinkBar:nth-child(2)::after {
+  background: #dde011;
+}
+.indexLinkBar:nth-child(3)::after {
+  background: #8cd860;
+}
+.indexLinkBar:hover::after {
+  transform: scale(1, 1);
+}
+
+.backBtn {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 2rem 3rem 3rem;
+  cursor: pointer;
+  text-decoration: none;
+}
 .backBtn:active {
-  color: #000000;
+  color: #505050;
 }
 .backBtn:focus {
   outline: none;
 }
 .backBtn p {
-  color: #000000;
+  color: #505050;
   margin: 0 1.8rem -1rem;
 }
 
 .backBtnArrow {
   width: 6rem;
   height: 1rem;
-  border-bottom: 0.1rem solid #5e5e5e;
-  border-left: 0.1rem solid #5e5e5e;
+  border-bottom: 0.1rem solid #7c7c7c;
+  border-left: 0.1rem solid #7c7c7c;
   transform: skew(135deg);
+}
+
+.btnBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #505050;
+  border-radius: 5px;
+}
+.btnBase:active {
+  color: #505050;
+}
+.btnBase:focus {
+  outline: none;
+  color: #505050;
+}
+.btnBase:visited {
+  color: #505050;
+}
+.btnBase:link {
+  color: #505050;
+}
+
+.btnFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.tableBase {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-collapse: collapse;
+}
+.tableBase th, .tableBase td {
+  border: 1px solid #c7c7c7;
+  padding: 0.6rem 1.5rem;
+  text-align: center;
+}
+
+caption {
+  margin-bottom: 1rem;
+  color: #505050;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.showTableFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.card {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #ececec;
+  box-shadow: 5px 5px 5px #e7e7e7;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.mainContentFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.input {
+  width: 10rem;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.alart p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.1rem;
+  color: #db0b0b;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.btn {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+.btn svg {
+  font-size: 1.8rem;
+}
+
+.btn-malformation {
+  padding: 2.5rem 3.5rem;
+  border-radius: 100% 80px/80px 100%;
+}
+.btn-malformation:hover {
+  border-radius: 60% 80%/100% 80%;
+}
+
+.top-green {
+  background-color: #4f9442;
+  color: #eee;
+}
+.top-green:active {
+  color: #eee;
+}
+.top-green:focus {
+  outline: none;
+  color: #eee;
+}
+.top-green:visited {
+  color: #eee;
+}
+.top-green:link {
+  color: #eee;
+}
+
+.top-yellow {
+  background-color: #dde011;
+  color: #505050;
+}
+.top-yellow:active {
+  color: #505050;
+}
+.top-yellow:focus {
+  outline: none;
+  color: #505050;
+}
+.top-yellow:visited {
+  color: #505050;
+}
+.top-yellow:link {
+  color: #505050;
+}
+
+.top-light-green {
+  background-color: #8cd860;
+  color: #505050;
+}
+.top-light-green:active {
+  color: #505050;
+}
+.top-light-green:focus {
+  outline: none;
+  color: #505050;
+}
+.top-light-green:visited {
+  color: #505050;
+}
+.top-light-green:link {
+  color: #505050;
+}
+
+.homeMainArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+}
+
+.homeTitle {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin: 0 auto;
+}
+.homeTitle p {
+  font-size: 2.2rem;
+  color: #505050;
+}
+.homeTitle img {
+  width: 9rem;
+}
+
+.homeBtnArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 6rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* rentals.index */
+.rentalIndexForm {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+.rentalIndexForm div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.rentalIndexForm button {
+  color: #505050;
+  padding: 0.4rem 1rem;
+}
+
+.rentalIndexResult {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 4rem auto;
+}
+
+.rentalIndexBtnBase {
+  width: 9.5rem;
+  height: 9.5rem;
+  display: block;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 9.5rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+.rentalIndexBtnBase:active {
+  color: #505050;
+}
+.rentalIndexBtnBase:focus {
+  outline: none;
+  color: #505050;
+}
+.rentalIndexBtnBase:visited {
+  color: #505050;
+}
+.rentalIndexBtnBase:link {
+  color: #505050;
+}
+
+#rental-index-btn1 {
+  background-color: #8cd860;
+}
+
+#rental-index-btn2 {
+  background-color: #dde011;
+}
+
+.rentalIndexBtnArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+  margin: 4rem auto;
+}
+
+/* rentals.create */
+.rentalCardTitle {
+  font-size: 1.6rem;
+}
+
+.rentalCardForm {
+  padding: 0;
+}
+
+/* rentals.show */
+.rentalResult {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.rentalShowText {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+.rentalShowText svg {
+  color: #4f9442;
+}
+
+.rentalsShow {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rentalShowUserFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+/* users.index */
+.userSearchError {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 3rem auto;
+  font-size: 1.1rem;
+  color: #db0b0b;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.addUserBtn {
+  margin: 3rem auto;
+}
+
+/* books.index */
+.createBookBtn {
+  margin: 0 0.5rem 0.5rem auto;
+}
+
+.searchForm {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto 4rem;
+  padding: 2rem 3rem;
+}
+.searchForm button {
+  margin: 0 auto 0.5rem;
+  color: #505050;
+}
+
+.searchInputArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+}
+
+.searchFormInputFlex {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
+}
+.searchFormInputFlex span {
+  display: flex;
+  gap: 1rem;
+}
+.searchFormInputFlex span label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 7rem;
+  text-align: right;
+}
+
+.searchResult {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem;
+  margin: 4rem auto 6rem;
+}
+
+/* books.create */
+.singleFormStyle {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.singleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem 5rem;
+}
+.singleForm .searchFormInputFlex span input[type=text] {
+  width: 20rem;
 }
 
 .modal {
@@ -80,13 +666,102 @@
   font-size: 1.3rem;
 }
 
-.modalTable {
+@-webkit-keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.p-pagination {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-collapse: collapse;
+  margin: 0 auto;
 }
-.modalTable th, .modalTable td {
-  border: 1px solid #a1a1a1;
-  padding: 0.6rem 1.5rem;
+.p-pagination ul {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.p-pagination ul li a {
+  cursor: pointer;
+  text-decoration: none;
+}
+.p-pagination ul li a:active {
+  color: #505050;
+}
+.p-pagination ul li a:focus {
+  outline: none;
+  color: #505050;
+}
+.p-pagination ul li a:visited {
+  color: #505050;
+}
+.p-pagination ul li a:link {
+  color: #505050;
+}
+
+.active {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.activeNum {
+  width: 2.32rem;
+  height: 2.32rem;
+  border-radius: 50%;
+  border: 0.18rem solid #fff;
+  display: block;
+}
+.activeNum:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.pagenateBtn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 0.18rem solid #ddd;
+  color: #505050;
+  margin: 0 1rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagenateBtn:hover {
+  border: 0.18rem solid #8cd860;
+}
+
+.disabled .pagenateBtn {
+  cursor: default;
+}
+.disabled .pagenateBtn:hover {
+  border: 0.18rem solid #ddd;
+}
+
+.nowChoicePage {
+  background-color: #8cd860;
+  border-radius: 50%;
 }

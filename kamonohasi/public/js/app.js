@@ -5658,13 +5658,13 @@
 //require('./bootstrap');
 __webpack_require__(/*! ./fontawesome */ "./resources/js/fontawesome.js");
 
-__webpack_require__(/*! ./deleteUser */ "./resources/js/deleteUser.js");
+__webpack_require__(/*! ./deleteData */ "./resources/js/deleteData.js");
 
 /***/ }),
 
-/***/ "./resources/js/deleteUser.js":
+/***/ "./resources/js/deleteData.js":
 /*!************************************!*\
-  !*** ./resources/js/deleteUser.js ***!
+  !*** ./resources/js/deleteData.js ***!
   \************************************/
 /***/ (() => {
 
@@ -5674,6 +5674,16 @@ if (document.getElementById('deleteUserBtn') != null) {
 
     if (window.confirm('本当に削除しますか？')) {
       document.getElementById('user-delete').submit();
+    }
+  };
+}
+
+if (document.getElementById('deleteBookBtn') != null) {
+  document.getElementById('deleteBookBtn').onclick = function deleteUser() {
+    event.preventDefault();
+
+    if (window.confirm('本当に削除しますか？')) {
+      document.getElementById('book-delete').submit();
     }
   };
 }

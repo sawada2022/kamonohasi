@@ -42,11 +42,11 @@
     }
 }
 
-.modalTable {
-    width: fit-content;
-    border-collapse:  collapse;
-    th, td {
-        border: 1px solid $table-border-color;
-        padding: 0.6rem 1.5rem;
+@keyframes show{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
 }

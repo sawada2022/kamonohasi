@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Rental;
+use App\Models\User;
+use App\Rules\Isbn;
+use Illuminate\Validation\Rule;
+use App\Rules\CategoryRule;
 
 class BookController extends Controller
 {
@@ -15,32 +20,38 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        $this->validate($request,[
+            'isbn' => ['max:13', new Isbn],
+            'title' => 'max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100',
+        ]);
         $flag = 1;
         if($request){
         $query = Book::query();
         if($request->title){
-            $query = Book::where('title', 'LIKE', '%'. $request->title .'%');
+            $query->where('title', 'LIKE', '%'. $request->title .'%');
             $flag = 0;
         }
         if($request->author){
-            $query = Book::where('author', 'LIKE', '%'. $request->author .'%');
+            $query->where('author', 'LIKE', '%'. $request->author .'%');
             $flag = 0;
         }
         if($request->keyword){
-            $query = Book::where('title', 'LIKE', '%'. $request->title .'%')
+            $query->where('title', 'LIKE', '%'. $request->title .'%')
             ->orWhere('author', 'LIKE', '%'. $request->author .'%');
             $flag = 0;
         }
         if($request->book_id){
-            $query = Book::where('id', '=', $request->book_id);
+            $query->where('id', '=', $request->book_id);
             $flag = 0;
         }
         if($request->genre){
-            $query = Book::where('category_id', '=', $request->genre);
+            $query->where('category_id', '=', $request->genre);
             $flag = 0;
         }
         if($request->published_year){
-            $query = Book::where('publised_on', '=', $request->published_year);
+            $query->where('publised_on', '=', $request->published_year);
             $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);
@@ -48,7 +59,8 @@ class BookController extends Controller
     else{
         $books = Book::first();
     }
-        return view('books.index', ['books' => $books, 'flag' => $flag]);
+    $categories=Category::get();
+        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories]);
     }
 
     /**
@@ -71,7 +83,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create($request->all());      
+        $this->validate($request,[
+            'isbn' => ['max:13', 'required', new Isbn],
+            'title' => 'required|max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
+        ]);
+        Book::create($request->all());  
+        $request->session()->regenerateToken();    
         return redirect(route('books.create'));
     }
 
@@ -81,9 +101,19 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        //dd($book);
+        $rentals = Rental::where('book_id', '=', $book->id)->first();
+       // dd($rentals->user_id);
+        //$users = $book->rental_users;
+        if($rentals === NULL || $rentals->rental_status === 1){
+            return view('books/show', ['book' => $book, 'flag' => 0]);//,'users'=> $users
+        }else{
+            $users = User::where('id', '=', $rentals->user_id)->first();
+        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
+        }
+        
     }
 
     /**
@@ -107,6 +137,13 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $this->validate($request,[
+            'isbn' => ['max:13', 'required', new Isbn],
+            'title' => 'required|max:100',
+            'author'=>'max:100',
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
+        ]);
         $book->update($request->all());
         return redirect(route('books.show', $book));
     }
@@ -117,8 +154,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        Book::where('id', $book->id)->delete();
+        return redirect(route('books.index', $book));
     }
 }

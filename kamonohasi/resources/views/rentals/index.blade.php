@@ -3,32 +3,27 @@
 @section('content')
 
 @include('commons/backBtn', ['path' => '/'])
-
-<form action="{{ route('rentals.index', $users->email) }}" method="get">
+@include('commons/flash')
+<form class="card rentalIndexForm" action="{{ route('rentals.index', $users->email) }}" method="get">
     @csrf
-    <label>
-        会員ID
-        <input type="number" name="user_id" min="1" value="">
-    </label>
-    <button>検索</button>
+    <div>
+        <label for="user_id">会員ID</label>
+        <input type="number" id="user_id" class="input" name="user_id" min="1" value="">
+    </div>
+    <button class="btnBase"><span>検索</span><i class="fa-solid fa-magnifying-glass"></i></button>
 </form>
 
 @if ($flag === 0)
-<table>
-    <tbody>
-        <tr>
-            <td>会員ID</td>
-            <td>{{ $users->id }}</td>
-        </tr>
-        <tr>
-            <td>名前</td>
-            <td>{{ $users->user_name }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="rentalIndexResult">
+    <h3>会員情報</h3>
+    <p>会員ID：{{ $users->id }}</p>
+    <p>名前：{{ $users->user_name }}</p>
+</div>
+
+<div class="rentalIndexBtnArea">
+    <a href="{{ route('rentals.create', ['user_id' => $users,'book_flag' => $book_flag, 'rental_flag' => $rental_flag, 'rentals' => $rentals]) }}" id="rental-index-btn1" class="rentalIndexBtnBase">貸出 <i class="fa-solid fa-plus"></i></a>
+    <a href="{{ route('rentals.edit', [$users->id,'book_flag' => $book_flag]) }}" id="rental-index-btn2" class="rentalIndexBtnBase">返却 <i class="fa-solid fa-rotate-left"></i></a>
+</div>
+
 @endif
-
-<a href="{{ route('rentals.create', ['users' => $users,'book_flag' => $book_flag, 'rental_flag' => $rental_flag, 'rentals' => $rentals]) }}">貸出</a>
-<a href="{{ route('rentals.edit', $users->id) }}">返却</a>
-
 @endsection
