@@ -8,7 +8,7 @@
 
 <div class="singleFormStyle">
     @include('commons/flash')
-    <form action="{{ route('users.store', $user->id) }}" method="post"  class="card singleForm">
+    <form action="{{ route('users.store', $user->id) }}" method="post" class="card singleForm">
         @csrf
         @include('commons/user_form')
 
