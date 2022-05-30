@@ -445,6 +445,28 @@ caption {
   margin: 4rem auto 6rem;
 }
 
+/* books.create */
+.singleFormStyle {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.singleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem 5rem;
+}
+.singleForm .searchFormInputFlex span input[type=text] {
+  width: 20rem;
+}
+
 .modal {
   width: 100vw;
   height: 100vh;
