@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Rental;
 use App\Rules\PostalCode;
+use App\Rules\Tel;
+use App\Rules\Email;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 
@@ -79,9 +82,9 @@ class UserController extends Controller
         $this->validate($request,[
             'user_name' => 'required|max:40',
             'adress' => 'required|max:100',
-            'tel' => 'required|max:20',
-            'email'=>'required|max:100',
-            'postal_code'=>new PostalCode,
+            'tel' => ['max:20', 'required', new Tel],
+            'email'=> ['max:100','unique:users', 'required', new Email],
+            'postal_code'=>['max:20', new PostalCode],
         ]);
         User::create($request->all());
         $request->session()->regenerateToken();
@@ -133,9 +136,9 @@ class UserController extends Controller
         $this->validate($request,[
             'user_name' => 'required|max:40',
             'adress' => 'required|max:100',
-            'tel' => 'required|max:20',
-            'email'=>'required|max:100',
-            'postal_code'=>new PostalCode,
+            'tel' => ['max:20', 'required', new Tel],
+            'email'=> ['max:100', 'required', new Email, Rule::unique('users')->ignore($user->id)],
+            'postal_code'=>['max:20', new PostalCode],
         ]);
         $user->update($request->all());
         $rentals = Rental::where('user_id', '=', $user->id)->where('rental_status', '=', 0)->get();

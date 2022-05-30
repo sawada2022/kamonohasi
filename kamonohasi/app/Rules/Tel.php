@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class PostalCode implements Rule
+class Tel implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,10 +26,10 @@ class PostalCode implements Rule
     public function passes($attribute, $value)
     {
         if($value){
-            return preg_match('/^\d{3}\-\d{4}$|^\d{7}$/', $value);
+            return preg_match('/^0\d(0?\-\d{3}|\d\-\d{2}|\d{2}\-\d|\d{3}\-)\d\-\d{4}$|^0\d{10}$|^0\d{9}$/', $value);
         } else {
             return true;
-        } 
+        }
     }
 
     /**
@@ -39,6 +39,6 @@ class PostalCode implements Rule
      */
     public function message()
     {
-        return trans('validation.PostalCode');
+        return trans('validation.Tel');
     }
 }
