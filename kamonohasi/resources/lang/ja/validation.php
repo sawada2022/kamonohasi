@@ -127,6 +127,7 @@ return [
     */
 
     'attributes' => [
+        'user_id'=>'会員ID',
         'user_name'=>'ユーザー名',
         'birthday'=>'誕生日',
         'adress'=>'住所',
