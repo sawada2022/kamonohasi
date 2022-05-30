@@ -259,6 +259,12 @@ caption {
   padding: 0 0.5rem;
 }
 
+.alart {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem auto;
+}
 .alart p {
   width: -webkit-fit-content;
   width: -moz-fit-content;
