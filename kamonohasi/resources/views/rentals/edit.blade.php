@@ -96,6 +96,7 @@
     function modal(flg){
         if(flg === 'user'){
             document.getElementById('userModal').style.display = 'block';
+            document.getElementById('userModal').style.animation = 'show 0.15s linear 0s';
         }
     }
 

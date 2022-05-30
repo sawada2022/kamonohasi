@@ -41,3 +41,12 @@
         font-size: 1.3rem;
     }
 }
+
+@keyframes show{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
