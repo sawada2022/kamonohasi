@@ -56,7 +56,6 @@ class UserController extends Controller
                     $books[] = Book::first();
                     $flag = 2; //貸出中無
                 }
-                dd($rental_flag, $book_hist);
                 return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books, 'rental_flag' => $rental_flag, 'book_hist' => $book_hist]);
             }else{
                 $users = User::first();
