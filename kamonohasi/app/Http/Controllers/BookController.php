@@ -27,28 +27,28 @@ class BookController extends Controller
         if($request){
         $query = Book::query();
         if($request->title){
-            $query = Book::where('title', 'LIKE', '%'. $request->title .'%');
+            $query->where('title', 'LIKE', '%'. $request->title .'%');
             $flag = 0;
         }
         if($request->author){
-            $query = Book::where('author', 'LIKE', '%'. $request->author .'%');
+            $query->where('author', 'LIKE', '%'. $request->author .'%');
             $flag = 0;
         }
         if($request->keyword){
-            $query = Book::where('title', 'LIKE', '%'. $request->title .'%')
+            $query->where('title', 'LIKE', '%'. $request->title .'%')
             ->orWhere('author', 'LIKE', '%'. $request->author .'%');
             $flag = 0;
         }
         if($request->book_id){
-            $query = Book::where('id', '=', $request->book_id);
+            $query->where('id', '=', $request->book_id);
             $flag = 0;
         }
         if($request->genre){
-            $query = Book::where('category_id', '=', $request->genre);
+            $query->where('category_id', '=', $request->genre);
             $flag = 0;
         }
         if($request->published_year){
-            $query = Book::where('publised_on', '=', $request->published_year);
+            $query->where('publised_on', '=', $request->published_year);
             $flag = 0;
         }
         $books = $query->orderBy('created_at')->paginate(10);

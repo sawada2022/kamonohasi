@@ -8,6 +8,7 @@ use App\Models\Rental;
 use App\Rules\PostalCode;
 use App\Rules\Tel;
 use App\Rules\Email;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 
@@ -136,7 +137,7 @@ class UserController extends Controller
             'user_name' => 'required|max:40',
             'adress' => 'required|max:100',
             'tel' => ['max:20', 'required', new Tel],
-            'email'=> ['max:100','unique:users', 'required', new Email],
+            'email'=> ['max:100', 'required', new Email, Rule::unique('users')->ignore($user->id)],
             'postal_code'=>['max:20', new PostalCode],
         ]);
         $user->update($request->all());
