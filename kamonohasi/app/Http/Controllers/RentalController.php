@@ -17,6 +17,10 @@ class RentalController extends Controller
      */
     public function index(Request $request) 
     {
+        $this->validate($request,[
+            'user_id' => 'exists:users,id',
+        ]);
+
         $user_id = $request->input('user_id');
         $book_flag = 1;
         $rental_flag = 1;
