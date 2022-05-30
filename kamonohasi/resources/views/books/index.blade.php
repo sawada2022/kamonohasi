@@ -3,13 +3,14 @@
 @section('content')
 
 @include('commons/backBtn', ['path' => '/'])
+
 <h1>蔵書情報</h1>
-<a href="{{ route('books.create') }}">新規登録</a>
 
 @include('books/index_form')
 @include('commons/flash')
 @if($flag === 0)
-    <table>
+<div class="card searchResult">
+    <table class="tableBase"  frame="void">
         <thead>
             <tr>
                 <th>資料名</th>
@@ -23,7 +24,7 @@
         <tbody>
             @foreach($books as $book)
             <tr>
-                <td><a href="{{ route('books.show', $book->id) }}"> {{ $book->title }}</a></td>
+                <td><a href="{{ route('books.show', $book->id) }}">{{ $book->title }}</a></td>
                 <td>{{ $book->author }}</td>
                 <td>{{ $book->publisher }}</td>
                 <td>{{ $book->category_id }}</td>
@@ -33,7 +34,8 @@
             @endforeach
         </tbody>       
     </table>
-    {{ $books->appends(request()->query())->links() }}
+    {{ $books->appends(request()->query())->links('vendor.pagination.custom') }}
+</div>
 @endif
 
 @endsection
