@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','会員管理業務')
 @section('content')
-@include('commons/backBtn', ['path' => "users/{$user->id}"])
+@include('commons/backBtn', ['path' => "users/{$user->id}?flag=1&user={$user->id}"])
 
 <h1>会員情報編集</h1>
 

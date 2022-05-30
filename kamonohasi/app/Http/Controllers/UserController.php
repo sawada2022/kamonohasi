@@ -99,17 +99,50 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $email = $request->email;
+        //$email = $request->email;
+        /*
+        $flag = $request->flag;
         
         if(!empty($email)){
             $users = User::where('email', '=', $email)->first();
             //$rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->all();
         }else{
             $users = User::first();
-        }        
-        return view('users/show', ['users' => $users]);
+        }
+        */
+        $books = [];
 
+        $user = $request->input('user');
 
+        if(!empty($user)){
+            if(User::where('id', '=', $user)->first()){
+                $users = User::where('id', '=', $user)->first();
+                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
+                if(count($rentals)){
+                    foreach($rentals as $rental){
+                        if(Book::where('id', '=', $rental->book_id)->first()){
+                            $books[] = Book::where('id', '=', $rental->book_id)->first();
+                        }
+                    }
+                    if(count($books)){
+                        $flag = 1; //貸出中あり
+                    }else{
+                        $books[] = Book::first();
+                        $flag = 2; //貸出中無
+                    }
+                }else{
+                    $books[] = Book::first();
+                    $flag = 2; //貸出中無
+                }
+            }else{
+                $users = User::first();
+                $flag = 0;
+            }
+        }else{
+            $users = User::first();
+            $flag = 1;
+        }
+        return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
     }
 
     /**
