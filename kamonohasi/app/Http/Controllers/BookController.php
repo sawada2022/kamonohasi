@@ -7,6 +7,8 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Rental;
 use App\Models\User;
+use App\Rules\Isbn;
+use Illuminate\Validation\Rule;
 use App\Rules\CategoryRule;
 
 class BookController extends Controller
@@ -19,7 +21,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'integer|max:13',
+            'isbn' => ['max:13', new Isbn],
             'title' => 'max:100',
             'author'=>'max:100',
             'publisher'=>'max:100',
@@ -82,7 +84,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'isbn' => 'required|integer|max:13',
+            'isbn' => ['max:13', 'required', new Isbn],
             'title' => 'required|max:100',
             'author'=>'max:100',
             'publisher'=>'max:100',
@@ -136,7 +138,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->validate($request,[
-            'isbn' => 'required|integer|max:13',
+            'isbn' => ['max:13', 'required', new Isbn],
             'title' => 'required|max:100',
             'author'=>'max:100',
             'publisher'=>'max:100',
