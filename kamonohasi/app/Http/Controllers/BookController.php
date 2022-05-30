@@ -9,6 +9,7 @@ use App\Models\Rental;
 use App\Models\User;
 use App\Rules\Isbn;
 use Illuminate\Validation\Rule;
+use App\Rules\CategoryRule;
 
 class BookController extends Controller
 {
@@ -86,7 +87,8 @@ class BookController extends Controller
             'isbn' => ['max:13', 'required', new Isbn],
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
         ]);
         Book::create($request->all());  
         $request->session()->regenerateToken();    
@@ -139,7 +141,8 @@ class BookController extends Controller
             'isbn' => ['max:13', 'required', new Isbn],
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
         ]);
         $book->update($request->all());
         return redirect(route('books.show', $book));
