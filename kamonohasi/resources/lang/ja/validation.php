@@ -92,6 +92,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     'PostalCode' => '郵便番号はハイフン有り(半角英数字7個)かハイフン無し(半角英数字8個)での数字で入力してください。',
     'Tel' => '電話番号を正しく入力してください',
+    'Isbn'=>'正しいISBN番号を入力してください',
     
 
     /*
