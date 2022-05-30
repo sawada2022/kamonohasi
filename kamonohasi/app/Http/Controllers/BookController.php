@@ -139,7 +139,8 @@ class BookController extends Controller
             'isbn' => 'required|integer|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['required', new CategoryRule],
         ]);
         $book->update($request->all());
         return redirect(route('books.show', $book));
