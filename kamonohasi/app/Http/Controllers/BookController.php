@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Rental;
 use App\Models\User;
+use App\Rules\CategoryRule;
 
 class BookController extends Controller
 {
@@ -83,7 +84,8 @@ class BookController extends Controller
             'isbn' => 'required|max:13',
             'title' => 'required|max:100',
             'author'=>'max:100',
-            'publisher'=>'max:100'
+            'publisher'=>'max:100',
+            'category_id'=>['max:20', new CategoryRule],
         ]);
         Book::create($request->all());  
         $request->session()->regenerateToken();    
@@ -98,15 +100,21 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //dd($book);
-        $rentals = Rental::where('book_id', '=', $book->id)->first();
-       // dd($rentals->user_id);
-        //$users = $book->rental_users;
-        if($rentals === NULL || $rentals->rental_status === 1){
-            return view('books/show', ['book' => $book, 'flag' => 0]);//,'users'=> $users
+        $hist_flag = 1;
+        $rental_hist = Rental::where('book_id', '=', $book->id)->where('rental_status', '=', 0)->get();
+        $user_hist = [];
+        if(count($rental_hist)){
+            foreach($rental_hist as $hist){
+                $user_hist[] = User::where('id', '=', $hist->user_id)->first();
+            }
+            $hist_flag = 0;
+        }
+        $rental = Rental::where('book_id', '=', $book->id)->first();
+        if($rental === NULL || $rental->rental_status === 1){ //一度も借りられていないor返却履歴がある
+            return view('books/show', ['book' => $book, 'flag' => 0, 'hist_flag' => $hist_flag, 'rental_hist' => $rental_hist, 'user_hist' => $user_hist]);
         }else{
-            $users = User::where('id', '=', $rentals->user_id)->first();
-        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
+            $users = User::where('id', '=', $rental->user_id)->first();
+            return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users, 'rental' => $rental, 'hist_flag' => $hist_flag, 'rental_hist' => $rental_hist, 'user_hist' => $user_hist]); 
         }
         
     }

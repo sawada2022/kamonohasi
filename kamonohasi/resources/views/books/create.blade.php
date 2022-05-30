@@ -26,7 +26,7 @@
     </label>
     <label for="category">分類コード</label>
     <select id="category" name="category_id">
-        <!--初期表示しないようにする-->
+        <option value=""></option>
         @foreach($categories as $category)
         <option value="{{ $category->category_id }}">
             {{ $category->category_id }}：{{ $category->genre }}
