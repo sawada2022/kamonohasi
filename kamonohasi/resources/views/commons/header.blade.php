@@ -1,3 +1,4 @@
+@if ( !request()->is('/') )
 <header>
     <div class="headerLeft">
         <a href="/">
@@ -18,3 +19,4 @@
         </a>
     </div>
 </header>
+@endif
