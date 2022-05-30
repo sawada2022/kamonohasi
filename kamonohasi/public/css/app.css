@@ -259,6 +259,17 @@ caption {
   padding: 0 0.5rem;
 }
 
+.alart p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.1rem;
+  color: #db0b0b;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
 /* rentals.index */
 .rentalIndexForm {
   display: flex;
@@ -474,6 +485,7 @@ caption {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 }
 
 .singleForm {

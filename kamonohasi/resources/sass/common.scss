@@ -237,3 +237,15 @@ caption {
     height: 1.5rem;
     padding: 0 0.5rem;
 }
+
+// flash message
+.alart{
+    p {
+        width: fit-content;
+        font-size: 1.1rem;
+        color: $err-msg-color;
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+    }
+}
