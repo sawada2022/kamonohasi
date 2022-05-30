@@ -402,6 +402,30 @@ caption {
   margin: 0 auto;
 }
 
+.border {
+  margin-bottom: 10px;
+  border-bottom: 5px solid #dde011;
+  position: relative;
+}
+
+.border-color::before {
+  content: "";
+  display: block;
+  border-bottom: 5px solid #4f9442;
+  width: 33%;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+.border-color::after {
+  content: "";
+  display: block;
+  border-bottom: 5px solid #8cd860;
+  width: 33%;
+  position: absolute;
+  right: 0;
+}
+
 /* rentals.index */
 .rentalIndexForm {
   display: flex;

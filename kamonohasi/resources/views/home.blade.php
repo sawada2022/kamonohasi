@@ -3,7 +3,7 @@
 
 <div class="homeMainArea">
     <div class="homeTitle">
-        <p>かものはしLibrary</p>
+        <p class="border border-color">かものはしLibrary</p>
         <img src="/image/kamonohasi.png" alt="かものはしのイラスト" /> 
     </div>
 

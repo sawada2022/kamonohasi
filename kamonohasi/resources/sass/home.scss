@@ -103,3 +103,28 @@
     align-items: center;
     margin: 0 auto;
 }
+
+.border{
+    margin-bottom: 10px;
+    border-bottom: 5px solid $main-yellow;
+    position: relative;
+}
+.border-color {
+    &::before {
+        content: "";
+        display: block;
+        border-bottom: 5px solid $main-green;
+        width: 33%;
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+    }
+    &::after {
+        content: "";
+        display: block;
+        border-bottom: 5px solid $main-light-green;
+        width: 33%;
+        position: absolute;
+        right: 0;
+    }
+}
