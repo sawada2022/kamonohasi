@@ -1,0 +1,13 @@
+/* users.index */
+.userSearchError {
+    width: fit-content;
+    margin: 3rem auto;
+    font-size: 1.1rem;
+    color: $err-msg-color;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+.addUserBtn {
+    margin: 3rem auto;
+}

@@ -31,7 +31,8 @@
         display: flex;
         gap: 1rem;
         label {
-            width: 6rem;
+            width: fit-content;
+            min-width: 7rem;
             text-align: right;
         }
     }
