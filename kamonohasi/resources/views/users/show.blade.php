@@ -70,9 +70,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($books as $book)
+                @foreach($books as $index => $book)
                 <tr>
-                    <td>{{ $book->id }}</td>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->publisher }}</td>
