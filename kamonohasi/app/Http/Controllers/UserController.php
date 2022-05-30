@@ -99,17 +99,6 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        //$email = $request->email;
-        /*
-        $flag = $request->flag;
-        
-        if(!empty($email)){
-            $users = User::where('email', '=', $email)->first();
-            //$rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->all();
-        }else{
-            $users = User::first();
-        }
-        */
         $books = [];
 
         $user = $request->input('user');
