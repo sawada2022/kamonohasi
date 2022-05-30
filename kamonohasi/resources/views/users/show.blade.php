@@ -24,8 +24,24 @@
                     <td>{{ $users->email }}</td>
                 </tr>
                 <tr>
+                    <td>電話番号</td>
+                    <td>{{ $users->tel }}</td>
+                </tr>
+                <tr>
+                    <td>郵便番号</td>
+                    <td>{{ $users->postal_code }}</td>
+                </tr>
+                <tr>
                     <td>住所</td>
                     <td>{{ $users->adress }}</td>
+                </tr>
+                <tr>
+                    <td>生年月日</td>
+                    <td>{{ $users->birthday }}</td>
+                </tr>
+                <tr>
+                    <td>備考</td>
+                    <td>{{ $users->comment }}</td>
                 </tr>
             </tbody>
         </table>
