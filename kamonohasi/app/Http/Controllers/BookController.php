@@ -56,7 +56,8 @@ class BookController extends Controller
     else{
         $books = Book::first();
     }
-        return view('books.index', ['books' => $books, 'flag' => $flag]);
+    $categories=Category::get();
+        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories]);
     }
 
     /**
