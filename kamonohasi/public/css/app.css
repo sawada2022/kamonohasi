@@ -270,6 +270,120 @@ caption {
   align-items: center;
 }
 
+.btn {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+.btn svg {
+  font-size: 1.8rem;
+}
+
+.btn-malformation {
+  padding: 2.5rem 3.5rem;
+  border-radius: 100% 80px/80px 100%;
+}
+.btn-malformation:hover {
+  border-radius: 60% 80%/100% 80%;
+}
+
+.top-green {
+  background-color: #4f9442;
+  color: #eee;
+}
+.top-green:active {
+  color: #eee;
+}
+.top-green:focus {
+  outline: none;
+  color: #eee;
+}
+.top-green:visited {
+  color: #eee;
+}
+.top-green:link {
+  color: #eee;
+}
+
+.top-yellow {
+  background-color: #dde011;
+  color: #505050;
+}
+.top-yellow:active {
+  color: #505050;
+}
+.top-yellow:focus {
+  outline: none;
+  color: #505050;
+}
+.top-yellow:visited {
+  color: #505050;
+}
+.top-yellow:link {
+  color: #505050;
+}
+
+.top-light-green {
+  background-color: #8cd860;
+  color: #505050;
+}
+.top-light-green:active {
+  color: #505050;
+}
+.top-light-green:focus {
+  outline: none;
+  color: #505050;
+}
+.top-light-green:visited {
+  color: #505050;
+}
+.top-light-green:link {
+  color: #505050;
+}
+
+.homeMainArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+}
+
+.homeTitle {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin: 0 auto;
+}
+.homeTitle p {
+  font-size: 2.2rem;
+  color: #505050;
+}
+.homeTitle img {
+  width: 9rem;
+}
+
+.homeBtnArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 6rem;
+  align-items: center;
+  margin: 0 auto;
+}
+
 /* rentals.index */
 .rentalIndexForm {
   display: flex;
