@@ -29,7 +29,7 @@ class UserController extends Controller
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
-                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->get();
+                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->orderBy('created_at','desc')->get();
                 if(count($rental_hist)){
                     foreach($rental_hist as $hist){
                         $book_hist[] = Book::where('id', '=', $hist->book_id)->first();
@@ -39,7 +39,7 @@ class UserController extends Controller
                     $book_hist = [];
                     $rental_flag = 1; //貸出履歴なし
                 }
-                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->orderBy('created_at','desc')->get();
+                $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
                         if(Book::where('id', '=', $rental->book_id)->first()){
