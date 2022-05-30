@@ -87,6 +87,8 @@
             <button class="btnBase"><span>追加</span><i class="fa-solid fa-plus"></i></button>
         </form>
 
+        @include('commons/flash')
+
         @if($book_flag === 0)
         <table class="tableBase" frame="void">
             <tr>
