@@ -29,7 +29,7 @@ class UserController extends Controller
         if(!empty($email)){
             if(User::where('email', '=', $email)->first()){
                 $users = User::where('email', '=', $email)->first();
-                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->paginate(10);
+                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->get();
                 if(count($rental_hist)){
                     foreach($rental_hist as $hist){
                         $book_hist[] = Book::where('id', '=', $hist->book_id)->first();
