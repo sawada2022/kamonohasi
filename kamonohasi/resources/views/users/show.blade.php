@@ -8,14 +8,16 @@
             @if($rental_flag === 0)
             <caption>貸し出し履歴</caption>
             <tr>
+                <th>累計貸出冊数</th>
                 <th>資料ID</th>
                 <th>資料名</th>
                 <th>著者</th>
                 <th>貸出日</th>
                 <th>返却日</th>
             </tr>
-            @foreach($book_hist as $hist)
+            @foreach($book_hist as $index => $hist)
             <tr>
+                <td>{{$index + 1}}</td>
                 <td>{{$hist->id}}</td>
                 <td>{{$hist->title}}</td>
                 <td>{{$hist->author}}</td>

@@ -8,13 +8,15 @@
             @if($rental_flag === 0)
             <caption>貸し出し履歴</caption>
             <tr>
+                <th>累計貸出人数</th>
                 <th>会員ID</th>
                 <th>名前</th>
                 <th>貸出日</th>
                 <th>返却日</th>
             </tr>
-            @foreach($user_hist as $hist)
+            @foreach($user_hist as $index => $hist)
             <tr>
+                <td>{{$index + 1}}</td>
                 <td>{{$hist->id}}</td>
                 <td>{{$hist->user_name}}</td>
                 <td>{{$hist->created_at}}</td>
