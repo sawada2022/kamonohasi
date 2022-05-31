@@ -211,6 +211,10 @@ header div a p {
   align-items: center;
 }
 
+.histBtn {
+  margin: 2rem auto 0;
+}
+
 .tableBase {
   width: -webkit-fit-content;
   width: -moz-fit-content;
