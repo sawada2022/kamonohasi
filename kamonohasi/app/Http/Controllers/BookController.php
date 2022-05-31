@@ -50,6 +50,10 @@ class BookController extends Controller
             $query->where('category_id', '=', $request->genre);
             $flag = 0;
         }
+        if($request->genre === '0'){
+            $query->where('category_id', '=', '0');
+            $flag = 0;
+        }
         if($request->published_year){
             $query->where('publised_on', '=', $request->published_year);
             $flag = 0;
@@ -60,7 +64,6 @@ class BookController extends Controller
         $books = Book::first();
     }
     $categories=Category::get();
-    //dd($request);
         return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories,'request'=>$request]);
     }
 
