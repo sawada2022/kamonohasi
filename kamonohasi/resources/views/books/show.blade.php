@@ -80,6 +80,7 @@
     </div>
 
     <div class="card">
+        @if($flag === 1)
         <table class="tableBase" frame="void">
             <caption>借りている人の情報</caption>
             <thead>
@@ -92,16 +93,23 @@
                 </tr>
             </thead>
             <tbody>
-                @if($flag === 1)
                 <tr>
                     <td>{{ $users->id }}</td>
                     <td>{{ $users->user_name }}</td>
                     <td>{{ $users->email }}</td>
                     <td>{{ $users->adress }}</td>
                 </tr>
-                @endif
             </tbody>
         </table>
+        @endif
+        @if($flag === 0)
+        <table style="width:15rem;">
+            <caption>借りている人の情報</caption>
+            <tr>
+                <td style="text-align: center;">貸出無し</td>
+            </tr>
+        </table>
+        @endif
         <button class="btnBase histBtn" onclick="modal('hist')"><i class="fa-solid fa-clock-rotate-left"></i><span>貸し出し履歴</span></button>
     </div>
 </div>
