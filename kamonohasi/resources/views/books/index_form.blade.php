@@ -6,32 +6,36 @@
     <div class="searchInputArea">
         <div class="searchFormInputFlex">
             <span>
-                <label for="title">資料名</label><input type="text" id="title" name="title" value="{{ old('title') }}">
+                <label for="title">資料名</label><input type="text" id="title" name="title" value="{{ old('title',$request->title) }}">
             </span>
             <span>
                 <label for="author">著者名</label>
-                <input type="text" id="author" name="author" value="{{ old('autor') }}">
+                <input type="text" id="author" name="author" value="{{ old('autor',$request->author) }}">
             </span>
             <span>
                 <label for="keyword">キーワード</label>
-                <input type="text" id="keyword" name="keyword" value="{{ old('keyword') }}">
+                <input type="text" id="keyword" name="keyword" value="{{ old('keyword',$request->keyword) }}">
             </span>
         </div>
 
         <div class="searchFormInputFlex">
             <span>
                 <label for="book_id">資料ID</label>
-                <input type="text" id="book_id" name="book_id" value="{{ old('book_id') }}">
+                <input type="text" id="book_id" name="book_id" value="{{ old('book_id',$request->book_id) }}">
             </span>
             <span>
                 <label for="genre">分類コード</label>
                 <select id="genre" name="genre">
                     <option value=""></option>
-                   @foreach($categories as $category)
-                    <option value="{{ $category->category_id }}">
-                       {{ $category->category_id }}：{{ $category->genre }}
-                    </option>
-                   @endforeach
+                    @foreach($categories as $category)
+                    @if($category->category_id == $request->genre)
+                        <option value="{{ old('genre',$category->category_id) }}" selected>
+                    @else
+                        <option value="{{ old('genre',$category->category_id) }}">
+                     @endif
+                    {{ old('category_id',$category->category_id) }}：{{ old('genre',$category->genre) }}
+                </option>
+                    @endforeach
                 </select>
             </span>
             <span>

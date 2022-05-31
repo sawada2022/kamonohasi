@@ -54,13 +54,14 @@ class BookController extends Controller
             $query->where('publised_on', '=', $request->published_year);
             $flag = 0;
         }
-        $books = $query->orderBy('created_at')->paginate(10);
+        $books = $query->orderBy('created_at')->paginate(10);//検索結果
     }
     else{
         $books = Book::first();
     }
     $categories=Category::get();
-        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories]);
+    //dd($request);
+        return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories,'request'=>$request]);
     }
 
     /**
