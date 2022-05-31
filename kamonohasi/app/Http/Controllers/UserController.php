@@ -110,12 +110,20 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $books = [];
-
         $user = $request->input('user');
-
         if(!empty($user)){
             if(User::where('id', '=', $user)->first()){
                 $users = User::where('id', '=', $user)->first();
+                $rental_hist = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 1)->orderBy('created_at','desc')->get();
+                if(count($rental_hist)){
+                    foreach($rental_hist as $hist){
+                        $book_hist[] = Book::where('id', '=', $hist->book_id)->first();
+                    }
+                    $rental_flag = 0; //貸出履歴あり
+                }else{
+                    $book_hist = [];
+                    $rental_flag = 1; //貸出履歴なし
+                }
                 $rentals = Rental::where('user_id', '=', $users->id)->where('rental_status', '=', 0)->get();
                 if(count($rentals)){
                     foreach($rentals as $rental){
@@ -141,7 +149,7 @@ class UserController extends Controller
             $users = User::first();
             $flag = 1;
         }
-        return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books]);
+        return view('users/show', ['users' => $users, 'flag' => $flag, 'books' => $books, 'rental_flag' => $rental_flag, 'book_hist' => $book_hist, 'rental_hist' => $rental_hist]);
     }
 
     /**
