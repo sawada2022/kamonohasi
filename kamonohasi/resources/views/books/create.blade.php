@@ -50,7 +50,7 @@
             <input type="date" id="deleted_on" name="deleted_on" value="{{ old('deleted_on',$book->deleted_on) }}">
         </span>
     </div>
-    <button class="btnBase"><i class="fa-solid fa-plus"></i><span>登録</span></button>
+    <button class="btnBase btn-green"><i class="fa-solid fa-plus"></i><span>登録</span></button>
     </form>
 </div>
 @endsection

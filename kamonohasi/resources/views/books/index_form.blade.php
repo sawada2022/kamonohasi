@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <button class="btnBase"><span>検索</span><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="btnBase btn-green"><span>検索</span><i class="fa-solid fa-magnifying-glass"></i></button>
 
 
 </form>

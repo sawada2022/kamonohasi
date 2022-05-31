@@ -12,7 +12,7 @@
         @csrf
         @include('commons/user_form')
 
-        <button class="btnBase"><i class="fa-solid fa-plus"></i><span>登録</span></button>
+        <button class="btnBase btn-green"><i class="fa-solid fa-plus"></i><span>登録</span></button>
     </form>
 </div>
 

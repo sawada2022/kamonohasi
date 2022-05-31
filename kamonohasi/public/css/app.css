@@ -190,6 +190,18 @@ header div a p {
   color: #505050;
 }
 
+.btn-green {
+  border: 2px solid #4f9442;
+}
+
+.btn-yellow {
+  border: 2px solid #dde011;
+}
+
+.btn-light-green {
+  border: 2px solid #8cd860;
+}
+
 .btnFlex {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -259,6 +271,12 @@ caption {
   padding: 0 0.5rem;
 }
 
+.alart {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem auto;
+}
 .alart p {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -382,6 +400,30 @@ caption {
   gap: 6rem;
   align-items: center;
   margin: 0 auto;
+}
+
+.border {
+  margin-bottom: 10px;
+  border-bottom: 5px solid #dde011;
+  position: relative;
+}
+
+.border-color::before {
+  content: "";
+  display: block;
+  border-bottom: 5px solid #4f9442;
+  width: 33%;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+.border-color::after {
+  content: "";
+  display: block;
+  border-bottom: 5px solid #8cd860;
+  width: 33%;
+  position: absolute;
+  right: 0;
 }
 
 /* rentals.index */
@@ -683,6 +725,10 @@ caption {
     opacity: 1;
   }
 }
+.no-rental-msg {
+  line-height: 4rem;
+}
+
 .p-pagination {
   width: -webkit-fit-content;
   width: -moz-fit-content;

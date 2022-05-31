@@ -2,7 +2,7 @@
 <header>
     <div class="headerLeft">
         <a href="/">
-            <p class="headerText">かものはしLibrary</p>
+            <p class="headerText border border-color">かものはしLibrary</p>
         </a>
         <img src="/image/kamonohasi.png" alt="かものはしのイラスト" />          
         <p class="headerText">@yield('title')</p>

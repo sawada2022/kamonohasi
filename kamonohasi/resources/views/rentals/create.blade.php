@@ -44,7 +44,7 @@
 
             @endforeach
             @else
-            <p>現在、{{$users->user_name}}さんに貸し出している本はありません。</p>
+            <p class="no-rental-msg">現在、{{$users->user_name}}さんに貸し出している本はありません。</p>
             @endif
         </table>
         <button class="modalBtn" onclick="modalClose('book')"><i class="fa-solid fa-xmark modalIcon"></i></button>
@@ -84,7 +84,7 @@
             資料ID
             <input type="hidden" name="user_id" value="{{$users->id}}">
             <input type="number" class="input" name="book_id" min="1">
-            <button class="btnBase"><span>追加</span><i class="fa-solid fa-plus"></i></button>
+            <button class="btnBase btn-green"><span>追加</span><i class="fa-solid fa-plus"></i></button>
         </form>
 
         @include('commons/flash')
@@ -120,7 +120,7 @@
         <form action="{{route('rentals.store')}}" method="post">
             @csrf
             <input type="text" value="{{$users->id}}" name="user_id_rental" style='display:none;'>
-            <button class="btnBase"><i class="fa-solid fa-check"></i><span>貸し出し</span></button>
+            <button class="btnBase btn-green"><i class="fa-solid fa-check"></i><span>貸し出し</span></button>
         </form>
         @endif
     </div>

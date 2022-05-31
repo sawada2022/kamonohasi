@@ -82,7 +82,7 @@
         @method('patch')
         @csrf
         <input type="hidden" name="user_id" value="{{ $user->id }}">
-        <button class="btnBase"><span>返却</span><i class="fa-solid fa-rotate-left"></i></button>
+        <button class="btnBase btn-green"><span>返却</span><i class="fa-solid fa-rotate-left"></i></button>
         </form>
 
         @else
