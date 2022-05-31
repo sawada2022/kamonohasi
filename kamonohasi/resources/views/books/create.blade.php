@@ -27,16 +27,17 @@
             <input type="text" id="isbn" name="isbn" value="{{ old('isbn',$book->isbn) }}">
         </span>
         <span>
-            <label for="category">分類コード</label>
-            <select id="category" name="category_id">
-                <option value=""></option>
-                @foreach($categories as $category)
-                <option value="{{ $category->category_id }}">
-                    {{ $category->category_id }}：{{ $category->genre }}
-                </option>
-                @endforeach
-            </select>
-        </span>
+                <label for="genre">分類コード</label>
+                <select id="genre" name="genre">
+                    <option value=""></option>
+                   @foreach($categories as $category)
+                    <option value="{{ $category->category_id }}">
+                       {{ $category->category_id }}：{{ $category->genre }}
+                    </option>
+                   @endforeach
+                </select>
+            </span>
+
         <span>
             <label for="published_on">出版日</label>
             <input type="date" id="published_on" name="published_on" value="{{ old('published_on',$book->published_on) }}">
