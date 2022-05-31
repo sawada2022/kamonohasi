@@ -27,17 +27,14 @@
                 <label for="genre">分類コード</label>
                 <select id="genre" name="genre">
                     <option value=""></option>
-                    @foreach($categories as $category)
-                    @if($category->category_id == $request->genre)
-                        <option value="{{ $category->category_id }}" selected>
-                    @else
-                        <option value="{{ $category->category_id }}">
-                     @endif
-                    {{ $category->category_id }}：{{ $category->genre }}
-                </option>
-                    @endforeach
+                   @foreach($categories as $category)
+                    <option value="{{ $category->category_id }}">
+                       {{ $category->category_id }}：{{ $category->genre }}
+                    </option>
+                   @endforeach
                 </select>
             </span>
+
             <span>
                 <label for="publised_year">出版年</label>
                 <select id="publised_year" name="publised_year">
