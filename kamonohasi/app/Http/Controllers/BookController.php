@@ -103,15 +103,23 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //dd($book);
+        $rental_hist = Rental::where('book_id', '=', $book->id)->where('rental_status', '=', 1)->orderBy('created_at','desc')->get();
+        if(count($rental_hist)){
+            foreach($rental_hist as $hist){
+                $user_hist[] = User::where('id', '=', $hist->book_id)->first();
+            }
+            $rental_flag = 0; //貸出履歴あり
+        }else{
+            $user_hist = [];
+            $rental_flag = 1; //貸出履歴なし
+        }
+
         $rentals = Rental::where('book_id', '=', $book->id)->first();
-       // dd($rentals->user_id);
-        //$users = $book->rental_users;
-        if($rentals === NULL || $rentals->rental_status === 1){
-            return view('books/show', ['book' => $book, 'flag' => 0]);//,'users'=> $users
+        if($rentals === NULL || $rentals->rental_status === 1){ //借りられる状態ならば
+            return view('books/show', ['book' => $book, 'flag' => 0, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist]);
         }else{
             $users = User::where('id', '=', $rentals->user_id)->first();
-        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users]); 
+        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist]); 
         }
         
     }
