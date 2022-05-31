@@ -29,11 +29,11 @@
                     <option value=""></option>
                     @foreach($categories as $category)
                     @if($category->category_id == $request->genre)
-                        <option value="{{ old('genre',$category->category_id) }}" selected>
+                        <option value="{{ $category->category_id }}" selected>
                     @else
-                        <option value="{{ old('genre',$category->category_id) }}">
+                        <option value="{{ $category->category_id }}">
                      @endif
-                    {{ old('category_id',$category->category_id) }}：{{ old('genre',$category->genre) }}
+                    {{ $category->category_id }}：{{ $category->genre }}
                 </option>
                     @endforeach
                 </select>
