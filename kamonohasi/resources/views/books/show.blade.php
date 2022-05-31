@@ -16,11 +16,11 @@
             </tr>
             @foreach($user_hist as $index => $hist)
             <tr>
-                <td>{{$index + 1}}</td>
+                <td>{{count($user_hist) - $index}}</td>
                 <td>{{$hist->id}}</td>
                 <td>{{$hist->user_name}}</td>
-                <td>{{$hist->created_at}}</td>
-                <td>{{$hist->created_at}}</td>
+                <td>{{$rental_hist[$index]->created_at}}</td>
+                <td>{{$rental_hist[$index]->updated_at}}</td>
             </tr>
             @endforeach
             @else
