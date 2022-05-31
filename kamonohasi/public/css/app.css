@@ -211,6 +211,10 @@ header div a p {
   align-items: center;
 }
 
+.histBtn {
+  margin: 2rem auto 0;
+}
+
 .tableBase {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -685,6 +689,24 @@ caption {
   margin: auto;
   padding: 2.5rem 3rem 2.5rem 4rem;
   border-radius: 5px;
+}
+.modalContent table {
+  display: block;
+  max-height: 45rem;
+  overflow-y: scroll;
+  margin: 1rem 0;
+}
+.modalContent table::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 20px;
+}
+.modalContent table::-webkit-scrollbar-track {
+  border-radius: 100px;
+}
+.modalContent table::-webkit-scrollbar-thumb {
+  background: #4f9442;
+  border-radius: 100px;
+  width: 130px;
 }
 
 .modalBtn {

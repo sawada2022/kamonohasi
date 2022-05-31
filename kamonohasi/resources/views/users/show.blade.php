@@ -2,6 +2,37 @@
 @section('title','会員管理業務')
 @section('content')
 
+<div id="histModal" class="modal">
+    <div class="modalContent">
+        <table class="tableBase" frame="void">
+            @if($rental_flag === 0)
+            <caption>貸し出し履歴</caption>
+            <tr>
+                <th>累計貸出冊数</th>
+                <th>資料ID</th>
+                <th>資料名</th>
+                <th>著者</th>
+                <th>貸出日</th>
+                <th>返却日</th>
+            </tr>
+            @foreach($book_hist as $index => $hist)
+            <tr>
+                <td>{{count($book_hist) - $index}}</td>
+                <td>{{$hist->id}}</td>
+                <td>{{$hist->title}}</td>
+                <td>{{$hist->author}}</td>
+                <td>{{$rental_hist[$index]->created_at}}</td>
+                <td>{{$rental_hist[$index]->updated_at}}</td>
+            </tr>
+            @endforeach
+            @else
+            <p class="no-rental-msg">{{$users->user_name}}さんの貸し出し履歴はありません。</p>
+            @endif
+        </table>
+        <button class="modalBtn" onclick="modalClose('hist')"><i class="fa-solid fa-xmark modalIcon"></i></button>
+    </div>
+</div>
+
 @include('commons/backBtn', ['path' => 'users'])
 
 <h1>会員情報詳細</h1>
@@ -90,7 +121,30 @@
             </tr>
         </table>
         @endif
+        <button class="btnBase histBtn" onclick="modal('hist')"><i class="fa-solid fa-clock-rotate-left"></i><span>貸し出し履歴</span></button>
     </div>
 </div>
+
+<script>
+    function modal(flg){
+        if(flg === 'hist'){
+            document.getElementById('histModal').style.display = 'block';
+            document.getElementById('histModal').style.animation = 'show 0.15s linear 0s';
+        }
+    }
+
+    function modalClose(flg){
+        if(flg === 'hist'){
+            document.getElementById('histModal').style.display = 'none';
+        }
+    }
+
+    // hist modal close when click outside
+    document.getElementById('histModal').addEventListener('click',function(e) {
+        if(!e.target.closest('.modalContent')){
+        document.getElementById('histModal').style.display = 'none';
+        }
+    })
+</script>
 
 @endsection
