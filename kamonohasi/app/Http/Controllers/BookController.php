@@ -62,7 +62,6 @@ class BookController extends Controller
     }
     else{
         $books = Book::first();
-        $request->genre = "99";
     }
     $categories=Category::get();
         return view('books.index', ['books' => $books, 'flag' => $flag,'categories'=>$categories,'request'=>$request]);
