@@ -117,10 +117,10 @@ class BookController extends Controller
 
         $rentals = Rental::where('book_id', '=', $book->id)->first();
         if($rentals === NULL || $rentals->rental_status === 1){ //借りられる状態ならば
-            return view('books/show', ['book' => $book, 'flag' => 0, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist]);
+            return view('books/show', ['book' => $book, 'flag' => 0, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist, 'rental_hist' => $rental_hist]);
         }else{
             $users = User::where('id', '=', $rentals->user_id)->first();
-        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist]); 
+        return view('books/show', ['book' => $book, 'flag' => 1,'users'=> $users, 'rental_flag' => $rental_flag, 'user_hist' => $user_hist, 'rental_hist' => $rental_hist]); 
         }
         
     }

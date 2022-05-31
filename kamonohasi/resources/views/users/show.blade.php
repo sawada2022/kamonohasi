@@ -17,12 +17,12 @@
             </tr>
             @foreach($book_hist as $index => $hist)
             <tr>
-                <td>{{$index + 1}}</td>
+                <td>{{count($book_hist) - $index}}</td>
                 <td>{{$hist->id}}</td>
                 <td>{{$hist->title}}</td>
                 <td>{{$hist->author}}</td>
-                <td>{{$hist->created_at}}</td>
-                <td>{{$hist->created_at}}</td>
+                <td>{{$rental_hist[$index]->created_at}}</td>
+                <td>{{$rental_hist[$index]->updated_at}}</td>
             </tr>
             @endforeach
             @else
