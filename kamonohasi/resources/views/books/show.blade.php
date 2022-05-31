@@ -24,7 +24,7 @@
             </tr>
             @endforeach
             @else
-            <p class="no-rental-msg">{{$users->user_name}}さんの貸し出し履歴はありません。</p>
+            <p class="no-rental-msg">この本の貸し出し履歴はありません。</p>
             @endif
         </table>
         <button class="modalBtn" onclick="modalClose('hist')"><i class="fa-solid fa-xmark modalIcon"></i></button>
